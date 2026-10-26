@@ -2,7 +2,7 @@ import ts from 'typescript';
 import {readFileSync,readdirSync} from 'node:fs';
 import assert from 'node:assert/strict';
 function walk(path){return readdirSync(path,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(`${path}/${e.name}`):[`${path}/${e.name}`]);}
-for(const path of [...walk('src'),...walk('policy')].filter(p=>p.endsWith('.ts'))){
+for(const path of walk('src').filter(p=>p.endsWith('.ts'))){
  const text=readFileSync(path,'utf8');
  const file=ts.createSourceFile(path,text,ts.ScriptTarget.Latest,true);
  function visit(node){
@@ -10,7 +10,7 @@ for(const path of [...walk('src'),...walk('policy')].filter(p=>p.endsWith('.ts')
   if(ts.isImportDeclaration(node)||ts.isExportDeclaration(node)){
    const name=node.moduleSpecifier?.text??'';
    assert(!/\/test\/|vitest|planning\//.test(name),`${path}: production imports preparation/tests`);
-   if(path.includes('/domain/')||path.startsWith('policy/core'))assert(!/^(node:|express|pg|better-sqlite3)/.test(name),`${path}: domain imports IO`);
+   if(path.includes('/domain/'))assert(!/^(node:|express|pg|better-sqlite3)/.test(name),`${path}: domain imports IO`);
   }
   if(path.includes('/domain/')&&ts.isCallExpression(node))assert(!['Date.now','Math.random'].includes(node.expression.getText(file)),`${path}: nondeterministic domain`);
   if(path.includes('/domain/')&&ts.isNewExpression(node)&&node.expression.getText(file)==='Date')assert(node.arguments?.length,`${path}: implicit wall clock`);

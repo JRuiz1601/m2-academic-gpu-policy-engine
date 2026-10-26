@@ -1,15 +1,9 @@
 import type { DatabaseSync } from 'node:sqlite';
-import type { Runtime, Session } from '../../src/ports/runtime.ts';
-import { wrapDatabase } from '../../src/adapters/outbound/sqlite.ts';
-import * as service from '../../src/application/service.ts';
+import type { Runtime, Session } from './runtime.ts';
+import { wrapDatabase } from '../adapters/outbound/sqlite.ts';
+import * as service from '../application/service.ts';
 export type { Session };
-// Compatibility seam for Solu-2 fixtures. Production uses Runtime and Store ports.
-export class NotImplementedError extends Error {
-    constructor() {
-        super('Legacy Solu-2 sentinel');
-        this.name = 'NotImplementedError';
-    }
-}
+// Compatibility seam for Solu-2 test fixtures. Production uses Runtime and Store ports.
 type Legacy = Omit<Runtime, 'store'> & {
     db: DatabaseSync;
 };

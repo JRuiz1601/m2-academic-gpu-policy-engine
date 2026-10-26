@@ -15,8 +15,6 @@
   },
   "include": [
     "test/**/*.ts",
-    "ports/**/*.ts",
-    "policy/**/*.ts",
     "planning/detailed-design/schemas/dto.ts",
     "src/**/*.ts"
   ]

@@ -1,14 +1,8 @@
 import { test, expect, describe } from 'vitest';
 import fc from 'fast-check';
-import { evaluate, validateRegistry, type Facts } from '../../policy/core/index.js';
-import { NotImplementedError } from '../../ports/in/policy.js';
+import { evaluate, validateRegistry, type Facts } from '../../src/domain/evaluate.ts';
 function propertyCheck(action: () => void) {
-  try {
-    action();
-  } catch (error) {
-    if (error instanceof Error && error.cause instanceof NotImplementedError) throw error.cause;
-    throw error;
-  }
+  action();
 }
 import { request, explain_assert, protectedWindow } from '../fixtures/index.js';
 describe('M2 domain policy', () => {

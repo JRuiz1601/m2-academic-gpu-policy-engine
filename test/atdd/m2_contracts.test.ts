@@ -5,8 +5,7 @@ import {
   activateFreeze,
   publishVersion,
   liftFreeze,
-  NotImplementedError,
-} from '../../ports/in/policy.js';
+} from '../../src/ports/policy.ts';
 import {
   harness,
   timetableWindow,
@@ -37,7 +36,6 @@ async function rejected(call: () => Promise<unknown>, code: string, before: stri
   try {
     await call();
   } catch (e) {
-    if (e instanceof NotImplementedError) throw e;
     error = e;
   }
   expect(error).toMatchObject({ code });
@@ -252,8 +250,6 @@ test('AC-P2 missing token no mutation', async () => {
 test('AC-I1 eight racers one success seven conflicts', async () => {
   const i = await armed();
   const result = await Promise.allSettled(Array.from({ length: 8 }, () => activateFreeze(h, i)));
-  for (const r of result)
-    if (r.status === 'rejected' && r.reason instanceof NotImplementedError) throw r.reason;
   expect(result.filter((r) => r.status === 'fulfilled')).toHaveLength(1);
   const errors = result.filter((r) => r.status === 'rejected');
   expect(errors).toHaveLength(7);

@@ -6,7 +6,7 @@ import type {
   DecisionDto,
   EvaluateRequestDto,
 } from '../../planning/detailed-design/schemas/dto.js';
-import type { Session } from '../../ports/in/policy.js';
+import type { Session } from '../../src/ports/policy.ts';
 export function fake_clock(initial = '2026-10-19T03:00:00.000Z') {
   let now = Date.parse(initial);
   let reads = 0;
