@@ -4,3 +4,4 @@ data/
 coverage/
 NEXT.IMPL1-CLOSE.md
 LAST-REPORT.md
+test/evidence/impl1-performance.json
