@@ -24,5 +24,6 @@ progression:
 review:
   automated: passed
   author_review: completed
-  independent_human_review: pending
+  independent_human_review: completed
+  human_review_note: reviewed by the team (Juan Esteban Ruiz Ome and Tomás Quintero) on 2026-10-26, as confirmed by Juan; not an external reviewer
   production_approval: pending

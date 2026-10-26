@@ -7,7 +7,7 @@ Estado: ready-for-review. Meta: permitir a Mateo usar una estación de 24 GB con
 3. Desglose: tipos de dominio → reglas puras → Store/Runtime → SQLite → servicio transaccional → HTTP/CLI → pruebas y consola.
 4. Código y pruebas: `src/domain/evaluate.ts`, `src/application/service.ts`, adaptadores y `test/implementation/core.test.ts`/`http.test.ts`. Se verifican ALLOW citado, falta de entitlement, identidad vinculada a sesión, wire inválido, concurrencia y reinicio con replay.
 5. DoD automatizado: `npm run check`; evidencia conjunta en `test/evidence/impl1-check.log`. No skips. Lint de límites y tsc estricto con erasableSyntaxOnly.
-6. Revisión: se corrigió idempotencia para incluir todo el cuerpo y se verificó persistencia antes de respuesta. Autorrevisión completada; revisión humana pendiente, sin promoción a done.
+6. Revisión: se corrigió idempotencia para incluir todo el cuerpo y se verificó persistencia antes de respuesta. Autorrevisión completada; revisión humana del diff por el equipo completada (confirmada por Juan, 2026-10-26); sin promoción a done.
 
 BDD: Given Student y modelo de 8 GB con estación de 24 GB, When evalúa su solicitud, Then ALLOW con R-ALLOW-01, citas y “Standard student lab policy satisfied”. Given actor sin entitlement, When solicita esa asignatura, Then DENY por R-AUTH-01.
 

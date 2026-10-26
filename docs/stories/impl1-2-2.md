@@ -7,7 +7,7 @@ Estado: ready-for-review. Meta: proteger la clase CS-101 de los trabajos en segu
 3. Desglose: instantes/ventana → filtro de asignatura → gate medio abierto → próximo instante disponible → límite nocturno → almacenamiento de evidencia.
 4. Código y pruebas: `evaluate.ts`, `facts.ts`, `fixtures/timetable.json`, pruebas DM-BOUND, DM-START, EDGE y escenarios nuevos de lunes 10:30 y exactamente 12:00. Se verifica precedencia temporal, cita, próximo fin y delegación del deadline a M9.
 5. DoD automatizado: `npm run check`, registro `test/evidence/impl1-check.log`. El tipo de trabajo interactivo mantiene la excepción acordada en el PRD; el anexo pide rechazar trabajos asíncronos.
-6. Revisión: cuota agotada domina un deadline (DL-50) y cuota insuficiente se conserva aunque haya plazo. Revisión humana de la reconciliación documental pendiente.
+6. Revisión: cuota agotada domina un deadline (DL-50) y cuota insuficiente se conserva aunque haya plazo. Diff revisado por el equipo (confirmado por Juan, 2026-10-26); la reconciliación formal con el PRD antiguo sigue pendiente.
 
 BDD: Given ventana CLASS CS-101 lunes 10:00–12:00 campus UTC−05, When Mateo pide BACKGROUND_BATCH a las 10:30, Then DENY R-LAB-01 con texto de protección y `2026-10-19T17:00:00.000Z` como próxima disponibilidad de esa clase. Given reloj exactamente al fin, When evalúa un trabajo EVALUATION autorizado, Then la clase ya no lo bloquea.
 

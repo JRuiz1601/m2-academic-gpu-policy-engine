@@ -7,7 +7,7 @@ Estado: ready-for-review. Meta: reservar el servidor de 48 GB para solicitudes a
 3. Desglose: modelo/floor → capacidades → clearance → variante elegible → motivo con alternativa → tests y API.
 4. Código y pruebas: `evaluate.ts`, `registry.ts`, `fixtures/models.json`, `fixtures/fleet.json`; pruebas nuevas de estudiante con 8 GB solicitando 48 GB y excepciones INSTRUCTOR/RESEARCHER. Se conservan las pruebas anteriores de floor incompatible y variante elegible.
 5. DoD automatizado: `npm run check`, evidencia en `test/evidence/impl1-check.log`. La respuesta incluye VRAM observada en explanation y propone `std-24`.
-6. Revisión: el campo `model_vram_required_gb` del ejemplo no se añadió porque contradice el contrato previo; el tamaño se obtiene de facts. Autorrevisión completa, validación humana pendiente.
+6. Revisión: el campo `model_vram_required_gb` del ejemplo no se añadió porque contradice el contrato previo; el tamaño se obtiene de facts. Autorrevisión completa, diff revisado por el equipo (confirmado por Juan, 2026-10-26).
 
 BDD: Given Mateo STUDENT y modelo de 8 GB, When solicita 48GB_SERVER, Then DENY R-TIER-02 con “Workload fits standard 24GB workstation; server tier restricted” y alternativa std-24. Given INSTRUCTOR o RESEARCHER autorizado, When solicita el servidor para ese modelo, Then puede recibir ALLOW si no hay otra restricción.
 
