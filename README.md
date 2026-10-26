@@ -70,3 +70,13 @@ Los informes Solu-2 y sus pruebas RED son evidencia histórica, conservada en `p
 ## Git history note
 
 The implementation was produced in a workspace without version control; the commits were created at submission time by slicing the final tree and do not reflect the real chronology.
+
+## Equipo
+
+Juan Esteban Ruiz Ome y Tomás Quintero, equipo del M2 Academic GPU Policy Engine (Universidad Icesi).
+
+- El paquete de planeación (Solu-2) lo hicieron entre los dos.
+- La implementación Impl-1 se produjo en el workspace de Tomás con un agente local (Codex).
+- La limpieza, las pruebas BDD, la verificación en Docker y el empaquetado final se hicieron en el clon de Juan con Claude Code.
+
+Los commits de este repositorio se crearon al entregar (ver Git history note); la autoría de cada parte está descrita aquí, no inferida del historial.
