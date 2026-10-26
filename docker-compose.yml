@@ -1,0 +1,14 @@
+services:
+  policy:
+    build: .
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      HOST: 0.0.0.0
+      DATABASE_PATH: /app/data/m2.sqlite
+      SIMULATED_NOW: ${SIMULATED_NOW:-2026-10-19T03:00:00.000Z}
+      TOKEN_SECRET: ${TOKEN_SECRET:-local-simulation-secret-at-least-32-characters}
+    volumes:
+      - policy-data:/app/data
+volumes:
+  policy-data:

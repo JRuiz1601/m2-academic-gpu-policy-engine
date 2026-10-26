@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ES2023",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "types": [
+      "node",
+      "vitest/globals"
+    ],
+    "allowImportingTsExtensions": true,
+    "erasableSyntaxOnly": true
+  },
+  "include": [
+    "test/**/*.ts",
+    "ports/**/*.ts",
+    "policy/**/*.ts",
+    "planning/detailed-design/schemas/dto.ts",
+    "src/**/*.ts"
+  ]
+}
