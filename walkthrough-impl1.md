@@ -92,3 +92,7 @@ Desde esta carpeta: `npm run setup` y `npm start`; abrir http://127.0.0.1:3000. 
 Docker Compose validó su configuración. El build y el contenedor no se ejecutaron porque el daemon de Docker estaba apagado. La CI está lista pero no se publicó ni ejecutó en GitHub; el origen no tenía repositorio Git. La entrega usa archivo organizado, opción admitida por el PDF.
 
 [Todos los pendientes](PENDIENTES-IMPL1.md) incluyen pruebas de navegador/accesibilidad, producción, entrega de eventos/M9, NFR avanzados, reevaluación histórica completa, trazabilidad avanzada y reconciliación formal de los hallazgos de run5. No se marca toda la planeación como terminada por haber pasado las pruebas locales.
+
+## Git history note
+
+The implementation was produced in a workspace without version control; the commits were created at submission time by slicing the final tree and do not reflect the real chronology.
