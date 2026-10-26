@@ -1,0 +1,403 @@
+{
+  "schema_version": "0.2.0",
+  "snapshot_at": "2026-10-22T23:45:48Z",
+  "repo": "DesarrolloIA/M2-Academic-GPU-Policy-Engine",
+  "collection_mode": "contract_static",
+  "collection_status": "COLLECTED",
+  "inventory_basis": "acceptance_criteria",
+  "gate_basis": "priority_thresholds",
+  "source_sha": "",
+  "target": {
+    "type": "epic",
+    "id": "M2-epics-1-4",
+    "label": "M2 all 86 acceptance criteria"
+  },
+  "decision_mode": "deterministic",
+  "evaluator": "Codex for Juan; no human approval implied",
+  "confidence": "high",
+  "oracle": {
+    "resolution_mode": "formal_requirements",
+    "confidence": "high",
+    "sources": [
+      "planning/epics.md",
+      "planning/criteria-test-map.md",
+      "planning/prd.md",
+      "test/test-design.md"
+    ],
+    "external_pointer_status": "not_used",
+    "synthetic": false
+  },
+  "coverage": {
+    "inventory": {
+      "covered": 5,
+      "total": 86,
+      "pct": 6
+    },
+    "priority_breakdown": {
+      "P0": {
+        "total": 56,
+        "covered": 3,
+        "pct": 5
+      },
+      "P1": {
+        "total": 30,
+        "covered": 2,
+        "pct": 7
+      },
+      "P2": {
+        "total": 0,
+        "covered": 0,
+        "pct": 100
+      },
+      "P3": {
+        "total": 0,
+        "covered": 0,
+        "pct": 100
+      }
+    },
+    "by_level": {
+      "e2e": {
+        "tests": 0,
+        "criteria_covered": 0
+      },
+      "api": {
+        "tests": 0,
+        "criteria_covered": 0
+      },
+      "component": {
+        "tests": 0,
+        "criteria_covered": 0
+      },
+      "unit": {
+        "tests": 10,
+        "criteria_covered": 6
+      },
+      "live": {
+        "tests": 0,
+        "criteria_covered": 0
+      },
+      "other": {
+        "tests": 51,
+        "criteria_covered": 39
+      }
+    }
+  },
+  "tests": {
+    "files": 2,
+    "cases": 61,
+    "skipped_cases": 0,
+    "fixme_cases": 0,
+    "pending_cases": 0
+  },
+  "risk_summary": {
+    "critical_open": 24,
+    "high_open": 19,
+    "medium_open": 0,
+    "low_open": 0
+  },
+  "heuristics": {
+    "endpoint_gaps": 14,
+    "auth_negative_path_status": "partial",
+    "error_path_status": "partial",
+    "ui_journey_status": "not_applicable",
+    "ui_state_status": "not_applicable",
+    "ui_note": "Standard summary UI fields are synthetic-oracle-only; this formal oracle separately records four uncovered UI/CLI journeys and five missing UI-state classes in Phase1 coverage_heuristics."
+  },
+  "live_evidence": {
+    "present": false,
+    "results_file": "test/evidence/tea/live-verification-results.json",
+    "freshness": "not_present",
+    "recorded_source_sha": "",
+    "current_source_sha": "",
+    "producer": "",
+    "counted": 0,
+    "stale": 0,
+    "unverifiable": 0,
+    "failed": 0,
+    "contradicted": 0,
+    "blocked": 0,
+    "skipped": 0,
+    "unmatched": 0,
+    "invalid": 0,
+    "requirements_live_only": 0
+  },
+  "blockers": [
+    {
+      "id": "TR-G01",
+      "severity": "critical",
+      "reason": "Domain, isolation and boundary oracles are planned rather than executable"
+    },
+    {
+      "id": "TR-G02",
+      "severity": "critical",
+      "reason": "HTTP routes, session boundaries and response status handling are not exercised"
+    },
+    {
+      "id": "TR-G03",
+      "severity": "critical",
+      "reason": "Existing red specifications omit specific acceptance outcomes"
+    },
+    {
+      "id": "TR-G04",
+      "severity": "critical",
+      "reason": "UI, CLI and accessibility acceptance tests have no executable harness"
+    },
+    {
+      "id": "TR-G05",
+      "severity": "high",
+      "reason": "Performance and activation/journal measurements remain plans"
+    },
+    {
+      "id": "TR-G06",
+      "severity": "critical",
+      "reason": "Cross-process/database-role and quota-commit acceptance tests are absent"
+    },
+    {
+      "id": "TR-G07",
+      "severity": "high",
+      "reason": "Documentation lint is not an ATDD case"
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": "CRITICAL",
+      "action": "Add the named planned unit/property tests (including THESIS, scoped schedules, daemon exemption, import/I/O guards, canonical replay, poisoned data and port fail-mode classification), using the documented PRD/contracts outcomes. Preserve fixed clocks and independent expected values.",
+      "requirements": [
+        "1.2.AC4",
+        "1.2.AC5",
+        "1.2.AC6",
+        "1.2.AC7",
+        "2.1.AC3",
+        "2.1.AC5",
+        "2.1.AC6",
+        "2.1.AC7",
+        "2.1.AC8",
+        "2.1.AC9",
+        "2.1.AC10",
+        "2.2.AC5",
+        "2.2.AC6",
+        "4.2.AC3",
+        "4.2.AC4",
+        "4.2.AC5",
+        "4.2.AC6"
+      ]
+    },
+    {
+      "priority": "CRITICAL",
+      "action": "Implement a public API test harness in the implementation phase. Given documented valid/invalid requests and session roles, call each endpoint and assert documented status/body and no-write outcomes. Keep unauthenticated status unspecified until architecture fixes it; do not invent publish authorization/status. Suggested stable IDs: existing HR-Q1/HR-P1/AUTH-U-1/FD-Q1/FZ-READ-1/FZ-READ-2/LF-P4/RV-Q1/RV-P1, plus API variants of mapped existing IDs.",
+      "requirements": [
+        "1.1.AC1",
+        "1.1.AC2",
+        "1.1.AC5",
+        "1.2.AC1",
+        "1.2.AC3",
+        "1.3.AC2",
+        "2.1.AC2",
+        "2.1.AC4",
+        "2.1.AC11",
+        "2.2.AC1",
+        "2.2.AC2",
+        "2.2.AC3",
+        "2.2.AC4",
+        "2.3.AC1",
+        "2.3.AC2",
+        "2.3.AC3",
+        "2.3.AC4",
+        "2.3.AC5",
+        "2.3.AC6",
+        "3.1.AC1",
+        "3.1.AC2",
+        "3.2.AC2",
+        "3.3.AC1",
+        "3.3.AC2",
+        "3.3.AC3",
+        "3.4.AC1",
+        "3.4.AC2",
+        "3.5.AC1",
+        "3.5.AC2",
+        "3.5.AC3",
+        "3.5.AC4",
+        "4.1.AC1",
+        "4.1.AC2",
+        "4.1.AC3",
+        "4.2.AC2",
+        "4.3.AC1",
+        "4.3.AC2",
+        "1.1.AC3",
+        "1.1.AC4",
+        "3.1.AC3",
+        "3.2.AC3",
+        "3.4.AC3",
+        "4.1.AC4"
+      ]
+    },
+    {
+      "priority": "CRITICAL",
+      "action": "Complete the source-specific missing assertions listed per AC: minimal rule registry, boot denial, fan-out/40ms cancellation, clock-with-no-instant, M8 mutation boundary, consumed token/audit, partial closing rollback, suppressed R-FRZ-02, retry and idempotent event delivery. Use tests at domain, boot/integration and adapter levels as each clause requires.",
+      "requirements": [
+        "1.1.AC1",
+        "1.2.AC1",
+        "1.2.AC2",
+        "2.2.AC1",
+        "2.2.AC2",
+        "2.3.AC1",
+        "3.1.AC1",
+        "3.5.AC1",
+        "3.5.AC2",
+        "3.5.AC4",
+        "4.1.AC3",
+        "4.3.AC1"
+      ]
+    },
+    {
+      "priority": "CRITICAL",
+      "action": "When interface implementation is authorized, add the named UI-FRZ/UI-EVAL/UI-RULES/UI-CLI/COPY-01 tests. Given loading, empty, validation, permission and system-error states, exercise the real journey and assert visible outcome/accessibility at documented widths. No interface implementation is authorized by this trace run.",
+      "requirements": [
+        "4.5.AC1",
+        "4.5.AC2",
+        "4.5.AC3",
+        "4.5.AC4",
+        "4.4.AC1",
+        "4.4.AC2",
+        "4.4.AC3",
+        "4.4.AC4",
+        "4.4.AC5",
+        "4.4.AC6",
+        "4.4.AC7",
+        "4.4.AC8",
+        "4.4.AC9",
+        "4.3.AC4"
+      ]
+    },
+    {
+      "priority": "HIGH",
+      "action": "Provide the five measurement harnesses/evidence files specified by test/nfr-evidence.md; run against implementation with recorded equipment, load, seed and original thresholds. Prove an over-threshold result fails its implementation gate. No stub runtime is performance evidence.",
+      "requirements": [
+        "4.2.AC7",
+        "4.2.AC8",
+        "4.2.AC9"
+      ]
+    },
+    {
+      "priority": "CRITICAL",
+      "action": "Add DB-GRANT-1 against the PostgreSQL role and QUOTA-CONC-01 against a simulated atomic M8 commit. Given forbidden UPDATE/DELETE or 100 concurrent commits, assert rejection and remaining/need bound. In-memory SQLite is not equivalent evidence.",
+      "requirements": [
+        "1.3.AC3",
+        "2.3.AC7"
+      ]
+    },
+    {
+      "priority": "HIGH",
+      "action": "Keep DOC-LINT classified as an auxiliary script control with its own execution evidence; do not fabricate an ATDD ID or count it in 61 tests. Link it explicitly when reporting whole-repository controls.",
+      "requirements": [
+        "4.3.AC3"
+      ]
+    }
+  ],
+  "links": {
+    "trace_report_path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/tea/trace-skill-output.md",
+    "trace_report_url": "",
+    "artifact_url": "",
+    "journey_evidence_url": ""
+  },
+  "gate_status": "FAIL",
+  "gate_criteria": {
+    "p0_coverage_required": "100%",
+    "p0_coverage_actual": "5%",
+    "p0_status": "NOT_MET",
+    "p1_coverage_target": "90%",
+    "p1_coverage_minimum": "80%",
+    "p1_coverage_actual": "7%",
+    "p1_status": "NOT_MET",
+    "overall_coverage_minimum": "80%",
+    "overall_coverage_actual": "6%",
+    "overall_status": "NOT_MET"
+  },
+  "p0_red_preparation": {
+    "covered": 6,
+    "total": 6,
+    "percentage": 100,
+    "risks": [
+      {
+        "risk_id": "RK-01",
+        "priority": "P0",
+        "score": 9,
+        "test_ids": [
+          "EDGE-NIGHT",
+          "EDGE-1000",
+          "EDGE-FINAL"
+        ],
+        "prepared_red": true,
+        "production_verified": false
+      },
+      {
+        "risk_id": "RK-02",
+        "priority": "P0",
+        "score": 9,
+        "test_ids": [
+          "AC-ROLE",
+          "AC-P2",
+          "AC-TOKEN-FORGED",
+          "AC-NO-PREVIEW-ROW",
+          "AC-TOKEN-ACTOR"
+        ],
+        "prepared_red": true,
+        "production_verified": false
+      },
+      {
+        "risk_id": "RK-03",
+        "priority": "P0",
+        "score": 9,
+        "test_ids": [
+          "EV-I1"
+        ],
+        "prepared_red": true,
+        "production_verified": false
+      },
+      {
+        "risk_id": "RK-04",
+        "priority": "P0",
+        "score": 9,
+        "test_ids": [
+          "AC-I1"
+        ],
+        "prepared_red": true,
+        "production_verified": false
+      },
+      {
+        "risk_id": "RK-05",
+        "priority": "P0",
+        "score": 9,
+        "test_ids": [
+          "EV-DEP"
+        ],
+        "prepared_red": true,
+        "production_verified": false
+      },
+      {
+        "risk_id": "RK-12",
+        "priority": "P0",
+        "score": 9,
+        "test_ids": [
+          "EDGE-2158",
+          "DM-BOUND"
+        ],
+        "prepared_red": true,
+        "production_verified": false
+      }
+    ]
+  },
+  "production": {
+    "passed_tests": 0,
+    "total_tests": 61,
+    "pass_rate": 0
+  },
+  "additional_counts": {
+    "linked_red_ac_count": 43,
+    "partial_ac_count": 37,
+    "uncovered_ac_count": 43,
+    "unit_only_ac_count": 1,
+    "non_full_ac_count": 81,
+    "priority_provenance": "provisional analyst assignments; formal risk priorities retained separately"
+  }
+}

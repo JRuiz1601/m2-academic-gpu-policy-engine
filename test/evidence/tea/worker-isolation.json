@@ -1,0 +1,46 @@
+{
+  "dimension": "isolation",
+  "score": 90,
+  "max_score": 100,
+  "grade": "A",
+  "violations": [
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_contracts.test.ts",
+      "line": 44,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file contains 51 top-level tests and no describe/context grouping. Registry M4 fires for files with three or more tests without a subject grouping.",
+      "suggestion": "Group related tests in describe blocks naming the operation or policy subject.",
+      "code_snippet": "test('EV-Q1 ALLOW journal and outbox', async () => {"
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_domain.test.ts",
+      "line": 22,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file contains 10 top-level tests and no describe/context grouping. Registry M4 fires for files with three or more tests without a subject grouping.",
+      "suggestion": "Group related tests in describe blocks naming the operation or policy subject.",
+      "code_snippet": "test('DM-AD1 deterministic pure evaluation', () => {"
+    }
+  ],
+  "passed_checks": 4,
+  "failed_checks": 2,
+  "total_checks": 6,
+  "violation_summary": {
+    "CRITICAL": 0,
+    "HIGH": 0,
+    "MEDIUM": 2,
+    "LOW": 0
+  },
+  "recommendations": [
+    "Add describe/context subject grouping to both test files."
+  ],
+  "summary": "Both files pass C5 and H4. Two MEDIUM M4 findings: neither file groups its three or more tests.",
+  "evidence": {
+    "m2_contracts.test.ts": "Lines 25-29 replace the harness before every test and close its private SQLite connection afterward. harness() allocates a new in-memory database, clock, telemetry Map and arrays. All configured telemetry assertions follow inbound SUT calls. Shared sessions are read only in the reviewed tests.",
+    "m2_domain.test.ts": "facts() and request() create fresh objects per test/property case. Assertions target evaluate/validateRegistry results; no self-asserted configured mock and no shared state writes were found."
+  },
+  "grade_note": "Normalized from A- to the aggregation A/B/C/D/F scale; score and findings unchanged."
+}

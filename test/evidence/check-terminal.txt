@@ -1,0 +1,31 @@
+> m2-solu2-test-preparation@1.0.0 check
+> npm run typecheck && npm run test:harness && npm run verify:red && npm run gate
+
+
+> m2-solu2-test-preparation@1.0.0 typecheck
+> tsc --noEmit
+
+
+> m2-solu2-test-preparation@1.0.0 test:harness
+> vitest run test/harness
+
+
+ RUN  v4.1.12 C:/Users/acer/Downloads/AI/ENTREGA_TOMAS_M2/M2-Academic-GPU-Policy-Engine
+
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  22:00:49
+   Duration  531ms (transform 49ms, setup 0ms, import 83ms, tests 26ms, environment 0ms)
+
+
+> m2-solu2-test-preparation@1.0.0 verify:red
+> node test/ci/verify-red.mjs
+
+RED-CONTRACT PASS: 35/35 active acceptance tests fail with NotImplementedError; runner exit=1. This verifies preparation, not implemented behaviour.
+
+> m2-solu2-test-preparation@1.0.0 gate
+> node test/ci/readiness.mjs
+
+STRUCTURAL GATE PASS: 4 epics, 12 stories, 29 requirements, 9 AD, 35 active red tests; protected hashes unchanged; no new FR-15 matches.
+GLOBAL READINESS: NOT CERTIFIED. G-01..G-10 and Juan Phase 5 review remain. Sprint YAML is draft.

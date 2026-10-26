@@ -1,0 +1,49 @@
+{
+  "corpusSize": 1,
+  "sampled": 1,
+  "sampled_files": [
+    "test/harness/fixtures.test.ts"
+  ],
+  "conventions": {
+    "priorityMarkers": {
+      "adopted": 0,
+      "sampled": 1,
+      "status": "unknown"
+    },
+    "testIds": {
+      "adopted": 0,
+      "sampled": 1,
+      "status": "unknown"
+    },
+    "networkFirst": {
+      "adopted": 0,
+      "sampled": 1,
+      "status": "unknown"
+    },
+    "playwrightUtils": {
+      "adopted": 0,
+      "sampled": 1,
+      "status": "unknown"
+    },
+    "dataFactories": {
+      "adopted": 1,
+      "sampled": 1,
+      "status": "unknown"
+    },
+    "fixtures": {
+      "adopted": 1,
+      "sampled": 1,
+      "status": "unknown"
+    },
+    "bddNaming": {
+      "adopted": 1,
+      "sampled": 1,
+      "status": "unknown"
+    },
+    "assertionStyle": {
+      "adopted": 1,
+      "sampled": 1,
+      "status": "unknown"
+    }
+  }
+}

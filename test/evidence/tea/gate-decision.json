@@ -1,0 +1,24 @@
+{
+  "schema_version": "0.1.0",
+  "evaluated_at": "2026-10-22T23:45:48Z",
+  "repo": "DesarrolloIA/M2-Academic-GPU-Policy-Engine",
+  "target": {
+    "type": "epic",
+    "id": "M2-epics-1-4",
+    "label": "M2 all 86 acceptance criteria"
+  },
+  "collection_status": "COLLECTED",
+  "gate_basis": "priority_thresholds",
+  "gate_status": "FAIL",
+  "rationale": "P0 coverage is 5% (required: 100%). 24 critical requirements uncovered.",
+  "p0_status": "NOT_MET",
+  "p1_status": "NOT_MET",
+  "overall_status": "NOT_MET",
+  "critical_open": 24,
+  "links": {
+    "trace_report_path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/tea/trace-skill-output.md",
+    "trace_report_url": "",
+    "artifact_url": "",
+    "journey_evidence_url": ""
+  }
+}

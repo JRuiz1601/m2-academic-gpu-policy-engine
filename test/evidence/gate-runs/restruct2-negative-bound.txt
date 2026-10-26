@@ -1,0 +1,3 @@
+Negative verification: original 3,3,6,4 structure checked with RESTRUCT-2 gate in an isolated temp copy.
+STRUCTURAL GATE FAIL
+Epic 3 must have between three and five stories; got 6

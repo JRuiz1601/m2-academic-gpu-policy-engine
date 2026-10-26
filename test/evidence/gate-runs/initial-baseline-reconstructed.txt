@@ -1,0 +1,33 @@
+RECONSTRUCTED BASELINE: executed after RESTRUCT using byte-for-byte pre-edit backups in isolated temp directory. Not a chronological pre-edit run.
+
+> m2-solu2-test-preparation@1.0.0 check
+> npm run typecheck && npm run test:harness && npm run verify:red && npm run gate
+
+
+> m2-solu2-test-preparation@1.0.0 typecheck
+> tsc --noEmit
+
+
+> m2-solu2-test-preparation@1.0.0 test:harness
+> vitest run test/harness
+
+
+ RUN  v4.1.12 /private/tmp/solu2-initial-baseline
+
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  18:10:06
+   Duration  172ms (transform 28ms, setup 0ms, import 41ms, tests 14ms, environment 0ms)
+
+
+> m2-solu2-test-preparation@1.0.0 verify:red
+> node test/ci/verify-red.mjs
+
+RED-CONTRACT PASS: 61/61 active acceptance tests fail with NotImplementedError; runner exit=1. This verifies preparation, not implemented behaviour.
+
+> m2-solu2-test-preparation@1.0.0 gate
+> node test/ci/readiness.mjs
+
+STRUCTURAL GATE PASS: 4 epics, 16 stories, 29 requirements, 9 AD, 61 active red tests; protected hashes unchanged; no new FR-15 matches.
+GLOBAL READINESS: NOT CERTIFIED. Juan Phase 5 review and sign-off remain (G-01..G-10 were closed in DL-25..DL-34). Sprint YAML is draft.

@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-26",
+  "timezone": "America/Bogota",
+  "node": "26.5.0",
+  "required_node": ">=22.18.0",
+  "platform": "macOS-26.5.2-arm64-arm-64bit",
+  "verification_command": "npm run setup",
+  "typecheck": "PASS",
+  "architecture_lint": "PASS",
+  "test_files": 7,
+  "tests_passed": 95,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "docker_compose_config": "PASS",
+  "docker_image_execution": "NOT_RUN_DAEMON_UNAVAILABLE",
+  "remote_ci": "NOT_RUN"
+}

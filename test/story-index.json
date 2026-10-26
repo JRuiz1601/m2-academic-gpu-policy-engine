@@ -1,0 +1,397 @@
+[
+  {
+    "id": "1.1",
+    "title": "Elena obtiene su primera decisión explicada",
+    "requirements": [
+      "FR-1",
+      "FR-14",
+      "NFR-2",
+      "NFR-11"
+    ],
+    "ads": [
+      "M2-AD-1",
+      "M2-AD-5"
+    ],
+    "tests": [
+      "EV-Q1",
+      "EV-P2",
+      "EV-P1"
+    ],
+    "depends": []
+  },
+  {
+    "id": "1.2",
+    "title": "Elena entiende una restricción y su regla",
+    "requirements": [
+      "FR-3",
+      "FR-9",
+      "FR-13",
+      "NFR-3",
+      "NFR-6",
+      "NFR-10",
+      "NFR-12"
+    ],
+    "ads": [
+      "M2-AD-1",
+      "M2-AD-2",
+      "M2-AD-6"
+    ],
+    "tests": [
+      "EV-Q2",
+      "EV-EX1",
+      "DM-AD1",
+      "DM-AD2",
+      "DM-AD5",
+      "DM-AD6",
+      "EV-Q1",
+      "EV-TIER-01",
+      "EV-TIER-02",
+      "EV-TIER-03"
+    ],
+    "depends": [
+      "1.1"
+    ]
+  },
+  {
+    "id": "1.3",
+    "title": "Elena reintenta sin duplicar su solicitud",
+    "requirements": [
+      "FR-1",
+      "FR-11",
+      "NFR-5"
+    ],
+    "ads": [
+      "M2-AD-8"
+    ],
+    "tests": [
+      "EV-I1",
+      "EV-P1",
+      "EV-P2",
+      "EV-P3",
+      "EV-P4"
+    ],
+    "depends": [
+      "1.1"
+    ]
+  },
+  {
+    "id": "2.1",
+    "title": "Elena no invade la clase con su trabajo nocturno",
+    "requirements": [
+      "FR-4",
+      "FR-5",
+      "FR-6",
+      "FR-7",
+      "NFR-4"
+    ],
+    "ads": [
+      "M2-AD-3",
+      "M2-AD-5"
+    ],
+    "tests": [
+      "EDGE-2158",
+      "EDGE-NIGHT",
+      "EDGE-1000",
+      "EDGE-FINAL",
+      "DM-BOUND",
+      "DM-START",
+      "DM-NP9",
+      "EV-LAB-02"
+    ],
+    "depends": [
+      "1.1"
+    ]
+  },
+  {
+    "id": "2.2",
+    "title": "Elena recibe una negativa verificable ante fuentes caídas",
+    "requirements": [
+      "FR-10",
+      "NFR-9",
+      "NFR-13"
+    ],
+    "ads": [
+      "M2-AD-3",
+      "M2-AD-4"
+    ],
+    "tests": [
+      "EV-DEP",
+      "EV-CLOCK",
+      "EV-FLEET-01",
+      "EV-CONTEND-01"
+    ],
+    "depends": [
+      "1.1"
+    ]
+  },
+  {
+    "id": "2.3",
+    "title": "Elena conserva saldo e identidad al pedir recursos",
+    "requirements": [
+      "FR-1",
+      "FR-5",
+      "FR-8",
+      "NFR-5",
+      "NFR-12"
+    ],
+    "ads": [
+      "M2-AD-5",
+      "M2-AD-8",
+      "M2-AD-9"
+    ],
+    "tests": [
+      "EV-I2",
+      "EV-Q2",
+      "EV-PII",
+      "EV-AUTH-01",
+      "EV-AUTH-02",
+      "EV-SYS-01",
+      "EV-EX1",
+      "EV-QBOUND-01"
+    ],
+    "depends": [
+      "1.2"
+    ]
+  },
+  {
+    "id": "3.1",
+    "title": "Rebecca anticipa las consecuencias de una congelación",
+    "requirements": [
+      "FR-2",
+      "FR-14",
+      "NFR-6"
+    ],
+    "ads": [
+      "M2-AD-5",
+      "M2-AD-9"
+    ],
+    "tests": [
+      "PV-Q1",
+      "PV-Q2",
+      "PV-UNAVAILABLE"
+    ],
+    "depends": [
+      "1.1"
+    ]
+  },
+  {
+    "id": "3.2",
+    "title": "Rebecca detecta borradores vencidos y accesos inválidos",
+    "requirements": [
+      "FR-2",
+      "FR-14",
+      "NFR-5"
+    ],
+    "ads": [
+      "M2-AD-9"
+    ],
+    "tests": [
+      "PV-P1",
+      "PV-P2",
+      "PV-I1",
+      "PV-I2"
+    ],
+    "depends": [
+      "3.1"
+    ]
+  },
+  {
+    "id": "3.3",
+    "title": "Rebecca activa una congelación solo con una confirmación vigente",
+    "requirements": [
+      "FR-2",
+      "FR-12",
+      "FR-14",
+      "NFR-7"
+    ],
+    "ads": [
+      "M2-AD-5",
+      "M2-AD-7",
+      "M2-AD-9"
+    ],
+    "tests": [
+      "AC-Q1",
+      "AC-Q2",
+      "AC-P1",
+      "AC-P2",
+      "AC-I2",
+      "AC-ROLE",
+      "AC-TOKEN-FORGED",
+      "AC-NO-PREVIEW-ROW",
+      "AC-TOKEN-ACTOR"
+    ],
+    "depends": [
+      "3.1",
+      "3.2"
+    ]
+  },
+  {
+    "id": "3.4",
+    "title": "Rebecca levanta una congelación con un motivo escrito",
+    "requirements": [
+      "FR-2",
+      "FR-14"
+    ],
+    "ads": [
+      "M2-AD-5",
+      "M2-AD-9"
+    ],
+    "tests": [
+      "LF-Q1",
+      "LF-P1",
+      "LF-P2",
+      "LF-P3"
+    ],
+    "depends": [
+      "3.3"
+    ]
+  },
+  {
+    "id": "3.5",
+    "title": "Rebecca conserva una sola congelación consistente ante concurrencia y fallos",
+    "requirements": [
+      "FR-2",
+      "FR-14"
+    ],
+    "ads": [
+      "M2-AD-5",
+      "M2-AD-9"
+    ],
+    "tests": [
+      "AC-I1",
+      "AC-ROLLBACK",
+      "EV-FRZ-01",
+      "EV-FRZ-02",
+      "EV-FRZ-03"
+    ],
+    "depends": [
+      "3.3"
+    ]
+  },
+  {
+    "id": "4.1",
+    "title": "Rebecca publica sin alterar decisiones iniciadas",
+    "requirements": [
+      "FR-11",
+      "FR-12"
+    ],
+    "ads": [
+      "M2-AD-7",
+      "M2-AD-8"
+    ],
+    "tests": [
+      "EV-VERSION",
+      "PB-Q1",
+      "PB-I1"
+    ],
+    "depends": [
+      "1.3"
+    ]
+  },
+  {
+    "id": "4.2",
+    "title": "Elena obtiene explicaciones sin exponer secretos",
+    "requirements": [
+      "FR-9",
+      "FR-13",
+      "NFR-1",
+      "NFR-2",
+      "NFR-3",
+      "NFR-5",
+      "NFR-6",
+      "NFR-7",
+      "NFR-8",
+      "NFR-9",
+      "NFR-10",
+      "NFR-12",
+      "NFR-13"
+    ],
+    "ads": [
+      "M2-AD-1",
+      "M2-AD-2",
+      "M2-AD-4",
+      "M2-AD-6",
+      "M2-AD-8"
+    ],
+    "tests": [
+      "EV-EX1",
+      "EV-PII",
+      "DM-AD1",
+      "DM-AD6",
+      "EV-DEP"
+    ],
+    "depends": [
+      "1.2",
+      "2.2",
+      "4.1"
+    ]
+  },
+  {
+    "id": "4.3",
+    "title": "Elena y Rebecca distinguen éxito negativa y fallo de interfaz",
+    "requirements": [
+      "FR-14",
+      "FR-15",
+      "FR-16",
+      "NFR-11"
+    ],
+    "ads": [
+      "M2-AD-6",
+      "M2-AD-9"
+    ],
+    "tests": [
+      "EV-EX1",
+      "PV-P1",
+      "AC-P2",
+      "PV-UNAVAILABLE"
+    ],
+    "depends": [
+      "1.1",
+      "3.3",
+      "4.1"
+    ]
+  },
+  {
+    "id": "4.4",
+    "title": "Elena usa el evaluador, el catálogo de reglas y la CLI",
+    "requirements": [
+      "FR-14",
+      "FR-9",
+      "FR-16"
+    ],
+    "ads": [
+      "M2-AD-6",
+      "M2-AD-7",
+      "M2-AD-9"
+    ],
+    "tests": [],
+    "depends": [
+      "1.1",
+      "1.2",
+      "2.2",
+      "3.1",
+      "4.1",
+      "4.3"
+    ]
+  },
+  {
+    "id": "4.5",
+    "title": "Rebecca usa la consola de congelación en su teléfono",
+    "requirements": [
+      "FR-14",
+      "FR-2"
+    ],
+    "ads": [
+      "M2-AD-5",
+      "M2-AD-9"
+    ],
+    "tests": [],
+    "depends": [
+      "3.1",
+      "3.2",
+      "3.3",
+      "3.4",
+      "3.5"
+    ]
+  }
+]

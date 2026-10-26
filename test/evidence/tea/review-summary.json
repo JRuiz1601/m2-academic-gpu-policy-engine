@@ -1,0 +1,111 @@
+{
+  "overall_score": 77,
+  "overall_grade": "C",
+  "recommendation": "Request Changes",
+  "violations_summary": {
+    "CRITICAL": 0,
+    "HIGH": 3,
+    "MEDIUM": 4,
+    "LOW": 0
+  },
+  "all_violations": [
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_contracts.test.ts",
+      "line": 256,
+      "row": "H3",
+      "severity": "HIGH",
+      "category": "conditional-assertion",
+      "description": "AC-I1 places the 409 assertion behind an if (r.status === rejected) guard. H3 fires because control flow decides whether to execute the assertion. The preceding filter and seven-error length assertion constrain this branch, so this is a structural registry finding rather than evidence of an observed flake.",
+      "suggestion": "Use a typed rejection filter and assert the rejection reasons as one unconditional array assertion, retaining the seven-error cardinality check.",
+      "code_snippet": "    if (r.status === 'rejected') expect(r.reason).toMatchObject({ http_status: 409 });",
+      "dimension": "determinism",
+      "id": "TR-01"
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_domain.test.ts",
+      "line": 91,
+      "row": "H3",
+      "severity": "HIGH",
+      "category": "conditional-assertion",
+      "description": "DM-BOUND selects DENY assertions versus non-protection assertions with if (delta < 0). This matches H3 even though the delta list is fixed and fast-check is seeded; no random-run instability is inferred.",
+      "suggestion": "Separate the before-end property from at/after-end properties, keeping each assertion path unconditional and preserving seed 20261019.",
+      "code_snippet": "          if (delta < 0)\n            expect(d).toMatchObject({\n              outcome: 'DENY',\n              cause: 'WINDOW_PROTECTED',\n              admission: 'REJECTED',\n              primary_rule_id: 'R-LAB-01',\n            });\n          else {\n            expect(d.cause).not.toBe('WINDOW_PROTECTED');\n            expect(d.primary_rule_id).not.toBe('R-LAB-01');\n          }",
+      "dimension": "determinism",
+      "id": "TR-02"
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_domain.test.ts",
+      "line": 164,
+      "row": "H3",
+      "severity": "HIGH",
+      "category": "conditional-assertion",
+      "description": "DM-START selects protected-window assertions versus non-protection assertions with if (delta >= 0). H3 applies to the conditional expected outcome despite fixed deltas and seeded generation.",
+      "suggestion": "Express before-start, exact-start, and after-start as separate property tests with unconditional expected outcomes and preserve the fixed seed.",
+      "code_snippet": "          if (delta >= 0)\n            expect(d).toMatchObject({\n              outcome: 'DENY',\n              cause: 'WINDOW_PROTECTED',\n              admission: 'REJECTED',\n              primary_rule_id: 'R-LAB-01',\n            });\n          else {\n            expect(d.cause).not.toBe('WINDOW_PROTECTED');\n            expect(d.primary_rule_id).not.toBe('R-LAB-01');\n          }",
+      "dimension": "determinism",
+      "id": "TR-03"
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_contracts.test.ts",
+      "line": 44,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file contains 51 top-level tests and no describe/context grouping. Registry M4 fires for files with three or more tests without a subject grouping.",
+      "suggestion": "Group related tests in describe blocks naming the operation or policy subject.",
+      "code_snippet": "test('EV-Q1 ALLOW journal and outbox', async () => {",
+      "dimension": "isolation",
+      "id": "TR-04"
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_domain.test.ts",
+      "line": 22,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file contains 10 top-level tests and no describe/context grouping. Registry M4 fires for files with three or more tests without a subject grouping.",
+      "suggestion": "Group related tests in describe blocks naming the operation or policy subject.",
+      "code_snippet": "test('DM-AD1 deterministic pure evaluation', () => {",
+      "dimension": "isolation",
+      "id": "TR-05"
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_contracts.test.ts",
+      "line": 310,
+      "row": "M2",
+      "severity": "MEDIUM",
+      "category": "repeated-literal-payload",
+      "description": "The CLASS timetable payload shape (kind, subject_id, starts_at, ends_at) is constructed inline at lines 310-317, 640-647 and 714-721, meeting M2's three-occurrence predicate. Other catalogue/access payloads also recur.",
+      "suggestion": "Create a fresh timetable-window factory accepting kind, subject and time overrides; keep each scenario's relevant boundary overrides visible.",
+      "code_snippet": "h.telemetry.inject('timetable', [{ kind: 'CLASS', subject_id: 'CS-340-CV', starts_at: '2026-10-20T15:00:00.000Z', ends_at: '2026-10-20T17:00:00.000Z' }]);",
+      "dimension": "maintainability",
+      "id": "TR-06"
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_domain.test.ts",
+      "line": 47,
+      "row": "M2",
+      "severity": "MEDIUM",
+      "category": "repeated-literal-payload",
+      "description": "The ProtectedWindow shape (kind, starts_at, ends_at) is constructed inline at lines 47, 66, 87, 125, 139 and 158. M2 fires because the domain payload shape appears three or more times.",
+      "suggestion": "Introduce a fresh protected-window factory with explicit start/end overrides to retain independent boundary inputs.",
+      "code_snippet": "{ kind: 'CLASS', starts_at: '2026-10-19T03:20:00.000Z', ends_at: '2026-10-19T04:00:00.000Z' }",
+      "dimension": "maintainability",
+      "id": "TR-07"
+    }
+  ],
+  "dimension_scores": {
+    "determinism": 70,
+    "isolation": 90,
+    "maintainability": 80,
+    "performance": 100
+  },
+  "bonuses": {
+    "excellentBdd": 0,
+    "comprehensiveFixtures": 0,
+    "dataFactories": 0,
+    "networkFirst": 0,
+    "perfectIsolation": 0,
+    "allTestIds": 0
+  }
+}

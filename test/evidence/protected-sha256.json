@@ -1,0 +1,15 @@
+{
+  "planning/prd.md": "7b9e90ada256ebdcdaf0fe738844c253186c3b558a6fa8ea34d22f867a1bca4a",
+  "planning/readiness-gate-report.md": "52a89d0401d2b6122d7157ef8817e986e124a50ab1e5c86945c657ead1843134",
+  "ai-log/decision-log.md": "6294feb82c0134de0b81b67f32806274fa3253be74a5d5fa3e2c1e75ea93f9bd",
+  "ux/DESIGN.md": "7d2d1ee7dd078e0eea343a5f87dbdc9852b0dc4248b413dbfd4657169751e4f4",
+  "ux/EXPERIENCE.md": "f4b644764256aaf37213370c07f8a66e26dc56b025ccf0843b660dc413a4df6c",
+  "ux/C-UX-Scenarios/00-ux-scenarios.md": "4e878fbfe9ffc1c58970af48c5ff03d2beef4faac9831e569ae53841e1ed97f3",
+  "ux/C-UX-Scenarios/scenario-1.md": "8897ce2c42192ead35de8ecb5e617cf45fa108a5a927b57d8acb4299a113b408",
+  "ux/C-UX-Scenarios/scenario-2.md": "e829a0fc4e85477b2b1d954354c96acb51081cf69fe5f63267cf5a5b173c536c",
+  "ux/C-UX-Scenarios/scenario-3.md": "0ea56e513fbe0390d6730da6456ef60a14587e0a133c6306974717274022b960",
+  "ux/C-UX-Scenarios/scenario-4.md": "2e133e72d38b36482ef1da05a556c45ec39448be37231127264fe2e35dbf9c77",
+  "ux/wireframes/wireframe-01-evaluator-deny.md": "9c4dde10547efc2214dbe045191476f0b1ac3082a1bff4ad9f0c24993c52b5a4",
+  "ux/wireframes/wireframe-02-constrain-deadline.md": "22164af7881346f2185b7b484e0dd71b428d937d274bed3a309312cb1bf0e483",
+  "ux/wireframes/wireframe-03-freeze-console.md": "9956227034d9c8b22377f6d1c8dde5d638d4baf0ea86933dff47652b4bb6af7d"
+}

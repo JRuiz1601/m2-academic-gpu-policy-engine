@@ -1,0 +1,2 @@
+JSON report written to /Users/quintero/Documents/Ingenieria de Sistemas/Desarrollo Asistido x AI /solu2-M2-final-para-Tomas-v3/AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/atdd-results.json
+

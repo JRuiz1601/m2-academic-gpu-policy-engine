@@ -1,0 +1,8 @@
+{
+  "user_date": "2026-10-19",
+  "user_timezone": "America/Bogota",
+  "node": "v24.15.0",
+  "os": "Windows-10-10.0.19044-SP0",
+  "sqlite": "node:sqlite in-memory, shipped migration",
+  "production": "not implemented"
+}

@@ -1,0 +1,32 @@
+
+> m2-solu2-test-preparation@1.0.0 check
+> npm run typecheck && npm run test:harness && npm run verify:red && npm run gate
+
+
+> m2-solu2-test-preparation@1.0.0 typecheck
+> tsc --noEmit
+
+
+> m2-solu2-test-preparation@1.0.0 test:harness
+> vitest run test/harness
+
+
+ RUN  v4.1.12 /Users/quintero/Documents/Ingenieria de Sistemas/Desarrollo Asistido x AI /solu2-M2-final-para-Tomas-v3/AI Compute Fabric/M2-Academic-GPU-Policy-Engine
+
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  18:06:49
+   Duration  158ms (transform 22ms, setup 0ms, import 34ms, tests 13ms, environment 0ms)
+
+
+> m2-solu2-test-preparation@1.0.0 verify:red
+> node test/ci/verify-red.mjs
+
+RED-CONTRACT PASS: 61/61 active acceptance tests fail with NotImplementedError; runner exit=1. This verifies preparation, not implemented behaviour.
+
+> m2-solu2-test-preparation@1.0.0 gate
+> node test/ci/readiness.mjs
+
+STRUCTURAL GATE FAIL
+3.4 unresolved DTO LiftFreezeReplyDto

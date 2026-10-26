@@ -1,0 +1,67 @@
+{
+  "dimension": "determinism",
+  "score": 70,
+  "max_score": 100,
+  "grade": "C",
+  "violations": [
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_contracts.test.ts",
+      "line": 256,
+      "row": "H3",
+      "severity": "HIGH",
+      "category": "conditional-assertion",
+      "description": "AC-I1 places the 409 assertion behind an if (r.status === rejected) guard. H3 fires because control flow decides whether to execute the assertion. The preceding filter and seven-error length assertion constrain this branch, so this is a structural registry finding rather than evidence of an observed flake.",
+      "suggestion": "Use a typed rejection filter and assert the rejection reasons as one unconditional array assertion, retaining the seven-error cardinality check.",
+      "code_snippet": "    if (r.status === 'rejected') expect(r.reason).toMatchObject({ http_status: 409 });"
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_domain.test.ts",
+      "line": 91,
+      "row": "H3",
+      "severity": "HIGH",
+      "category": "conditional-assertion",
+      "description": "DM-BOUND selects DENY assertions versus non-protection assertions with if (delta < 0). This matches H3 even though the delta list is fixed and fast-check is seeded; no random-run instability is inferred.",
+      "suggestion": "Separate the before-end property from at/after-end properties, keeping each assertion path unconditional and preserving seed 20261019.",
+      "code_snippet": "          if (delta < 0)\n            expect(d).toMatchObject({\n              outcome: 'DENY',\n              cause: 'WINDOW_PROTECTED',\n              admission: 'REJECTED',\n              primary_rule_id: 'R-LAB-01',\n            });\n          else {\n            expect(d.cause).not.toBe('WINDOW_PROTECTED');\n            expect(d.primary_rule_id).not.toBe('R-LAB-01');\n          }"
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_domain.test.ts",
+      "line": 164,
+      "row": "H3",
+      "severity": "HIGH",
+      "category": "conditional-assertion",
+      "description": "DM-START selects protected-window assertions versus non-protection assertions with if (delta >= 0). H3 applies to the conditional expected outcome despite fixed deltas and seeded generation.",
+      "suggestion": "Express before-start, exact-start, and after-start as separate property tests with unconditional expected outcomes and preserve the fixed seed.",
+      "code_snippet": "          if (delta >= 0)\n            expect(d).toMatchObject({\n              outcome: 'DENY',\n              cause: 'WINDOW_PROTECTED',\n              admission: 'REJECTED',\n              primary_rule_id: 'R-LAB-01',\n            });\n          else {\n            expect(d.cause).not.toBe('WINDOW_PROTECTED');\n            expect(d.primary_rule_id).not.toBe('R-LAB-01');\n          }"
+    }
+  ],
+  "passed_checks": 23,
+  "failed_checks": 3,
+  "total_checks": 26,
+  "check_count_basis": "13 owned registry rows evaluated over two files; failed_checks counts matching occurrences; dimension score is informational, aggregation ledger authoritative.",
+  "violation_summary": {
+    "CRITICAL": 0,
+    "HIGH": 3,
+    "MEDIUM": 0,
+    "LOW": 0
+  },
+  "recommendations": [
+    "Remove the three H3 conditional assertion sites using separate properties or unconditional aggregate assertions. Preserve manual clocks, explicit timestamps, fixed nonempty boundary arrays, and seeded fast-check runs."
+  ],
+  "summary": "Three HIGH H3 conditional assertion occurrences across the exact two reviewed files; no disabled/focused tests, tautological assertions, assertion-free tests, unreachable assertion paths, hard waits, or live-clock fixtures found. No tests executed and no source files edited.",
+  "scope": [
+    "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_contracts.test.ts",
+    "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_domain.test.ts"
+  ],
+  "applicability_notes": [
+    "C7 is PASS (n/a): neither file is a Maestro flow.",
+    "H2 time-bound fixtures are applicable, but pass: harness fake_clock uses a fixed initial instant and explicit advance/set; domain dates have explicit arguments.",
+    "H6/H8 have no matching Pact config syntax or Pact artifacts; H7/L4 are PASS (n/a): these Vitest tests are not Pact suites and no consumer/provider pair exists. Do not infer Pact from the contracts filename.",
+    "The utility flags are true but both utility packages are absent; no package-driven utility findings apply.",
+    "Fixed nonempty loops do not trigger the zero-iteration variant of H3; AC-I1 also checks seven errors before looping.",
+    "The rejected helper and EV-P3/EV-P4 capture exceptions, then assert the captured error unconditionally; successful calls leave undefined and fail. They do not swallow assertion failures. propertyCheck rethrows failures.",
+    "Every test has direct assertions or calls an awaited assertion helper/property runner. ATDD stubs deliberately throw NotImplementedError: expected red setup is context, not a C6 finding.",
+    "No unseeded randomness or unmocked external services were observed.",
+    "Planning documents and fixture/port files are context only; no coverage gaps were scored."
+  ]
+}

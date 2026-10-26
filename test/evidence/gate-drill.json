@@ -1,0 +1,10 @@
+{
+  "drill": "remove Binding invariants line from story 1.1 then restore exact bytes",
+  "broken_exit": 1,
+  "broken_output": "STRUCTURAL GATE FAIL\n1.1 missing Binding invariants\n1.1 missing binding AD\n1.1 AD metadata drift M2-AD-1\n1.1 AD metadata drift M2-AD-5\n",
+  "restored_exit": 0,
+  "restored_output": "STRUCTURAL GATE PASS: 4 epics, 12 stories, 29 requirements, 9 AD, 35 active red tests; protected hashes unchanged; no new FR-15 matches.\nGLOBAL READINESS: NOT CERTIFIED. G-01..G-10 and Juan Phase 5 review remain. Sprint YAML is draft.\n",
+  "elapsed_seconds": 0.347,
+  "repair": "Restore recorded AD line; bmad-sprint-planning guidance; local Node validator",
+  "scope": "structural control only, not global/human certification"
+}

@@ -1,0 +1,70 @@
+{
+  "protected": {
+    "planning/prd.md": true,
+    "planning/readiness-gate-report.md": true,
+    "ai-log/decision-log.md": true,
+    "ux/DESIGN.md": true,
+    "ux/EXPERIENCE.md": true,
+    "ux/C-UX-Scenarios/00-ux-scenarios.md": true,
+    "ux/C-UX-Scenarios/scenario-1.md": true,
+    "ux/C-UX-Scenarios/scenario-2.md": true,
+    "ux/C-UX-Scenarios/scenario-3.md": true,
+    "ux/C-UX-Scenarios/scenario-4.md": true,
+    "ux/wireframes/wireframe-01-evaluator-deny.md": true,
+    "ux/wireframes/wireframe-02-constrain-deadline.md": true,
+    "ux/wireframes/wireframe-03-freeze-console.md": true
+  },
+  "architecture_prefix_same": true,
+  "historical_gate_reports_unchanged": {
+    "planning/implementation-readiness-report-solu2.md": true,
+    "planning/implementation-readiness-report-solu2-run4.md": true,
+    "planning/implementation-readiness-report-solu2-run3.md": true,
+    "planning/implementation-readiness-report-solu2-run2.md": true
+  },
+  "decision_count": 76,
+  "per_epic": [
+    3,
+    3,
+    5,
+    5
+  ],
+  "criteria": {
+    "rows": 86,
+    "expected": 86,
+    "problems": []
+  },
+  "delivery_date": "2026-10-23",
+  "status": "DELIVERY_WITH_OUTSTANDING_FINDINGS",
+  "dod_reached": false,
+  "semantic_gate": "NOT READY",
+  "semantic_findings": {
+    "critical": 1,
+    "major": 15,
+    "minor": 2
+  },
+  "tea_trace": "FAIL",
+  "atdd_count": 61,
+  "harness_count": 6,
+  "check_output": "test/evidence/delivery/delivery-check.txt",
+  "run5_unchanged": true,
+  "plan2_prefix_unchanged": true,
+  "sprint_yaml_unchanged": true,
+  "prd_ux_original_bytes": {
+    "planning/prd.md": true,
+    "ux/DESIGN.md": true,
+    "ux/EXPERIENCE.md": true,
+    "ux/wireframes/wireframe-02-constrain-deadline.md": true,
+    "ux/wireframes/wireframe-03-freeze-console.md": true,
+    "ux/wireframes/wireframe-01-evaluator-deny.md": true,
+    "ux/C-UX-Scenarios/scenario-4.md": true,
+    "ux/C-UX-Scenarios/scenario-1.md": true,
+    "ux/C-UX-Scenarios/00-ux-scenarios.md": true,
+    "ux/C-UX-Scenarios/scenario-2.md": true,
+    "ux/C-UX-Scenarios/scenario-3.md": true
+  },
+  "run6_absent": true,
+  "dod_closure_not_in_done": true,
+  "signature_blocks_blank": true,
+  "no_git_repository": true,
+  "no_ready_tag_claimed": true
+}

@@ -1,0 +1,70 @@
+{
+  "dimension": "performance",
+  "score": 100,
+  "max_score": 100,
+  "grade": "A",
+  "violations": [],
+  "passed_checks": 6,
+  "failed_checks": 0,
+  "total_checks": 6,
+  "violation_summary": {
+    "CRITICAL": 0,
+    "HIGH": 0,
+    "MEDIUM": 0,
+    "LOW": 0
+  },
+  "performance_metrics": {
+    "measured_test_duration": null,
+    "duration_status": "Not measured by this static review. No sleeps, repeated navigation, or excessive loops were found. The two domain properties intentionally run 1000 bounded cases across three boundary deltas each.",
+    "file_line_counts": {
+      "m2_contracts.test.ts": 785,
+      "m2_domain.test.ts": 180
+    }
+  },
+  "checks": [
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_contracts.test.ts",
+      "row": "M1",
+      "gate": "Applicability",
+      "status": "PASS (n/a)",
+      "reason": "No navigation or data-dependent browser content is exercised; this file uses local application/domain entry points."
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_contracts.test.ts",
+      "row": "M6",
+      "gate": "Absolute",
+      "status": "PASS",
+      "reason": "All promise-returning inbound calls and async helpers are awaited, including callbacks passed through awaited rejected(), Promise.all and Promise.allSettled."
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_contracts.test.ts",
+      "row": "H5",
+      "gate": "Absolute",
+      "status": "PASS",
+      "reason": "The file is 785 lines, within the 1000-line threshold."
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_domain.test.ts",
+      "row": "M1",
+      "gate": "Applicability",
+      "status": "PASS (n/a)",
+      "reason": "No navigation or data-dependent browser content is exercised; this file uses local application/domain entry points."
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_domain.test.ts",
+      "row": "M6",
+      "gate": "Absolute",
+      "status": "PASS",
+      "reason": "The domain entry points evaluate() and validateRegistry() and fast-check fc.property/fc.assert are synchronous; no promise-returning call is left unawaited."
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_domain.test.ts",
+      "row": "H5",
+      "gate": "Absolute",
+      "status": "PASS",
+      "reason": "The file is 180 lines, within the 1000-line threshold."
+    }
+  ],
+  "recommendations": [],
+  "summary": "No performance registry violations. M1 is inapplicable to both files; both pass M6 and H5. Runtime and parallelism were not measured."
+}

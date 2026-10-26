@@ -1,0 +1,36 @@
+{
+  "protected": {
+    "planning/prd.md": true,
+    "planning/readiness-gate-report.md": true,
+    "ai-log/decision-log.md": true,
+    "ux/DESIGN.md": true,
+    "ux/EXPERIENCE.md": true,
+    "ux/C-UX-Scenarios/00-ux-scenarios.md": true,
+    "ux/C-UX-Scenarios/scenario-1.md": true,
+    "ux/C-UX-Scenarios/scenario-2.md": true,
+    "ux/C-UX-Scenarios/scenario-3.md": true,
+    "ux/C-UX-Scenarios/scenario-4.md": true,
+    "ux/wireframes/wireframe-01-evaluator-deny.md": true,
+    "ux/wireframes/wireframe-02-constrain-deadline.md": true,
+    "ux/wireframes/wireframe-03-freeze-console.md": true
+  },
+  "architecture_prefix_same": true,
+  "historical_gate_reports_unchanged": {
+    "planning/implementation-readiness-report-solu2.md": true,
+    "planning/implementation-readiness-report-solu2-run4.md": true,
+    "planning/implementation-readiness-report-solu2-run3.md": true,
+    "planning/implementation-readiness-report-solu2-run2.md": true
+  },
+  "decision_count": 76,
+  "per_epic": [
+    3,
+    3,
+    5,
+    5
+  ],
+  "criteria": {
+    "rows": 86,
+    "expected": 86,
+    "problems": []
+  }
+}

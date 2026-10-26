@@ -1,0 +1,202 @@
+{
+  "protected": {
+    "planning/prd.md": true,
+    "planning/readiness-gate-report.md": true,
+    "ai-log/decision-log.md": true,
+    "ux/DESIGN.md": true,
+    "ux/EXPERIENCE.md": true,
+    "ux/C-UX-Scenarios/00-ux-scenarios.md": true,
+    "ux/C-UX-Scenarios/scenario-1.md": true,
+    "ux/C-UX-Scenarios/scenario-2.md": true,
+    "ux/C-UX-Scenarios/scenario-3.md": true,
+    "ux/C-UX-Scenarios/scenario-4.md": true,
+    "ux/wireframes/wireframe-01-evaluator-deny.md": true,
+    "ux/wireframes/wireframe-02-constrain-deadline.md": true,
+    "ux/wireframes/wireframe-03-freeze-console.md": true
+  },
+  "immutable": {
+    "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/gate-runs/run1-implementation-readiness-report.md": true,
+    "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/gate-runs/run3-implementation-readiness-report.md": true,
+    "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/gate-runs/run2-implementation-readiness-report.md": true,
+    "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/gate-runs/run4-implementation-readiness-report.md": true,
+    "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/ci/readiness.mjs": true,
+    "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/planning/implementation-readiness-report-solu2-run5.md": true,
+    "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/planning/readiness-gate-report.md": true,
+    "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/planning/implementation-readiness-report-solu2.md": true,
+    "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/planning/implementation-readiness-report-solu2-run4.md": true,
+    "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/planning/phase-5-readiness-report.md": true,
+    "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/planning/implementation-readiness-report-solu2-run3.md": true,
+    "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/planning/implementation-readiness-report-solu2-run2.md": true,
+    "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/implementation-artifacts/sprint-status.yaml": true
+  },
+  "architecture_cmp_exit": 0,
+  "fr15": {
+    "scoped_new_matches": 0,
+    "review_total": 0,
+    "files": [
+      {
+        "path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_contracts.test.ts",
+        "new_matches": 0,
+        "current_total": 0,
+        "scope": "outside official document scope; includes verbatim evidence and source imports"
+      },
+      {
+        "path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_domain.test.ts",
+        "new_matches": 0,
+        "current_total": 1,
+        "scope": "outside official document scope; includes verbatim evidence and source imports"
+      },
+      {
+        "path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/fixtures/index.ts",
+        "new_matches": 0,
+        "current_total": 0,
+        "scope": "outside official document scope; includes verbatim evidence and source imports"
+      },
+      {
+        "path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/traceability-matrix.md",
+        "new_matches": 0,
+        "current_total": 0,
+        "scope": "outside official document scope; includes verbatim evidence and source imports"
+      },
+      {
+        "path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/tea-skill-matrix.md",
+        "new_matches": 0,
+        "current_total": 0,
+        "scope": "outside official document scope; includes verbatim evidence and source imports"
+      },
+      {
+        "path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/reviews/review-tea-skills.md",
+        "new_matches": 0,
+        "current_total": 0,
+        "scope": "official scoped documents"
+      },
+      {
+        "path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/ai-log/decision-log-solu2.md",
+        "new_matches": 0,
+        "current_total": 2,
+        "scope": "official scoped documents"
+      },
+      {
+        "path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/tea/worker-maintainability.json",
+        "new_matches": 0,
+        "current_total": 0,
+        "scope": "outside official document scope; includes verbatim evidence and source imports"
+      },
+      {
+        "path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/tea/immutable-before.json",
+        "new_matches": 0,
+        "current_total": 0,
+        "scope": "outside official document scope; includes verbatim evidence and source imports"
+      },
+      {
+        "path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/tea/gate-decision.json",
+        "new_matches": 0,
+        "current_total": 0,
+        "scope": "outside official document scope; includes verbatim evidence and source imports"
+      },
+      {
+        "path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/tea/triage.json",
+        "new_matches": 0,
+        "current_total": 0,
+        "scope": "outside official document scope; includes verbatim evidence and source imports"
+      },
+      {
+        "path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/tea/e2e-trace-summary.json",
+        "new_matches": 1,
+        "current_total": 1,
+        "scope": "outside official document scope; includes verbatim evidence and source imports"
+      },
+      {
+        "path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/tea/review-source-metadata.json",
+        "new_matches": 0,
+        "current_total": 0,
+        "scope": "outside official document scope; includes verbatim evidence and source imports"
+      },
+      {
+        "path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/tea/worker-determinism.json",
+        "new_matches": 2,
+        "current_total": 2,
+        "scope": "outside official document scope; includes verbatim evidence and source imports"
+      },
+      {
+        "path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/tea/trace-skill-output.md",
+        "new_matches": 1,
+        "current_total": 1,
+        "scope": "outside official document scope; includes verbatim evidence and source imports"
+      },
+      {
+        "path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/tea/check-baseline.log",
+        "new_matches": 0,
+        "current_total": 0,
+        "scope": "outside official document scope; includes verbatim evidence and source imports"
+      },
+      {
+        "path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/tea/worker-isolation.json",
+        "new_matches": 0,
+        "current_total": 0,
+        "scope": "outside official document scope; includes verbatim evidence and source imports"
+      },
+      {
+        "path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/tea/trace-criteria-matrix.json",
+        "new_matches": 0,
+        "current_total": 0,
+        "scope": "outside official document scope; includes verbatim evidence and source imports"
+      },
+      {
+        "path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/tea/trace-inventory.json",
+        "new_matches": 0,
+        "current_total": 0,
+        "scope": "outside official document scope; includes verbatim evidence and source imports"
+      },
+      {
+        "path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/tea/check-final.log",
+        "new_matches": 0,
+        "current_total": 0,
+        "scope": "outside official document scope; includes verbatim evidence and source imports"
+      },
+      {
+        "path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/tea/test-review-skill-output.md",
+        "new_matches": 1,
+        "current_total": 1,
+        "scope": "outside official document scope; includes verbatim evidence and source imports"
+      },
+      {
+        "path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/tea/trace-findings.json",
+        "new_matches": 1,
+        "current_total": 1,
+        "scope": "outside official document scope; includes verbatim evidence and source imports"
+      },
+      {
+        "path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/tea/review-summary.json",
+        "new_matches": 1,
+        "current_total": 1,
+        "scope": "outside official document scope; includes verbatim evidence and source imports"
+      },
+      {
+        "path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/tea/worker-performance.json",
+        "new_matches": 1,
+        "current_total": 1,
+        "scope": "outside official document scope; includes verbatim evidence and source imports"
+      },
+      {
+        "path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/tea/trace-coverage-matrix.json",
+        "new_matches": 1,
+        "current_total": 1,
+        "scope": "outside official document scope; includes verbatim evidence and source imports"
+      },
+      {
+        "path": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/tea/convention-baseline.json",
+        "new_matches": 0,
+        "current_total": 0,
+        "scope": "outside official document scope; includes verbatim evidence and source imports"
+      }
+    ]
+  },
+  "decision_count": 74,
+  "decision_ids_unique": true,
+  "appendix_c_counter": true,
+  "trace_old_prefix_preserved": true,
+  "test_ids_preserved": true,
+  "acceptance_count": 61,
+  "workflow_outputs_exist": true
+}

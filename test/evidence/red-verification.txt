@@ -1,0 +1,1 @@
+RED-CONTRACT PASS: 61/61 active acceptance tests fail with NotImplementedError; runner exit=1. This verifies preparation, not implemented behaviour.

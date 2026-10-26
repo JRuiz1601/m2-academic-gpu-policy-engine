@@ -1,0 +1,20 @@
+{
+  "changed": [
+    "planning/implementation-readiness-report-solu2-run5.md",
+    "test/evidence/atdd-results.json",
+    "test/evidence/gate-runs/assignment-source.md",
+    "test/evidence/gate-runs/drill-broken-check.txt",
+    "test/evidence/gate-runs/drill-broken-report.md",
+    "test/evidence/gate-runs/drill-correct-course-proposal.md",
+    "test/evidence/gate-runs/drill-local-gate.txt",
+    "test/evidence/gate-runs/drill-restored-check.txt",
+    "test/evidence/gate-runs/drill-restored-integrity.json",
+    "test/evidence/gate-runs/initial-baseline-reconstructed.txt",
+    "test/evidence/gate-runs/restruct2-integrity.json",
+    "test/evidence/gate-runs/restruct2-negative-bound.txt",
+    "test/evidence/gate-runs/run4-implementation-readiness-report.md",
+    "test/evidence/gate-runs/run4-terminal-summary.md"
+  ],
+  "unexpected": [],
+  "epics_restored_sha256": "55b36fc9fea236be6416c75c75e8087d07b9b1bef30cda33b5a153d52897498b"
+}

@@ -1,0 +1,146 @@
+[
+  {
+    "id": "TR-01",
+    "skill": "test-review",
+    "finding": "HIGH H3: conditional-assertion at m2_contracts.test.ts:256",
+    "decision": "Accept",
+    "reason": "Cheap test-only correction; every expected outcome remains asserted. The seven rejection reasons are asserted as one array, with the seven-error count kept.",
+    "where": "test/atdd/m2_contracts.test.ts: AC-I1",
+    "closure": "The seven rejection reasons are asserted as one array, with the seven-error count kept."
+  },
+  {
+    "id": "TR-02",
+    "skill": "test-review",
+    "finding": "HIGH H3: conditional-assertion at m2_domain.test.ts:91",
+    "decision": "Accept",
+    "reason": "Cheap test-only correction; every expected outcome remains asserted. The end-boundary property now asserts before, equal and after outcomes without an assertion guard.",
+    "where": "test/atdd/m2_domain.test.ts: DM-BOUND",
+    "closure": "The end-boundary property now asserts before, equal and after outcomes without an assertion guard."
+  },
+  {
+    "id": "TR-03",
+    "skill": "test-review",
+    "finding": "HIGH H3: conditional-assertion at m2_domain.test.ts:164",
+    "decision": "Accept",
+    "reason": "Cheap test-only correction; every expected outcome remains asserted. The start-boundary property now asserts before, equal and after outcomes without an assertion guard.",
+    "where": "test/atdd/m2_domain.test.ts: DM-START",
+    "closure": "The start-boundary property now asserts before, equal and after outcomes without an assertion guard."
+  },
+  {
+    "id": "TR-04",
+    "skill": "test-review",
+    "finding": "MEDIUM M4: ungrouped-suite at m2_contracts.test.ts:44",
+    "decision": "Accept",
+    "reason": "Cheap test-only correction; every expected outcome remains asserted. Group the application contract tests under a named describe scope.",
+    "where": "test/atdd/m2_contracts.test.ts",
+    "closure": "Group the application contract tests under a named describe scope."
+  },
+  {
+    "id": "TR-05",
+    "skill": "test-review",
+    "finding": "MEDIUM M4: ungrouped-suite at m2_domain.test.ts:22",
+    "decision": "Accept",
+    "reason": "Cheap test-only correction; every expected outcome remains asserted. Group the domain tests under a named describe scope.",
+    "where": "test/atdd/m2_domain.test.ts",
+    "closure": "Group the domain tests under a named describe scope."
+  },
+  {
+    "id": "TR-06",
+    "skill": "test-review",
+    "finding": "MEDIUM M2: repeated-literal-payload at m2_contracts.test.ts:310",
+    "decision": "Accept",
+    "reason": "Cheap test-only correction; every expected outcome remains asserted. Build fresh timetable, catalogue and access facts through fixture factories, with scenario overrides visible.",
+    "where": "test/fixtures/index.ts; test/atdd/m2_contracts.test.ts",
+    "closure": "Build fresh timetable, catalogue and access facts through fixture factories, with scenario overrides visible."
+  },
+  {
+    "id": "TR-07",
+    "skill": "test-review",
+    "finding": "MEDIUM M2: repeated-literal-payload at m2_domain.test.ts:47",
+    "decision": "Accept",
+    "reason": "Cheap test-only correction; every expected outcome remains asserted. Build fresh protected windows through a factory, preserving each scenario boundary.",
+    "where": "test/fixtures/index.ts; test/atdd/m2_domain.test.ts",
+    "closure": "Build fresh protected windows through a factory, preserving each scenario boundary."
+  },
+  {
+    "id": "TR-G01",
+    "skill": "trace",
+    "finding": "CRITICAL: Domain, isolation and boundary oracles are planned rather than executable (1.2.AC4, 1.2.AC5, 1.2.AC6, 1.2.AC7, 2.1.AC3, 2.1.AC5, 2.1.AC6, 2.1.AC7, 2.1.AC8, 2.1.AC9, 2.1.AC10, 2.2.AC5, 2.2.AC6, 4.2.AC3, 4.2.AC4, 4.2.AC5, 4.2.AC6)",
+    "decision": "Defer",
+    "reason": "Owner for follow-up: Tom\u00e1s (test/harness preparation), Juan (unsettled oracle); no agreed deadline. The grouped gap includes import and no-I/O guards, a 10,000-replay observation, port payload schemas and cross-scope fixtures beyond the current stub seams. Creating those harness contracts now would introduce new assumptions; keep named domain examples with their implementation stories and add them before those stories close. Closing condition: Add the named planned unit/property tests (including THESIS, scoped schedules, daemon exemption, import/I/O guards, canonical replay, poisoned data and port fail-mode classification), using the documented PRD/contracts outcomes. Preserve fixed clocks and independent expected values.",
+    "where": "Not fixed; all affected ACs retained in trace report and matrix.",
+    "closure": "Add the named planned unit/property tests (including THESIS, scoped schedules, daemon exemption, import/I/O guards, canonical replay, poisoned data and port fail-mode classification), using the documented PRD/contracts outcomes. Preserve fixed clocks and independent expected values."
+  },
+  {
+    "id": "TR-G02",
+    "skill": "trace",
+    "finding": "CRITICAL: HTTP routes, session boundaries and response status handling are not exercised (1.1.AC1, 1.1.AC2, 1.1.AC5, 1.2.AC1, 1.2.AC3, 1.3.AC2, 2.1.AC2, 2.1.AC4, 2.1.AC11, 2.2.AC1, 2.2.AC2, 2.2.AC3, 2.2.AC4, 2.3.AC1, 2.3.AC2, 2.3.AC3, 2.3.AC4, 2.3.AC5, 2.3.AC6, 3.1.AC1, 3.1.AC2, 3.2.AC2, 3.3.AC1, 3.3.AC2, 3.3.AC3, 3.4.AC1, 3.4.AC2, 3.5.AC1, 3.5.AC2, 3.5.AC3, 3.5.AC4, 4.1.AC1, 4.1.AC2, 4.1.AC3, 4.2.AC2, 4.3.AC1, 4.3.AC2, 1.1.AC3, 1.1.AC4, 3.1.AC3, 3.2.AC3, 3.4.AC3, 4.1.AC4)",
+    "decision": "Defer",
+    "reason": "Owner for follow-up: Tom\u00e1s (test/harness preparation), Juan (unsettled oracle); no agreed deadline. The closure needs implementation or the missing API, UI, measurement or database/commit harness; the current task permits stubs and test corrections only. Closing condition: Implement a public API test harness in the implementation phase. Given documented valid/invalid requests and session roles, call each endpoint and assert documented status/body and no-write outcomes. Keep unauthenticated status unspecified until architecture fixes it; do not invent publish authorization/status. Suggested stable IDs: existing HR-Q1/HR-P1/AUTH-U-1/FD-Q1/FZ-READ-1/FZ-READ-2/LF-P4/RV-Q1/RV-P1, plus API variants of mapped existing IDs.",
+    "where": "Not fixed; all affected ACs retained in trace report and matrix.",
+    "closure": "Implement a public API test harness in the implementation phase. Given documented valid/invalid requests and session roles, call each endpoint and assert documented status/body and no-write outcomes. Keep unauthenticated status unspecified until architecture fixes it; do not invent publish authorization/status. Suggested stable IDs: existing HR-Q1/HR-P1/AUTH-U-1/FD-Q1/FZ-READ-1/FZ-READ-2/LF-P4/RV-Q1/RV-P1, plus API variants of mapped existing IDs."
+  },
+  {
+    "id": "TR-G03a",
+    "skill": "trace",
+    "finding": "CRITICAL: cheap assertion subset of TR-G03",
+    "decision": "Accept",
+    "reason": "Existing DTO and rows expose these checks without an adapter: ALLOW primary rule, one activation audit and token consumption, and the suppressed freeze rule state in both denial cases.",
+    "where": "test/atdd/m2_contracts.test.ts: EV-Q1, AC-I1, EV-FRZ-03",
+    "closure": "Add the named checks while retaining every existing assertion and all 61 IDs."
+  },
+  {
+    "id": "TR-G03b",
+    "skill": "trace",
+    "finding": "CRITICAL: Existing red specifications omit specific acceptance outcomes (1.1.AC1, 1.2.AC1, 1.2.AC2, 2.2.AC1, 2.2.AC2, 2.3.AC1, 3.1.AC1, 3.5.AC1, 3.5.AC2, 3.5.AC4, 4.1.AC3, 4.3.AC1); remaining adapter, boot, cancellation and delivery clauses stay open after TR-G03a.",
+    "decision": "Defer",
+    "reason": "Owner for follow-up: Tom\u00e1s (test/harness preparation), Juan (unsettled oracle); no agreed deadline. The closure needs implementation or the missing API, UI, measurement or database/commit harness; the current task permits stubs and test corrections only. Closing condition: Complete the source-specific missing assertions listed per AC: minimal rule registry, boot denial, fan-out/40ms cancellation, clock-with-no-instant, M8 mutation boundary, consumed token/audit, partial closing rollback, suppressed R-FRZ-02, retry and idempotent event delivery. Use tests at domain, boot/integration and adapter levels as each clause requires.",
+    "where": "Not fixed; all affected ACs retained in trace report and matrix.",
+    "closure": "Complete the source-specific missing assertions listed per AC: minimal rule registry, boot denial, fan-out/40ms cancellation, clock-with-no-instant, M8 mutation boundary, consumed token/audit, partial closing rollback, suppressed R-FRZ-02, retry and idempotent event delivery. Use tests at domain, boot/integration and adapter levels as each clause requires."
+  },
+  {
+    "id": "TR-G04",
+    "skill": "trace",
+    "finding": "CRITICAL: UI, CLI and accessibility acceptance tests have no executable harness (4.5.AC1, 4.5.AC2, 4.5.AC3, 4.5.AC4, 4.4.AC1, 4.4.AC2, 4.4.AC3, 4.4.AC4, 4.4.AC5, 4.4.AC6, 4.4.AC7, 4.4.AC8, 4.4.AC9, 4.3.AC4)",
+    "decision": "Defer",
+    "reason": "Owner for follow-up: Tom\u00e1s (test/harness preparation), Juan (unsettled oracle); no agreed deadline. The closure needs implementation or the missing API, UI, measurement or database/commit harness; the current task permits stubs and test corrections only. Closing condition: When interface implementation is authorized, add the named UI-FRZ/UI-EVAL/UI-RULES/UI-CLI/COPY-01 tests. Given loading, empty, validation, permission and system-error states, exercise the implemented journey and assert visible outcome/accessibility at documented widths. No interface implementation is authorized by this trace run.",
+    "where": "Not fixed; all affected ACs retained in trace report and matrix.",
+    "closure": "When interface implementation is authorized, add the named UI-FRZ/UI-EVAL/UI-RULES/UI-CLI/COPY-01 tests. Given loading, empty, validation, permission and system-error states, exercise the implemented journey and assert visible outcome/accessibility at documented widths. No interface implementation is authorized by this trace run."
+  },
+  {
+    "id": "TR-G05",
+    "skill": "trace",
+    "finding": "HIGH: Performance and activation/journal measurements remain plans (4.2.AC7, 4.2.AC8, 4.2.AC9)",
+    "decision": "Defer",
+    "reason": "Owner for follow-up: Tom\u00e1s (test/harness preparation), Juan (unsettled oracle); no agreed deadline. The closure needs implementation or the missing API, UI, measurement or database/commit harness; the current task permits stubs and test corrections only. Closing condition: Provide the five measurement harnesses/evidence files specified by test/nfr-evidence.md; run against implementation with recorded equipment, load, seed and original thresholds. Prove an over-threshold result fails its implementation gate. No stub runtime is performance evidence.",
+    "where": "Not fixed; all affected ACs retained in trace report and matrix.",
+    "closure": "Provide the five measurement harnesses/evidence files specified by test/nfr-evidence.md; run against implementation with recorded equipment, load, seed and original thresholds. Prove an over-threshold result fails its implementation gate. No stub runtime is performance evidence."
+  },
+  {
+    "id": "TR-G06",
+    "skill": "trace",
+    "finding": "CRITICAL: Cross-process/database-role and quota-commit acceptance tests are absent (1.3.AC3, 2.3.AC7)",
+    "decision": "Defer",
+    "reason": "Owner for follow-up: Tom\u00e1s (test/harness preparation), Juan (unsettled oracle); no agreed deadline. The closure needs implementation or the missing API, UI, measurement or database/commit harness; the current task permits stubs and test corrections only. Closing condition: Add DB-GRANT-1 against the PostgreSQL role and QUOTA-CONC-01 against a simulated atomic M8 commit. Given forbidden UPDATE/DELETE or 100 concurrent commits, assert rejection and remaining/need bound. In-memory SQLite is not equivalent evidence.",
+    "where": "Not fixed; all affected ACs retained in trace report and matrix.",
+    "closure": "Add DB-GRANT-1 against the PostgreSQL role and QUOTA-CONC-01 against a simulated atomic M8 commit. Given forbidden UPDATE/DELETE or 100 concurrent commits, assert rejection and remaining/need bound. In-memory SQLite is not equivalent evidence."
+  },
+  {
+    "id": "TR-G07",
+    "skill": "trace",
+    "finding": "HIGH: Documentation lint is not an ATDD case (4.3.AC3)",
+    "decision": "Accept",
+    "reason": "Cheap matrix clarification: retain DOC-LINT as an auxiliary script control, outside the 61 ATDD cases.",
+    "where": "test/traceability-matrix.md: TEA trace run; check-baseline.log and check-final.log",
+    "closure": "The matrix links the documentary control separately and keeps it outside the acceptance-test count."
+  },
+  {
+    "id": "TR-08",
+    "skill": "test-review",
+    "finding": "Utility flags are on but the Playwright/Pact packages are absent; run framework if adoption is intended.",
+    "decision": "Reject",
+    "reason": "The reviewed files execute under Vitest and call internal ports. Step 1 explicitly skips Playwright loading profiles for other runners; registry run preconditions close M9/L9/M10 when packages are absent. Adding browser or broker packages would not close a defect in this suite.",
+    "where": "No package change; rationale retained here.",
+    "closure": "Reconsider only if browser or Pact tests are introduced."
+  }
+]

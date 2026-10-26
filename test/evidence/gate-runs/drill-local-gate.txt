@@ -1,0 +1,2 @@
+STRUCTURAL GATE FAIL
+3.4 unresolved DTO LiftFreezeReplyDto

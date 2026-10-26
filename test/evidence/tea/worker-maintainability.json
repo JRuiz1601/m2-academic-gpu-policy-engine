@@ -1,0 +1,217 @@
+{
+  "dimension": "maintainability",
+  "score": 80,
+  "max_score": 100,
+  "grade": "B",
+  "violations": [
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_contracts.test.ts",
+      "line": 44,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file contains 51 top-level tests and no describe/context grouping. Registry M4 fires for files with three or more tests without a subject grouping.",
+      "suggestion": "Group related tests in describe blocks naming the operation or policy subject.",
+      "code_snippet": "test('EV-Q1 ALLOW journal and outbox', async () => {"
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_domain.test.ts",
+      "line": 22,
+      "row": "M4",
+      "severity": "MEDIUM",
+      "category": "ungrouped-suite",
+      "description": "The file contains 10 top-level tests and no describe/context grouping. Registry M4 fires for files with three or more tests without a subject grouping.",
+      "suggestion": "Group related tests in describe blocks naming the operation or policy subject.",
+      "code_snippet": "test('DM-AD1 deterministic pure evaluation', () => {"
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_contracts.test.ts",
+      "line": 310,
+      "row": "M2",
+      "severity": "MEDIUM",
+      "category": "repeated-literal-payload",
+      "description": "The CLASS timetable payload shape (kind, subject_id, starts_at, ends_at) is constructed inline at lines 310-317, 640-647 and 714-721, meeting M2's three-occurrence predicate. Other catalogue/access payloads also recur.",
+      "suggestion": "Create a fresh timetable-window factory accepting kind, subject and time overrides; keep each scenario's relevant boundary overrides visible.",
+      "code_snippet": "h.telemetry.inject('timetable', [{ kind: 'CLASS', subject_id: 'CS-340-CV', starts_at: '2026-10-20T15:00:00.000Z', ends_at: '2026-10-20T17:00:00.000Z' }]);"
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_domain.test.ts",
+      "line": 47,
+      "row": "M2",
+      "severity": "MEDIUM",
+      "category": "repeated-literal-payload",
+      "description": "The ProtectedWindow shape (kind, starts_at, ends_at) is constructed inline at lines 47, 66, 87, 125, 139 and 158. M2 fires because the domain payload shape appears three or more times.",
+      "suggestion": "Introduce a fresh protected-window factory with explicit start/end overrides to retain independent boundary inputs.",
+      "code_snippet": "{ kind: 'CLASS', starts_at: '2026-10-19T03:20:00.000Z', ends_at: '2026-10-19T04:00:00.000Z' }"
+    }
+  ],
+  "passed_checks": 18,
+  "failed_checks": 4,
+  "total_checks": 22,
+  "violation_summary": {
+    "CRITICAL": 0,
+    "HIGH": 0,
+    "MEDIUM": 4,
+    "LOW": 0
+  },
+  "recommendations": [
+    "Group related operation/policy tests with describe/context.",
+    "Use factories for repeated timetable and ProtectedWindow payloads, retaining scenario-specific boundary overrides."
+  ],
+  "summary": "Four MEDIUM findings: M2 repeated payloads and M4 missing grouping in each file. Convention rows do not deduct because corpus size is one.",
+  "checks": [
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_contracts.test.ts",
+      "row": "M2",
+      "status": "WARN",
+      "reason": "Repeated domain payload shapes appear inline three or more times."
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_contracts.test.ts",
+      "row": "M3",
+      "status": "PASS",
+      "reason": "Assertions about response, journal/outbox/audit and absence of external mutation verify the same transaction/decision contract; no three unrelated subjects."
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_contracts.test.ts",
+      "row": "M4",
+      "status": "WARN",
+      "reason": "Three or more tests with no describe/context grouping."
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_contracts.test.ts",
+      "row": "M5",
+      "status": "PASS (n/a)",
+      "reason": "No UI event dispatch; applicability gate closed."
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_contracts.test.ts",
+      "row": "M7",
+      "status": "PASS",
+      "reason": "No describe nesting; property callback, loop and branch reach three nested blocks beneath the test body, not more than three."
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_contracts.test.ts",
+      "row": "H5",
+      "status": "PASS",
+      "reason": "785 lines (contracts) and 180 lines (domain), both below 1000."
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_contracts.test.ts",
+      "row": "L1",
+      "status": "PASS (n/a)",
+      "reason": "No DOM element lookup; applicability gate closed."
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_contracts.test.ts",
+      "row": "L3",
+      "status": "PASS (n/a)",
+      "reason": "testIds baseline unknown: corpus 1 < 4. No convention deduction."
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_contracts.test.ts",
+      "row": "L5",
+      "status": "PASS (n/a)",
+      "reason": "bddNaming baseline unknown: corpus 1 < 4. No convention deduction."
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_contracts.test.ts",
+      "row": "L6",
+      "status": "PASS",
+      "reason": "Domain-significant boundaries are explained by test names, oracle comments or named fact fields; no confidently unexplained magic literal found."
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_contracts.test.ts",
+      "row": "L7",
+      "status": "PASS (n/a)",
+      "reason": "assertionStyle baseline unknown: corpus 1 < 4. Vitest expect is used consistently."
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_domain.test.ts",
+      "row": "M2",
+      "status": "WARN",
+      "reason": "Repeated domain payload shapes appear inline three or more times."
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_domain.test.ts",
+      "row": "M3",
+      "status": "PASS",
+      "reason": "Assertions about response, journal/outbox/audit and absence of external mutation verify the same transaction/decision contract; no three unrelated subjects."
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_domain.test.ts",
+      "row": "M4",
+      "status": "WARN",
+      "reason": "Three or more tests with no describe/context grouping."
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_domain.test.ts",
+      "row": "M5",
+      "status": "PASS (n/a)",
+      "reason": "No UI event dispatch; applicability gate closed."
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_domain.test.ts",
+      "row": "M7",
+      "status": "PASS",
+      "reason": "No describe nesting; property callback, loop and branch reach three nested blocks beneath the test body, not more than three."
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_domain.test.ts",
+      "row": "H5",
+      "status": "PASS",
+      "reason": "785 lines (contracts) and 180 lines (domain), both below 1000."
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_domain.test.ts",
+      "row": "L1",
+      "status": "PASS (n/a)",
+      "reason": "No DOM element lookup; applicability gate closed."
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_domain.test.ts",
+      "row": "L3",
+      "status": "PASS (n/a)",
+      "reason": "testIds baseline unknown: corpus 1 < 4. No convention deduction."
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_domain.test.ts",
+      "row": "L5",
+      "status": "PASS (n/a)",
+      "reason": "bddNaming baseline unknown: corpus 1 < 4. No convention deduction."
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_domain.test.ts",
+      "row": "L6",
+      "status": "PASS",
+      "reason": "Domain-significant boundaries are explained by test names, oracle comments or named fact fields; no confidently unexplained magic literal found."
+    },
+    {
+      "file": "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/atdd/m2_domain.test.ts",
+      "row": "L7",
+      "status": "PASS (n/a)",
+      "reason": "assertionStyle baseline unknown: corpus 1 < 4. Vitest expect is used consistently."
+    }
+  ],
+  "run_level_preconditions": {
+    "playwrightUtilsActive": false,
+    "pactjsUtilsActive": false,
+    "excluded_rows": [
+      "M9",
+      "L9",
+      "M10"
+    ],
+    "reason": "Both flags true, but neither package is installed; reviewed files execute under Vitest and contain no Playwright or Pact artifact. Run framework if utility adoption is intended."
+  },
+  "fully_read_knowledge_fragments": [
+    "test-quality.md",
+    "data-factories.md",
+    "test-levels-framework.md",
+    "selective-testing.md",
+    "test-healing-patterns.md",
+    "selector-resilience.md",
+    "timing-debugging.md",
+    "playwright-utils-mandate.md",
+    "pactjs-utils-mandate.md"
+  ]
+}

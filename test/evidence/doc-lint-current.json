@@ -1,0 +1,45 @@
+{
+  "scope": "delta only; full legacy debt remains",
+  "files": [
+    {
+      "path": "planning/ARCHITECTURE.md",
+      "total": 3
+    },
+    {
+      "path": "planning/detailed-design/contracts.md",
+      "total": 1
+    },
+    {
+      "path": "planning/prd.md",
+      "total": 21
+    },
+    {
+      "path": "planning/readiness-gate-report.md",
+      "total": 2
+    },
+    {
+      "path": "reviews/review-arch-adversarial.md",
+      "total": 103
+    },
+    {
+      "path": "reviews/review-arch-edge-cases.md",
+      "total": 17
+    },
+    {
+      "path": "reviews/review-arch-implementability.md",
+      "total": 4
+    },
+    {
+      "path": "reviews/review-prd-adversarial.md",
+      "total": 62
+    },
+    {
+      "path": "ai-log/decision-log-solu2.md",
+      "total": 2
+    },
+    {
+      "path": "ai-log/decision-log.md",
+      "total": 1
+    }
+  ]
+}

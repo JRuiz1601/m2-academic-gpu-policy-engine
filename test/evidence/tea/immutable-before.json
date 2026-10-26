@@ -1,0 +1,15 @@
+{
+  "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/gate-runs/run1-implementation-readiness-report.md": "11ff74dda3a03c51131c9044758914391b57e48ff62b7e2d489c255f5de7a68a",
+  "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/gate-runs/run3-implementation-readiness-report.md": "34246d6af5d1247dd61d4e1314d079ef969be2fb94d42e47b898b0f226ae93ec",
+  "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/gate-runs/run2-implementation-readiness-report.md": "123f231c157a5ed9e01d9afb6aab83f79a40106264faae5d35db6f6c127a7d42",
+  "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/evidence/gate-runs/run4-implementation-readiness-report.md": "a4ed2c3b90a942fbac1c235f497e77c78ead7da16f5c3f618af3c548fdb8f6d0",
+  "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/test/ci/readiness.mjs": "889ce77a9c0455c7851c75156af5ee39534dbb69024d4197d6efa11a0a1c060b",
+  "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/planning/implementation-readiness-report-solu2-run5.md": "b54d539af271519c16ac91069365009381689e444647af253ffae51085d581d2",
+  "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/planning/readiness-gate-report.md": "376417dfdc25e6310d2ee043f77972f4f33f3ab7060d520493654927186f5843",
+  "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/planning/implementation-readiness-report-solu2.md": "11ff74dda3a03c51131c9044758914391b57e48ff62b7e2d489c255f5de7a68a",
+  "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/planning/implementation-readiness-report-solu2-run4.md": "a4ed2c3b90a942fbac1c235f497e77c78ead7da16f5c3f618af3c548fdb8f6d0",
+  "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/planning/phase-5-readiness-report.md": "9ae7a71f8117420d6a226642f6436795e0343e1288386087773745562626115f",
+  "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/planning/implementation-readiness-report-solu2-run3.md": "34246d6af5d1247dd61d4e1314d079ef969be2fb94d42e47b898b0f226ae93ec",
+  "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/planning/implementation-readiness-report-solu2-run2.md": "123f231c157a5ed9e01d9afb6aab83f79a40106264faae5d35db6f6c127a7d42",
+  "AI Compute Fabric/M2-Academic-GPU-Policy-Engine/implementation-artifacts/sprint-status.yaml": "30d88e216af0b6a8468105e68ff4e59ba9f67bde8ee178f84cbb76aff6b33b3f"
+}
