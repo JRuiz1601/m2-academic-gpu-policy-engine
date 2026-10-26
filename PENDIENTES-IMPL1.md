@@ -4,8 +4,7 @@ Las tres historias del anexo M2 y el scaffold local están implementados. Pasar 
 
 | Pendiente | Estado y alcance |
 |---|---|
-| Docker (re-verificado en IMPL1-CLOSE) | El daemon de Docker sigue apagado; la imagen pasó a node:22.18.0-bookworm-slim sin construirse. Nota anterior sin cambios. |
-| Construir y ejecutar el contenedor | Docker CLI disponible y `docker compose config --quiet` válido. El daemon está apagado; no se verificó build, healthcheck ni persistencia del volumen en Docker. La ejecución nativa sí tiene pruebas. |
+| Contenedor: alcance de la verificación | Build y ejecución verificados con Docker 29.6.2 (ver walkthrough). No se comprobó que el healthcheck de la imagen llegara a "healthy" (solo se vio "starting" a los 6 s; `/ready` respondió 200), ni otro sistema operativo/arquitectura. El replay tras reinicio devolvió el mismo contenido pero con otro orden de claves JSON (no idéntico byte a byte). |
 | Validación humana y ceremonia externa | Historias Impl-1 en ready-for-review. No hay firma humana ni auditor independiente. Los ejecutores bmad-build/Amelia/create-story no están en esta copia; se documentó el ciclo local, sin atribuirles ejecuciones. |
 | GitHub y CI remota | Workflow listo para un repositorio con esta carpeta como raíz. No se publicó, no hay URL de repositorio ni ejecución remota; el workspace de origen no contiene `.git` ni historial incremental. Se entrega archivo organizado. |
 | Historial git no real | Se creó un repositorio local al entregar (sin remoto ni push) con commits obtenidos al rebanar el árbol final; no reflejan la cronología real. Varias rebanadas se fusionaron porque no compilan por separado. |

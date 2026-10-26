@@ -89,9 +89,19 @@ La revisión corrigió dependencia de producción a Harness de pruebas, ordinal 
 
 Desde esta carpeta: `npm run setup` y `npm start`; abrir http://127.0.0.1:3000. El README contiene curl y configuración. No requiere servicios de otros equipos. SQLite persiste en `data/m2.sqlite`; las pruebas usan memoria o archivos temporales aislados.
 
-Docker Compose validó su configuración. El build y el contenedor no se ejecutaron porque el daemon de Docker estaba apagado. La CI está lista pero no se publicó ni ejecutó en GitHub; el origen no tenía repositorio Git. La entrega usa archivo organizado, opción admitida por el PDF.
+Docker se ejecutó de verdad el 2026-10-26 (ver "Ejecución en Docker"). La CI está lista pero no se publicó ni ejecutó en GitHub; el origen no tenía repositorio Git. La entrega usa archivo organizado, opción admitida por el PDF.
 
 [Todos los pendientes](PENDIENTES-IMPL1.md) incluyen pruebas de navegador/accesibilidad, producción, entrega de eventos/M9, NFR avanzados, reevaluación histórica completa, trazabilidad avanzada y reconciliación formal de los hallazgos de run5. No se marca toda la planeación como terminada por haber pasado las pruebas locales.
+
+## Ejecución en Docker
+
+`docker --version`: Docker version 29.6.2, build dfc4efb (Docker Desktop, contexto desktop-linux). Imagen base `node:22.18.0-bookworm-slim`.
+
+- `docker compose up --build -d`: exit 0; el build terminó con `#14 naming to docker.io/library/m2-academic-gpu-policy-engine-policy:latest done` y creó red, volumen `policy-data` y contenedor.
+- `GET /health` → 200 `{"status":"OK"}`; `GET /ready` → 200 `{"status":"READY","checks":[registry,clock,store,bus todos ok:true]}` (respondió al primer intento).
+- `POST /policy/decisions` del README (student-demo-token, `Idempotency-Key: docker-1`) → 200, ALLOW, R-ALLOW-01, decision_id 01a1521a-0780-7b86-9dc8-eae3507e9cbc. Segunda clave `docker-2` → 200. `GET /` → 200 `text/html`.
+- Persistencia: `docker compose down` (sin -v) y `up -d`; el mismo POST con `docker-1` → 200 con el mismo decision_id y el mismo JSON al comparar campos. No es idéntico byte a byte: el replay serializa las claves en otro orden (mismo tamaño, 3548 bytes). El volumen sobrevivió al `down`.
+- No verificado: que el healthcheck de la imagen pasara a "healthy" (se observó "starting" a los 6 s). Al final `docker compose down`; no quedaron contenedores y el volumen `policy-data` se conservó (no se usó -v).
 
 ## Git history note
 

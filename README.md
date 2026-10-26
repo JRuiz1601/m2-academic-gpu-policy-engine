@@ -33,7 +33,7 @@ Alternativa con Docker:
 docker compose up --build
 ```
 
-Compose conserva SQLite en un volumen. Su configuración fue validada; la imagen no se construyó en esta sesión porque el daemon de Docker estaba apagado.
+Compose conserva SQLite en un volumen. Verificado en una corrida real con Docker 29.6.2 (build, `/health`, `/ready`, POST y persistencia tras `down`/`up`); detalle en el walkthrough.
 
 ## API y demostración
 
