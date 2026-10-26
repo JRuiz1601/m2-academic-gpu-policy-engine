@@ -82,6 +82,10 @@ async function api(path: string, method = 'GET', body?: unknown, token = 'studen
     const response = await fetch(base + path, { method, headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json', 'Idempotency-Key': key }, ...(body === undefined ? {} : { body: JSON.stringify(body) }) });
     return { status: response.status, body: await response.json() };
 }
+async function raw(path: string, body: unknown, key: string, token = 'student-demo-token') {
+    const response = await fetch(base + path, { method: 'POST', headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json', 'Idempotency-Key': key }, body: JSON.stringify(body) });
+    return { status: response.status, text: await response.text() };
+}
 beforeEach(async () => {
     dir = mkdtempSync(join(tmpdir(), 'm2-impl1-'));
     c = config({ DATABASE_PATH: join(dir, 'policy.sqlite'), ALLOW_CLOCK_OVERRIDE: 'true' });
@@ -114,6 +118,7 @@ describe('HTTP, contracts and durable state', () => {
         expect(h.store.all('decision_outbox')).toHaveLength(1);
     });
     it('decision survives process restart and replay is byte equivalent', async () => {
+        const rawFirst = await raw('/policy/decisions', request(), 'raw-restart');
         const first = await api('/policy/decisions', 'POST', request());
         await stop();
         (h.store as SqliteStore).db.close();
@@ -121,6 +126,16 @@ describe('HTTP, contracts and durable state', () => {
         await start();
         const replay = await api('/policy/decisions', 'POST', request());
         expect(replay).toEqual(first);
+        const rawReplay = await raw('/policy/decisions', request(), 'raw-restart');
+        expect(rawReplay.status).toBe(rawFirst.status);
+        expect(rawReplay.text).toBe(rawFirst.text);
+        expect(h.store.all('decision')).toHaveLength(2);
+    });
+    it('same-process replay returns the identical raw response text', async () => {
+        const first = await raw('/policy/decisions', request(), 'raw-same');
+        const replay = await raw('/policy/decisions', request(), 'raw-same');
+        expect(first.status).toBe(200);
+        expect(replay.text).toBe(first.text);
         expect(h.store.all('decision')).toHaveLength(1);
     });
     it('changed exam_binding with the same key returns 409 without another decision', async () => {

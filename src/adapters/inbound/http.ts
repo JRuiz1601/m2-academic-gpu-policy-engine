@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { createServer, type IncomingMessage } from 'node:http';
 import type { Runtime, Session, Row } from '../../ports/runtime.ts';
 import type { EvaluateRequestDto, CreateFreezeDraftRequestDto } from '../../domain/dto.ts';
-import { evaluateRequest, createFreezeDraft, previewFreeze, activateFreeze, liftFreeze, publishVersion, manifest, operator } from '../../application/service.ts';
+import { evaluateRequest, createFreezeDraft, previewFreeze, activateFreeze, liftFreeze, publishVersion, manifest, operator, canonical } from '../../application/service.ts';
 import { PolicyError, fail } from '../../application/errors.ts';
 import { validateRegistry } from '../../domain/evaluate.ts';
 import { RULES, rank } from '../../domain/registry.ts';
@@ -38,7 +38,8 @@ export function createHttpServer(h: Runtime, c: Config, tokens: Record<string, S
     return createServer(async (req, res) => {
         const send = (status: number, value: unknown) => {
             res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' });
-            res.end(JSON.stringify(value));
+            // One canonical key order for every JSON body, so a replayed response is byte-identical to the original.
+            res.end(canonical(JSON.parse(JSON.stringify(value))));
         };
         try {
             const url = new URL(req.url ?? '/', 'http://localhost'), path = url.pathname, method = req.method ?? 'GET';
