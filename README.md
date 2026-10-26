@@ -52,13 +52,16 @@ La API expone las 14 operaciones del OpenAPI previo, además de servir la consol
 
 ## Estructura y entrega
 
-- `src/domain/`: DTO propios, reglas puras y registro; sin dependencias de red, SQL ni pruebas.
-- `src/ports/`: contratos de almacenamiento, reloj, sesión y telemetría.
-- `src/application/`: evaluación, idempotencia, evidencia, borradores, tokens y transacciones.
-- `src/adapters/inbound/`: HTTP, CLI y consola adaptable a móvil.
-- `src/adapters/outbound/`: SQLite, migración inicial y simuladores.
-- `fixtures/`: 31 estaciones de 24 GB y un servidor de dos GPU de 48 GB, modelos, sesiones y horario.
-- `test/`: 61 ATDD previas, controles de fixtures y pruebas nuevas de historias, HTTP, contratos, reinicio y arranque nativo.
+```text
+src/domain/       DTO propios, reglas puras y registro (sin red, SQL ni pruebas)
+src/ports/        contratos Store/Runtime y adaptador de compatibilidad para las ATDD (policy.ts)
+src/application/  evaluación, idempotencia, evidencia, borradores, tokens, transacciones
+src/adapters/     inbound: HTTP, CLI, consola web · outbound: SQLite, migración, simuladores
+fixtures/         31 estaciones de 24 GB y un servidor 2 x 48 GB, modelos, sesiones, horario
+test/             atdd (61 previas), harness, implementation (HTTP, BDD, núcleo, arranque), ci (lint)
+docs/             prd, contracts (copias), stories, sprint-status, decisiones, history/ (Solu-2)
+planning/ ux/     planeación y UX previas (fuente de verdad de contratos y PRD)
+```
 
 [walkthrough-impl1.md](walkthrough-impl1.md) contiene el informe y la evidencia. [PENDIENTES-IMPL1.md](PENDIENTES-IMPL1.md) distingue el alcance entregado de los requisitos avanzados pendientes. [ai-decision-log.md](ai-decision-log.md) registra decisiones y correcciones; [docs/sprint-status.yaml](docs/sprint-status.yaml) rastrea las tres historias del PDF. La CI está preparada en `.github/workflows/implementation.yml` para publicar esta carpeta como raíz del repositorio.
 
