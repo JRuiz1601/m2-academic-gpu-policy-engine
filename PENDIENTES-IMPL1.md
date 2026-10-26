@@ -1,0 +1,20 @@
+# Pendientes actuales — 2026-10-26
+
+Las tres historias del anexo M2 y el scaffold local están implementados. Pasar las pruebas actuales no acredita automáticamente todos los criterios de las 16 historias ni los 13 NFR de la planeación original.
+
+| Pendiente | Estado y alcance |
+|---|---|
+| Docker (re-verificado en IMPL1-CLOSE) | El daemon de Docker sigue apagado; la imagen pasó a node:22.18.0-bookworm-slim sin construirse. Nota anterior sin cambios. |
+| Construir y ejecutar el contenedor | Docker CLI disponible y `docker compose config --quiet` válido. El daemon está apagado; no se verificó build, healthcheck ni persistencia del volumen en Docker. La ejecución nativa sí tiene pruebas. |
+| Validación humana y ceremonia externa | Historias Impl-1 en ready-for-review. No hay firma humana ni auditor independiente. Los ejecutores bmad-build/Amelia/create-story no están en esta copia; se documentó el ciclo local, sin atribuirles ejecuciones. |
+| GitHub y CI remota | Workflow listo para un repositorio con esta carpeta como raíz. No se publicó, no hay URL de repositorio ni ejecución remota; el workspace de origen no contiene `.git` ni historial incremental. Se entrega archivo organizado. |
+| Historial git no real | Se creó un repositorio local al entregar (sin remoto ni push) con commits obtenidos al rebanar el árbol final; no reflejan la cronología real. Varias rebanadas se fusionaron porque no compilan por separado. |
+| Pruebas visuales de la consola | Consola implementada con labels, estados, confirmación, vista móvil y mensajes de error. Se prueba que se sirve; faltan E2E en navegador, teclado/lector de pantalla y mediciones WCAG/usabilidad con los escenarios UX completos. |
+| Integraciones de producción | Identidad, catálogo, horarios, cuotas, disponibilidad y bus son simulados. Faltan conectores reales, autenticación institucional, gestión de secretos y observabilidad operativa. No se necesita otro equipo para la demostración. |
+| Entrega de eventos y M9 | Outbox transaccional implementado. Faltan worker de entrega, reintentos/backoff, deduplicación del consumidor y acuses de obligaciones. El motor declara restricciones y no controla hardware. |
+| NFR avanzados y fallos distribuidos | Medido el núcleo puro en proceso caliente. Faltan carga/saturación, HTTP p95 sostenido, cold start formal, dimensionamiento/retención, crash real entre procesos, varias réplicas, PostgreSQL, NTP/stratum/regresión, antigüedad de facts y catálogo con caché de 6 h. No hay mediciones de producción. |
+| Reproducción histórica completa | Replay de respuesta persistida funciona tras reinicio. Falta migración para conservar el pedido completo y artefactos ejecutables de cada versión para reevaluar offline y actualizar el motor sin perder compatibilidad histórica. Publicar hoy crea una versión del registro fijo; no cambia reglas. |
+| Trazabilidad avanzada de reglas | El motor devuelve reglas, evidencia, citas y estados; faltan la auditoría formal de subsunción y dependencias de predicados, evidencias específicas de cada límite/supresión y la totalidad de propiedades de las matrices anteriores. |
+| Reconciliar contratos y auditoría anterior | `docs/implementation-decisions.md` fija decisiones locales de ruta, estado HTTP, prioridad, reloj y stack. No se alteraron PRD/UX históricos ni se firmaron sus excepciones. Los 18 hallazgos de run5 necesitan una matriz de cierre formal con sus criterios originales; esta entrega no afirma haber obtenido READY ni TEA PASS. |
+
+Las siguientes diferencias con el ejemplo del PDF son intencionales y están documentadas: ruta `/policy/decisions`, DTO rico con CONSTRAIN, VRAM obtenida del catálogo, registro de reglas en código y HTTP/SQLite nativos en lugar de Express/ORM. Si la evaluación exige literalmente el stack ilustrado o ejecutar el agente BMAD externo, esos puntos requieren una adaptación adicional; no están ocultos como cumplidos.

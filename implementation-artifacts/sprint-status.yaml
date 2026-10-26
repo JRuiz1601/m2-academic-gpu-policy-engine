@@ -1,0 +1,3 @@
+# Superseded. The only canonical sprint status is docs/sprint-status.yaml.
+# The old epic/story backlog (Solu-2) is kept as history in planning/epics.md; it is not tracked here.
+# Note: test/ci/readiness.mjs (historical Solu-2 gate, not part of `npm run check`) still expects this path.

@@ -1,0 +1,53 @@
+# TASK IMPL1-CLOSE — close the submission gaps of the Impl-1 package (M2 Academic GPU Policy Engine)
+
+CONTEXT. This folder (ROOT) is the extracted `impl1-M2-Academic-GPU-Policy-Engine.zip`: a TypeScript/Node implementation of annex stories 2.1, 2.2, 2.3 (see `docs/reference-task-impl1.pdf`, Section 5 checklist and Section 6 rubric). The orchestrator verified on 2026-10-26: `npm ci --ignore-scripts && npm run check` → typecheck PASS, lint PASS, 95/95 tests, 0 skipped, also on Node 22.23. Do NOT break that. Do not add dependencies. Do not touch the production behaviour of the engine unless a task below says so; every change ends with `npm run check` green.
+
+HARD RULES. Never invent history or evidence: no fake timestamps, no claims of tools/agents that did not run, no "approved/certified". Anything you cannot verify goes to PENDIENTES-IMPL1.md as pending. Do not push anywhere, do not create remotes. Local commits ARE wanted (Part 1) — they are made by the user's Claude Code session in the user's own clone. Standing rule from Juan: when a decision is not settled here, take the option marked Recommended; if none, write NEEDS DECISION in the final report and continue.
+
+## Part 0 — baseline
+`node -v`; `npm ci --ignore-scripts`; `npm run check` (expect 95 passed). Save the last 25 lines to `/tmp/baseline.txt`. Run `git status` — if this folder is not a git repo, that is expected (Part 1).
+
+## Part 2 (do BEFORE Part 1, so the commits contain the final layout) — layout the PDF requires (Section 4.1)
+a) `docs/prd.md` ← copy of `planning/prd.md` with a one-line header "Scoped module PRD (from Plan-2); source of truth stays planning/prd.md". `docs/contracts/` ← copy of `planning/detailed-design/schemas/openapi.yaml` plus the other files in `planning/detailed-design/schemas/` that the code or tests read (check; copy, do not move; if tests compare byte-for-byte keep both identical and add a test or lint rule that the copy equals the source). Add a README line saying which copy is canonical.
+b) `docs/ai-decision-log.md` must exist (PDF layout) and `ai-decision-log.md` at the root (PDF deliverable list). Keep ONE real file at the root and make `docs/ai-decision-log.md` a short pointer (or the other way round) — pick the root as canonical.
+c) Two sprint files exist and DIFFER: `docs/sprint-status.yaml` and `implementation-artifacts/sprint-status.yaml`. Make `docs/sprint-status.yaml` the only canonical one (the PDF layout). Check which one the scripts/tests read (`grep -rn sprint-status`), reconcile, and replace the other with a 3-line pointer file or delete it if nothing reads it. Result: no contradictory status anywhere.
+d) Repository clutter (rubric dimension 5): move root-level historical files (`HANDOVER-*.md`, `ENTREGA-CON-PENDIENTES.md`) into `docs/history/` and fix every link to them (README, walkthrough, PENDIENTES). Do NOT move `planning/`, `reviews/`, `ux/`, `test/evidence/`, `policy/`, `ports/` (scripts and tests depend on them).
+e) Node version. `package.json` engines says `>=24.15.0` but the PDF says Node 20+ and the code ran on Node 22.23. Find the real minimum: the code needs native type stripping and `node:sqlite`. Test with the oldest Node you can get via `npx -y node@22.18 ...` or `nvm` if available; if you cannot test other versions, set engines to `>=22.18.0` ONLY if Node 22.23 passed (it did) and say in the README "verified on 22.23.x and 26.x; Node 20 is not supported because …". Also make sure `npm run setup` fails with a clear message (not a stack trace) on an unsupported Node: add a tiny preinstall-free check at the top of `src/main.ts`/`config.ts` only if it is already how the code behaves; otherwise just document. Keep `Dockerfile` consistent with the chosen minimum.
+
+## Part 3 — tests mapped to the Gherkin (rubric dimension 3, checklist "≥2 distinct tests per story")
+Create `test/implementation/stories.bdd.test.ts` (new file, no change to existing tests). One `describe` per story, with the Given/When/Then of the PDF as comments and as test names, driving the real HTTP adapter (reuse the helpers of `http.test.ts`) and asserting BODY semantics, not only status:
+- 2.1: (1) the PDF scenario: student `mateo`, 24GB workstation → outcome ALLOW, `primary_rule_id` present, rationale/citation contains the exact string "Standard student lab policy satisfied". (2) no entitlement → DENY with the cited rule. (3) invalid body → 4xx structured JSON error (code, message), no stack trace.
+- 2.2: (1) PDF scenario: class window CS-101 Monday 10:00–12:00, simulated clock Monday 10:30 (use the clock/`SIMULATED_NOW` mechanism the code already has; local zone is America/Panama UTC−05:00 as in the README) → DENY, rationale contains exactly "GPU access restricted during scheduled lab class CS-101", response includes the next available window timestamp. (2) boundary: 12:00 sharp is allowed (already in core test — assert at HTTP level). (3) same request outside the window → ALLOW.
+- 2.3: (1) PDF scenario: Student requests 48GB_SERVER for a model needing 8 GB → DENY, reason contains exactly "Workload fits standard 24GB workstation; server tier restricted", names required VRAM (8) and suggests the 24GB workstation node type. (2) Researcher or Instructor with the same request is NOT denied by this rule. (3) a model that really needs >24 GB is not denied by this rule for a student who is otherwise allowed (or the actual behaviour — read the code first and assert what the contract says; if behaviour is surprising, record it in Part 5 as a finding, do not change production code silently).
+- Error payloads (checklist "Error Handling"): one test each for 400, 404, 409 (idempotency-key reuse with a different body), 422 or the codes the OpenAPI actually defines — assert JSON shape from the catalog, never a stack trace.
+Use the model names/ids that exist in `fixtures/models.json` and `fixtures/sessions.json`; do not invent fixtures. If a PDF scenario cannot be reproduced exactly because the fixtures lack the data (e.g. user "mateo"), add the minimal fixture entry and document it in `docs/implementation-decisions.md`.
+Also add one fixtures test asserting 32 nodes: 31 × 24 GB workstations and 1 server with 2 × 48 GB (check whether `test/harness/fixtures.test.ts` already does; if so do not duplicate).
+Run `npm run check`; report the new total (expect ≥ 95 + new tests, 0 skipped).
+
+## Part 4 — walkthrough and evidence
+Update `walkthrough-impl1.md` (do not rewrite it from scratch): (1) a compact table per story: goal, endpoint(s) with method/path/status codes, DB tables touched (read `src/adapters/outbound/001_m2_schema.sqlite.sql`), test files + test names. (2) paste the REAL tail of the final `npm run check` output (typecheck, lint, vitest summary) in a code block, taken from a run you just did, and refresh `test/evidence/impl1-check.log` with the full output of that run. (3) Section "How this was built": keep the existing honest statement that the build was done by a local coding agent and that bmad-build/Amelia were not invoked; add that the sprint file and story files record the local six-step cycle. Remove any sentence that overstates (e.g. "ceremony executed" without the qualifier). (4) A "Deviations from the PDF example" list: endpoint `/policy/decisions` vs `/api/v1/policy/evaluate`, no `policy_rules` table (immutable in-code registry), TypeScript track, native HTTP/SQLite instead of Express/ORM — one line of justification each, pointing to `docs/implementation-decisions.md`.
+
+## Part 5 — AI decision log
+Do not delete existing entries. Append entries 10+ for the corrections made in THIS task as they really happen (e.g. a fixture you had to add, a surprising behaviour found by the new tests, a link you had to repair), in the same table format, with prompt/instruction, observed output, human-review decision. Keep the header statement that these are working instructions of the build agent, not six distinct human messages. Keep the "≥2 corrections" evidence visible (entries already marked as corrections).
+
+## Part 1 — git history (LAST, after Parts 2–5)
+The PDF asks for "incremental story progression" commits and the package has no `.git`. The history cannot be real; do NOT fake dates or authorship. Do this, and disclose it:
+1. `git init -b main` in ROOT (if not already a repo), `.gitignore` already excludes node_modules/.env/db files — verify `git status --ignored` shows no secrets or DB files.
+2. Build the history by staging path groups, in this order, one commit each, running `npm run typecheck` (and `npm test` when the slice contains tests) before each commit when feasible; if a slice cannot compile in isolation (the tree is intertwined), merge it with the next slice and say so in the report:
+   `chore(scaffold): project manifest, tsconfig, config, env example, docker files, CI workflow` →
+   `feat(scaffold): ports, SQLite adapter, migration, simulated fleet fixtures` →
+   `feat(story-2.1): baseline GPU access evaluation` →
+   `feat(story-2.2): time-window class protection gate` →
+   `feat(story-2.3): VRAM hardware tier restriction gate` →
+   `test(stories): BDD-mapped tests, error payloads, evidence log` →
+   `docs: README, walkthrough, sprint status, AI decision log, pending items` →
+   `docs(history): Solu-2 planning and reviews kept as historical evidence`.
+   Commit messages in English, Conventional Commits. Each commit body ends with the attribution lines the session reminder gives for commits made by Claude (use exactly what the reminder specifies).
+3. Add a section "Git history note" to README.md and walkthrough: "The implementation was produced in a workspace without version control; the commits were created at submission time by slicing the final tree and do not reflect the real chronology." Commit that note in the last commit.
+4. `git tag` nothing. Do not push. Do not add a remote.
+
+## Part 6 — optional Docker check (only if the daemon answers)
+`docker info >/dev/null 2>&1 && docker compose up --build -d`, wait for `/health` and `/ready` on port 3000 (`curl -s`), run one POST from the README, `docker compose down`. Record the result (PASS or the exact error) in `PENDIENTES-IMPL1.md` and the walkthrough. If the daemon is off, leave the existing "not executed" note untouched. Never claim a Docker run that did not happen.
+
+## Final verification and report (max 20 lines, then stop)
+Show: `npm run check` last lines (tests passed / skipped); `git log --oneline`; `git status --short` (must be clean); `ls docs docs/contracts`; no contradictory sprint file (`grep -rn "ready-for-review" --include=*.yaml .` listing); list of NEEDS DECISION and of anything you could not verify. Write the report to `LAST-REPORT.md` at ROOT (not committed) and stop.
