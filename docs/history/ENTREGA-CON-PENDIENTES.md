@@ -1,4 +1,4 @@
-> **Archivo histórico de Solu-2 (2026-10-23).** La implementación posterior de 2026-10-26 está descrita en [walkthrough-impl1.md](walkthrough-impl1.md) y sus pendientes actuales en [PENDIENTES-IMPL1.md](PENDIENTES-IMPL1.md). No se reescribe el dictamen anterior.
+> **Archivo histórico de Solu-2 (2026-10-23).** La implementación posterior de 2026-10-26 está descrita en [walkthrough-impl1.md](../../walkthrough-impl1.md) y sus pendientes actuales en [PENDIENTES-IMPL1.md](../../PENDIENTES-IMPL1.md). No se reescribe el dictamen anterior.
 
 # Solu-2 M2 — entrega documentada con pendientes
 
@@ -27,7 +27,7 @@ El registro DONE.log acredita estas tareas; no acredita el DoD global. Los infor
 | P0 por riesgos |6/6 riesgos enlazados a una roja | Medida distinta de cobertura completa de criterios; no reemplaza el resultado anterior |
 | NFR |13/13 PLANNED;0/13 medidos | No hay mediciones de producción; no se presentan los stubs como resultados medidos |
 
-Fuente de los resultados TEA: [test-review-skill-output.md](test/evidence/tea/test-review-skill-output.md), [trace-skill-output.md](test/evidence/tea/trace-skill-output.md) y [triage](reviews/review-tea-skills.md). El trace usa también la frase «24 critical requirements uncovered»; son unidades de su análisis y no se suman a los18 hallazgos de run5. El triage original registra9 Accept,6 Defer y1 Reject; estos estados tampoco convierten el FAIL en PASS.
+Fuente de los resultados TEA: [test-review-skill-output.md](solu2/test/evidence/tea/test-review-skill-output.md), [trace-skill-output.md](solu2/test/evidence/tea/trace-skill-output.md) y [triage](solu2/reviews/review-tea-skills.md). El trace usa también la frase «24 critical requirements uncovered»; son unidades de su análisis y no se suman a los18 hallazgos de run5. El triage original registra9 Accept,6 Defer y1 Reject; estos estados tampoco convierten el FAIL en PASS.
 
 ## Qué impide el DoD
 
@@ -35,7 +35,7 @@ El crítico es contractual: el hash especificado para idempotencia no incorpora 
 
 Los mayores incluyen el orden de respuesta frente a persistencia, información insuficiente para replay, cuota positiva insuficiente con frontera, presencia del checkpoint, tolerancia de Catalog6h frente al ejemplo12h, publicación, alcance NODE_CLASS, versión al activar freeze, desajustes UX/API, launcher/sockets, cobertura de criterios, estrategia de migración, regla documental FR15, entrega a M9 y validación del enum en el borde HTTP. Los menores corresponden a tamaño y dependencias de historias.
 
-A continuación se preservan los18 hallazgos literales, sin reinterpretar su severidad. Fuente: [run5, sección Evidence-backed findings](planning/implementation-readiness-report-solu2-run5.md).
+A continuación se preservan los18 hallazgos literales, sin reinterpretar su severidad. Fuente: [run5, sección Evidence-backed findings](../../planning/implementation-readiness-report-solu2-run5.md).
 
 | ID | Severidad/categoría | Hallazgo, impacto y resolución exigida — cita literal |
 |---|---|---|
@@ -82,4 +82,4 @@ Para un cierre técnico futuro faltarían ejecutar las correcciones autorizadas,
 
 ## Verificación final del paquete
 
-La última comprobación de entrega se conserva en [delivery-check.txt](test/evidence/delivery/delivery-check.txt) y [delivery-integrity.json](test/evidence/delivery/delivery-integrity.json). El manifiesto del ZIP permite comprobar la integridad de sus contenidos. Se mantuvieron las primeras1075 líneas de ARCHITECTURE y los informes históricos; el Plan2 original del gate report permanece como prefijo exacto. Solo el informe heredado de gate recibió secciones documentales autorizadas y su hash correspondiente.
+La última comprobación de entrega se conserva en [delivery-check.txt](../../test/evidence/delivery/delivery-check.txt) y [delivery-integrity.json](../../test/evidence/delivery/delivery-integrity.json). El manifiesto del ZIP permite comprobar la integridad de sus contenidos. Se mantuvieron las primeras1075 líneas de ARCHITECTURE y los informes históricos; el Plan2 original del gate report permanece como prefijo exacto. Solo el informe heredado de gate recibió secciones documentales autorizadas y su hash correspondiente.

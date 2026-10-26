@@ -62,7 +62,7 @@ La API expone las 14 operaciones del OpenAPI previo, además de servir la consol
 
 [walkthrough-impl1.md](walkthrough-impl1.md) contiene el informe y la evidencia. [PENDIENTES-IMPL1.md](PENDIENTES-IMPL1.md) distingue el alcance entregado de los requisitos avanzados pendientes. [ai-decision-log.md](ai-decision-log.md) registra decisiones y correcciones; [docs/sprint-status.yaml](docs/sprint-status.yaml) rastrea las tres historias del PDF. La CI está preparada en `.github/workflows/implementation.yml` para publicar esta carpeta como raíz del repositorio.
 
-Los informes Solu-2 de octubre 23 y sus pruebas RED son evidencia histórica, conservada en `planning/`, `reviews/` y `test/evidence/`. `verify:red`, `gate` y `check:preparation` pertenecen a esa fase y no son el gate vigente de implementación. No ejecutar esos scripts para certificar Impl-1: `npm run check` es el control actual. No se declara aprobado retrospectivamente el cierre de Solu-2 ni todos los criterios de las 16 historias originales.
+Los informes Solu-2 y sus pruebas RED son evidencia histórica, conservada en `planning/` y `docs/history/solu2/` (ver su README). Sus scripts de gate (`verify:red`, `gate`, `check:preparation`) se retiraron; `npm run check` es el control vigente. No se declara aprobado retrospectivamente el cierre de Solu-2 ni todos los criterios de las 16 historias originales.
 
 ## Git history note
 
