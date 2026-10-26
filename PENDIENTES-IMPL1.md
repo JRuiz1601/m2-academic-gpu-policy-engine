@@ -4,7 +4,7 @@ Las tres historias del anexo M2 y el scaffold local están implementados. Pasar 
 
 | Pendiente | Estado y alcance |
 |---|---|
-| Contenedor: alcance de la verificación | Build y ejecución verificados con Docker 29.6.2 (ver walkthrough). No se comprobó que el healthcheck de la imagen llegara a "healthy" (solo se vio "starting" a los 6 s; `/ready` respondió 200), ni otro sistema operativo/arquitectura. El replay tras reinicio devolvió el mismo contenido pero con otro orden de claves JSON (no idéntico byte a byte). |
+| Contenedor: alcance de la verificación | Build, healthcheck (healthy), persistencia del volumen y replay byte-idéntico verificados con Docker 29.6.2 en una máquina. No se probó otro sistema operativo/arquitectura ni la CI remota. |
 | Validación humana y ceremonia externa | Historias Impl-1 en ready-for-review. No hay firma humana ni auditor independiente. Los ejecutores bmad-build/Amelia/create-story no están en esta copia; se documentó el ciclo local, sin atribuirles ejecuciones. |
 | GitHub y CI remota | Workflow listo para un repositorio con esta carpeta como raíz. No se publicó, no hay URL de repositorio ni ejecución remota; el workspace de origen no contiene `.git` ni historial incremental. Se entrega archivo organizado. |
 | Historial git no real | Se creó un repositorio local al entregar (sin remoto ni push) con commits obtenidos al rebanar el árbol final; no reflejan la cronología real. Varias rebanadas se fusionaron porque no compilan por separado. |

@@ -100,8 +100,8 @@ Docker se ejecutó de verdad el 2026-10-26 (ver "Ejecución en Docker"). La CI e
 - `docker compose up --build -d`: exit 0; el build terminó con `#14 naming to docker.io/library/m2-academic-gpu-policy-engine-policy:latest done` y creó red, volumen `policy-data` y contenedor.
 - `GET /health` → 200 `{"status":"OK"}`; `GET /ready` → 200 `{"status":"READY","checks":[registry,clock,store,bus todos ok:true]}` (respondió al primer intento).
 - `POST /policy/decisions` del README (student-demo-token, `Idempotency-Key: docker-1`) → 200, ALLOW, R-ALLOW-01, decision_id 01a1521a-0780-7b86-9dc8-eae3507e9cbc. Segunda clave `docker-2` → 200. `GET /` → 200 `text/html`.
-- Persistencia: `docker compose down` (sin -v) y `up -d`; el mismo POST con `docker-1` → 200 con el mismo decision_id y el mismo JSON al comparar campos. No es idéntico byte a byte: el replay serializa las claves en otro orden (mismo tamaño, 3548 bytes). El volumen sobrevivió al `down`.
-- No verificado: que el healthcheck de la imagen pasara a "healthy" (se observó "starting" a los 6 s). Al final `docker compose down`; no quedaron contenedores y el volumen `policy-data` se conservó (no se usó -v).
+- Persistencia (primer build, antes del arreglo): el replay tenía el mismo contenido pero las claves en otro orden; ver la entrada 16 de la bitácora.
+- Tras el arreglo "byte-identical idempotent replay" se reconstruyó la imagen (`up --build -d`). Tras 40 s, `docker inspect --format '{{.State.Health.Status}}'` → **healthy**. POST con clave nueva `docker-canon-1` → cuerpo de 3541 bytes; `docker compose down` (sin -v), `up -d` y el mismo POST con la misma clave → `cmp` **IDÉNTICO**, sha256 de ambos `fb5dc260da25d1f2b70401f80beceb658f02e8643cab0a32991b4e36e461995`. Al final `docker compose down`: sin contenedores del proyecto; el volumen `policy-data` se conservó (no se usó -v).
 
 ## Git history note
 
