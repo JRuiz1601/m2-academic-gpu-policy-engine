@@ -1,0 +1,12 @@
+{
+  "request_id": "req-demo",
+  "request_chain_id": "chain-demo",
+  "actor_ref": "mateo",
+  "workload_kind": "INTERACTIVE_INFERENCE",
+  "subject_id": "CS-101",
+  "model_ref": "small-24",
+  "requested_gpu_count": 1,
+  "requested_vram_gb_per_gpu": 24,
+  "expected_duration_min": 30,
+  "exam_binding": null
+}

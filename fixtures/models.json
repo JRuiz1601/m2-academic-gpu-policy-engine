@@ -1,0 +1,20 @@
+[
+  {
+    "model_ref": "small-24",
+    "min_vram_gb": 8,
+    "required_min_role_tier": "STUDENT",
+    "variants": []
+  },
+  {
+    "model_ref": "vlm-70b",
+    "min_vram_gb": 48,
+    "required_min_role_tier": "INSTRUCTOR",
+    "variants": [
+      {
+        "model_ref": "vlm-70b-q4",
+        "min_vram_gb": 24,
+        "required_min_role_tier": "STUDENT"
+      }
+    ]
+  }
+]

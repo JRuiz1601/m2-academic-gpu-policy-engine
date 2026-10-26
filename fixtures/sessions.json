@@ -1,0 +1,19 @@
+{
+  "student-demo-token": {
+    "actor_id": "mateo",
+    "role_tier": "STUDENT",
+    "scopes": []
+  },
+  "instructor-demo-token": {
+    "actor_id": "rebecca",
+    "role_tier": "INSTRUCTOR",
+    "scopes": [
+      "LAB_OPERATOR"
+    ]
+  },
+  "researcher-demo-token": {
+    "actor_id": "researcher",
+    "role_tier": "RESEARCHER",
+    "scopes": []
+  }
+}

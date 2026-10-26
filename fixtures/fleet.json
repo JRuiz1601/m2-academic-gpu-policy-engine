@@ -1,0 +1,226 @@
+[
+  {
+    "node_id": "node-1",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-2",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-3",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-4",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-5",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-6",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-7",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-8",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-9",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-10",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-11",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-12",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-13",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-14",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-15",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-16",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-17",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-18",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-19",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-20",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-21",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-22",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-23",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-24",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-25",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-26",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-27",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-28",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-29",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-30",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-31",
+    "node_class_id": "std-24",
+    "gpu_count": 1,
+    "vram_gb_per_gpu": 24,
+    "health": "HEALTHY"
+  },
+  {
+    "node_id": "node-32",
+    "node_class_id": "dual-48",
+    "gpu_count": 2,
+    "vram_gb_per_gpu": 48,
+    "health": "HEALTHY"
+  }
+]
