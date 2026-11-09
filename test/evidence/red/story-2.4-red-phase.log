@@ -1,0 +1,295 @@
+# command: npx vitest run test/unit/window-boundary.test.ts test/implementation/window-boundary.http.test.ts
+# date: 2026-11-09T10:30:20-05:00
+
+
+ RUN  v4.1.12 C:/Users/juane/Documents/Universidad/Noveno Semestre/Desarrollo IA/impl1-M2-Academic-GPU-Policy-Engine/M2-Academic-GPU-Policy-Engine
+
+ ❯ test/unit/window-boundary.test.ts (9 tests | 8 failed) 12ms
+     × 05:55:00 local warns with 5 minutes remaining and the 06:00:00 hard deadline 6ms
+     × 05:54:59 local gives no warning yet 2ms
+     × exactly 06:00:00 local evicts: the job is past the boundary 1ms
+     × +30 min at 05:59:00 crosses 06:00:00 and is denied citing the 08:00:00 class start 1ms
+     × an extension that ends before 06:00:00 is allowed and keeps the hard deadline 0ms
+     × an extension ending exactly at 06:00:00 does not cross and is allowed 0ms
+     × is pure: same inputs give the same output 0ms
+     × advanceBy and advanceTo fast-forward the instant 0ms
+ ❯ test/implementation/window-boundary.http.test.ts (8 tests | 7 failed) 384ms
+     × at 05:55:00 an active night batch job gets EVICT_WARNING with 5 minutes and hard deadline 06:00:00 85ms
+     × at 05:54:59 there is no warning yet 47ms
+     × fast-forwarding the clock one second turns CONTINUE into EVICT_WARNING 43ms
+     × at exactly 06:00:00 the job is past the boundary and is evicted 42ms
+     × a +30 min extension at 05:59:00 is denied citing the 08:00:00 class start 41ms
+     × an extension that ends before 06:00:00 is allowed 41ms
+     × rejects malformed bodies with a structured WIRE_SHAPE_INVALID error 39ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 15 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/unit/window-boundary.test.ts > evaluateWindowBoundary (pure domain, simulated clock) > 05:55:00 local warns with 5 minutes remaining and the 06:00:00 hard deadline
+AssertionError: expected 'CONTINUE' to be 'EVICT_WARNING' // Object.is equality
+
+Expected: "EVICT_WARNING"
+Received: "CONTINUE"
+
+ ❯ test/unit/window-boundary.test.ts:14:22
+     12|   it('05:55:00 local warns with 5 minutes remaining and the 06:00:00 h…
+     13|     const r = evaluateWindowBoundary(job, at('10:55:00'), undefined, w…
+     14|     expect(r.action).toBe('EVICT_WARNING');
+       |                      ^
+     15|     expect(r.minutes_remaining).toBe(5);
+     16|     expect(r.hard_deadline).toBe('06:00:00');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/15]⎯
+
+ FAIL  test/unit/window-boundary.test.ts > evaluateWindowBoundary (pure domain, simulated clock) > 05:54:59 local gives no warning yet
+AssertionError: expected '' to be '06:00:00' // Object.is equality
+
+- Expected
++ Received
+
+- 06:00:00
+
+ ❯ test/unit/window-boundary.test.ts:21:29
+     19|     const r = evaluateWindowBoundary(job, at('10:54:59'), undefined, w…
+     20|     expect(r.action).toBe('CONTINUE');
+     21|     expect(r.hard_deadline).toBe('06:00:00');
+       |                             ^
+     22|   });
+     23|   it('exactly 06:00:00 local evicts: the job is past the boundary', ()…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/15]⎯
+
+ FAIL  test/unit/window-boundary.test.ts > evaluateWindowBoundary (pure domain, simulated clock) > exactly 06:00:00 local evicts: the job is past the boundary
+AssertionError: expected 'CONTINUE' to be 'EVICT' // Object.is equality
+
+Expected: "EVICT"
+Received: "CONTINUE"
+
+ ❯ test/unit/window-boundary.test.ts:25:22
+     23|   it('exactly 06:00:00 local evicts: the job is past the boundary', ()…
+     24|     const r = evaluateWindowBoundary(job, at('11:00:00'), undefined, w…
+     25|     expect(r.action).toBe('EVICT');
+       |                      ^
+     26|     expect(r.minutes_remaining).toBe(0);
+     27|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/15]⎯
+
+ FAIL  test/unit/window-boundary.test.ts > evaluateWindowBoundary (pure domain, simulated clock) > +30 min at 05:59:00 crosses 06:00:00 and is denied citing the 08:00:00 class start
+AssertionError: expected 'CONTINUE' to be 'DENY' // Object.is equality
+
+Expected: "DENY"
+Received: "CONTINUE"
+
+ ❯ test/unit/window-boundary.test.ts:30:22
+     28|   it('+30 min at 05:59:00 crosses 06:00:00 and is denied citing the 08…
+     29|     const r = evaluateWindowBoundary(job, at('10:59:00'), 30, windows);
+     30|     expect(r.action).toBe('DENY');
+       |                      ^
+     31|     expect(r.rule_id).toBe('R-BOUND-01');
+     32|     expect(r.reason).toContain('Scheduled laboratory classes begin at …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/15]⎯
+
+ FAIL  test/unit/window-boundary.test.ts > evaluateWindowBoundary (pure domain, simulated clock) > an extension that ends before 06:00:00 is allowed and keeps the hard deadline
+AssertionError: expected 'CONTINUE' to be 'EXTEND_ALLOWED' // Object.is equality
+
+Expected: "EXTEND_ALLOWED"
+Received: "CONTINUE"
+
+ ❯ test/unit/window-boundary.test.ts:36:22
+     34|   it('an extension that ends before 06:00:00 is allowed and keeps the …
+     35|     const r = evaluateWindowBoundary(job, at('10:20:00'), 30, windows);
+     36|     expect(r.action).toBe('EXTEND_ALLOWED');
+       |                      ^
+     37|     expect(r.hard_deadline).toBe('06:00:00');
+     38|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/15]⎯
+
+ FAIL  test/unit/window-boundary.test.ts > evaluateWindowBoundary (pure domain, simulated clock) > an extension ending exactly at 06:00:00 does not cross and is allowed
+AssertionError: expected 'CONTINUE' to be 'EXTEND_ALLOWED' // Object.is equality
+
+Expected: "EXTEND_ALLOWED"
+Received: "CONTINUE"
+
+ ❯ test/unit/window-boundary.test.ts:40:77
+     38|   });
+     39|   it('an extension ending exactly at 06:00:00 does not cross and is al…
+     40|     expect(evaluateWindowBoundary(job, at('10:30:00'), 30, windows).ac…
+       |                                                                             ^
+     41|   });
+     42|   it('is pure: same inputs give the same output', () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/15]⎯
+
+ FAIL  test/unit/window-boundary.test.ts > evaluateWindowBoundary (pure domain, simulated clock) > is pure: same inputs give the same output
+AssertionError: expected 'CONTINUE' to be 'EVICT_WARNING' // Object.is equality
+
+Expected: "EVICT_WARNING"
+Received: "CONTINUE"
+
+ ❯ test/unit/window-boundary.test.ts:44:26
+     42|   it('is pure: same inputs give the same output', () => {
+     43|     const first = evaluateWindowBoundary(job, at('10:55:00'), undefine…
+     44|     expect(first.action).toBe('EVICT_WARNING');
+       |                          ^
+     45|     expect(evaluateWindowBoundary(job, at('10:55:00'), undefined, wind…
+     46|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/15]⎯
+
+ FAIL  test/unit/window-boundary.test.ts > TimeDilationClock (simulated, deterministic Clock port) > advanceBy and advanceTo fast-forward the instant
+AssertionError: expected '2026-10-19T10:00:00.000Z' to be '2026-10-19T10:55:00.000Z' // Object.is equality
+
+Expected: "2026-10-19T10:55:00.000Z"
+Received: "2026-10-19T10:00:00.000Z"
+
+ ❯ test/unit/window-boundary.test.ts:56:26
+     54|     const clock = new TimeDilationClock(at('10:00:00'));
+     55|     clock.advanceBy(55 * 60_000);
+     56|     expect(clock.read()).toBe(at('10:55:00'));
+       |                          ^
+     57|     clock.advanceTo(at('11:00:00'));
+     58|     expect(clock.read()).toBe(at('11:00:00'));
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/15]⎯
+
+ FAIL  test/implementation/window-boundary.http.test.ts > Story 2.4 Midnight Window Rollover over HTTP > at 05:55:00 an active night batch job gets EVICT_WARNING with 5 minutes and hard deadline 06:00:00
+AssertionError: expected 404 to be 200 // Object.is equality
+
+- Expected
++ Received
+
+- 200
++ 404
+
+ ❯ test/implementation/window-boundary.http.test.ts:42:22
+     40|     clock.advanceTo(at('10:55:00'));
+     41|     const r = await boundary(job);
+     42|     expect(r.status).toBe(200);
+       |                      ^
+     43|     expect(r.body).toMatchObject({ action: 'EVICT_WARNING', minutes_re…
+     44|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/15]⎯
+
+ FAIL  test/implementation/window-boundary.http.test.ts > Story 2.4 Midnight Window Rollover over HTTP > at 05:54:59 there is no warning yet
+AssertionError: expected 404 to be 200 // Object.is equality
+
+- Expected
++ Received
+
+- 200
++ 404
+
+ ❯ test/implementation/window-boundary.http.test.ts:48:22
+     46|     clock.advanceTo(at('10:54:59'));
+     47|     const r = await boundary(job);
+     48|     expect(r.status).toBe(200);
+       |                      ^
+     49|     expect(r.body.action).toBe('CONTINUE');
+     50|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/15]⎯
+
+ FAIL  test/implementation/window-boundary.http.test.ts > Story 2.4 Midnight Window Rollover over HTTP > fast-forwarding the clock one second turns CONTINUE into EVICT_WARNING
+AssertionError: expected undefined to be 'CONTINUE' // Object.is equality
+
+- Expected:
+"CONTINUE"
+
++ Received:
+undefined
+
+ ❯ test/implementation/window-boundary.http.test.ts:53:47
+     51|   it('fast-forwarding the clock one second turns CONTINUE into EVICT_W…
+     52|     clock.advanceTo(at('10:54:59'));
+     53|     expect((await boundary(job)).body.action).toBe('CONTINUE');
+       |                                               ^
+     54|     clock.advanceBy(1000);
+     55|     expect((await boundary(job)).body.action).toBe('EVICT_WARNING');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/15]⎯
+
+ FAIL  test/implementation/window-boundary.http.test.ts > Story 2.4 Midnight Window Rollover over HTTP > at exactly 06:00:00 the job is past the boundary and is evicted
+AssertionError: expected 404 to be 200 // Object.is equality
+
+- Expected
++ Received
+
+- 200
++ 404
+
+ ❯ test/implementation/window-boundary.http.test.ts:60:22
+     58|     clock.advanceTo(at('11:00:00'));
+     59|     const r = await boundary(job);
+     60|     expect(r.status).toBe(200);
+       |                      ^
+     61|     expect(r.body).toMatchObject({ action: 'EVICT', minutes_remaining:…
+     62|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/15]⎯
+
+ FAIL  test/implementation/window-boundary.http.test.ts > Story 2.4 Midnight Window Rollover over HTTP > a +30 min extension at 05:59:00 is denied citing the 08:00:00 class start
+AssertionError: expected 404 to be 200 // Object.is equality
+
+- Expected
++ Received
+
+- 200
++ 404
+
+ ❯ test/implementation/window-boundary.http.test.ts:66:22
+     64|     clock.advanceTo(at('10:59:00'));
+     65|     const r = await boundary({ ...job, extension_minutes: 30 });
+     66|     expect(r.status).toBe(200);
+       |                      ^
+     67|     expect(r.body.action).toBe('DENY');
+     68|     expect(r.body.rule_id).toBe('R-BOUND-01');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/15]⎯
+
+ FAIL  test/implementation/window-boundary.http.test.ts > Story 2.4 Midnight Window Rollover over HTTP > an extension that ends before 06:00:00 is allowed
+AssertionError: expected 404 to be 200 // Object.is equality
+
+- Expected
++ Received
+
+- 200
++ 404
+
+ ❯ test/implementation/window-boundary.http.test.ts:74:22
+     72|     clock.advanceTo(at('10:20:00'));
+     73|     const r = await boundary({ ...job, extension_minutes: 30 });
+     74|     expect(r.status).toBe(200);
+       |                      ^
+     75|     expect(r.body).toMatchObject({ action: 'EXTEND_ALLOWED', hard_dead…
+     76|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/15]⎯
+
+ FAIL  test/implementation/window-boundary.http.test.ts > Story 2.4 Midnight Window Rollover over HTTP > rejects malformed bodies with a structured WIRE_SHAPE_INVALID error
+AssertionError: expected 404 to be 400 // Object.is equality
+
+- Expected
++ Received
+
+- 400
++ 404
+
+ ❯ test/implementation/window-boundary.http.test.ts:80:24
+     78|     for (const bad of [{ ...job, approved_policy: 'DAY' }, { ...job, e…
+     79|       const r = await boundary(bad);
+     80|       expect(r.status).toBe(400);
+       |                        ^
+     81|       expect(r.body.code).toBe('WIRE_SHAPE_INVALID');
+     82|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/15]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  15 failed | 2 passed (17)
+   Start at  10:30:21
+   Duration  662ms (transform 125ms, setup 0ms, import 182ms, tests 396ms, environment 0ms)
+
