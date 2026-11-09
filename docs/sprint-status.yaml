@@ -11,6 +11,7 @@ development_status:
   impl1-2-1-baseline-gpu-access: ready-for-review
   impl1-2-2-class-protection: ready-for-review
   impl1-2-3-vram-tier: ready-for-review
+  impl2-2-4-midnight-window-rollover: ready-for-review
 progression:
   - story: impl1-2-1-baseline-gpu-access
     transitions: [ready-for-dev, in-progress, ready-for-review]
@@ -21,6 +22,10 @@ progression:
   - story: impl1-2-3-vram-tier
     transitions: [ready-for-dev, in-progress, ready-for-review]
     evidence: [test/atdd/m2_contracts.test.ts, test/implementation/core.test.ts]
+  - story: impl2-2-4-midnight-window-rollover
+    transitions: [ready-for-dev, in-progress, ready-for-review]
+    evidence: [test/evidence/red/story-2.4-red-phase.log, test/evidence/green/story-2.4-green-phase.log, docs/mutation-sanity-2.4.md, test/unit/window-boundary.test.ts, test/implementation/window-boundary.http.test.ts]
+    independent_human_review: pending
 review:
   automated: passed
   author_review: completed

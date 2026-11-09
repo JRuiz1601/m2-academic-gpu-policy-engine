@@ -23,3 +23,12 @@ Solicitud humana de esta sesión: implementar el PDF basado en la planeación y 
 | 17. Registrar la revisión humana del diff | Juan Esteban Ruiz Ome declaró en el chat "ya revisamos" (él y Tomás Quintero, el equipo). No se aportaron más detalles. | Fuente: confirmación de Juan en el chat, 2026-10-26. `independent_human_review` pasa a completed en docs/sprint-status.yaml con la nota de que es revisión del equipo, no de un auditor externo. `production_approval` sigue pending. |
 
 Dependencias: no se añadieron paquetes; ejecución con Node HTTP/SQLite/crypto/fs. TypeScript, Vitest, YAML y fast-check ya estaban fijados en el proyecto. La instalación final con `npm ci` informó 0 vulnerabilidades en 52 paquetes auditados; no sustituye una revisión de seguridad independiente. Se habilitó validación de tipos, lint de arquitectura y pruebas con el lockfile existente.
+
+## Impl-2
+
+| Interacción / instrucción de trabajo | Salida observada | Decisión de revisión |
+|---|---|---|
+| 18. Instalar `@playwright/test` y `@vitest/coverage-v8` | `npm i` falló con "Cannot read properties of null (reading 'children')": la última versión de coverage-v8 (5.1.0) exige vitest 5.1.0 y el proyecto usa 4.1.12. | Corrección: fijar `@vitest/coverage-v8@4.1.12`, igual a vitest instalado. No se actualizó vitest. |
+| 19. Regla de cero sleeps en el lint | La primera versión de la regla detectó `setTimeout` como vigilante de arranque en `test/implementation/native.test.ts`. | Corrección de prueba: se eliminó el temporizador; el arranque espera el evento stdout/exit y el límite lo da Vitest. La regla no se debilitó. |
+| 20. Fase roja de 2.4: escribir pruebas a mano en vez de invocar `bmad-testarch-atdd` | La skill es un flujo interactivo de varios pasos con `uv`; se escribieron las pruebas con stubs inertes. 15 de 17 fallaron, todos por `AssertionError`; 2 pasan por comportamiento ya existente (reloj lee el inicio; 401 sin sesión). | Aceptar y declarar que la skill no se ejecutó. Log real en `test/evidence/red/`. |
+| 21. Auditoría de mutación de 2.4 | 2 mutantes sobrevivieron: `Math.ceil`→`floor` y el filtro de día de la clase; las pruebas solo usaban minutos exactos y un solo día. | Corrección de prueba vacía: se añadieron pruebas con minutos parciales y varios días; en esa misma ronda mi expectativa (+420 min desde 23:00) estaba mal (termina justo a las 06:00) y se corrigió a +480. Ver `docs/mutation-sanity-2.4.md`. |
