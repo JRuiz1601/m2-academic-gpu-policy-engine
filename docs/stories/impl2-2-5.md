@@ -7,4 +7,5 @@ Estado: in-progress (NFR de latencia NO cumplido; no se promueve). Meta: que 100
 3. Desglose: script k6 y runner, línea base, optimización medida, martillo de concurrencia, quality gate, tres corridas de evidencia.
 4. Código y pruebas: `tests/nfr/policy-burst.js`, `tests/nfr/run-nfr.mjs`, `scripts/quality-gate.mjs`, `src/adapters/outbound/sqlite.ts` (sentencias preparadas, `insertMany`), `src/adapters/outbound/simulator.ts` (texto de fixtures), `test/unit/store-performance-paths.test.ts`, `test/implementation/concurrency.test.ts`.
 5. DoD: `npm run check` verde. Martillo: 50 llamadas con la misma clave dan 1 decisión y respuestas idénticas byte a byte; 100 claves distintas dan 100 decisiones, sin 5xx y 100 filas de outbox; dos activaciones simultáneas dejan una sola congelación ACTIVE (lo garantiza la transacción BEGIN IMMEDIATE con la comprobación de duplicado). Latencia: ver `docs/nfr-impl2.md` (p95 227–292 ms; presupuesto no cumplido).
-6. Revisión: autorrevisión; revisión humana independiente pendiente. NEEDS DECISION sobre el presupuesto (group commit o reducir el alcance).
+6. Revisión: autorrevisión. NEEDS DECISION sobre el presupuesto (group commit o reducir el alcance).
+7. Revisión humana: revisada por Juan Esteban Ruiz Ome el 2026-11-09 (2026-11-09T11:17:27-0500); el estado sigue siendo in-progress porque el criterio p95 < 50 ms no se cumple.

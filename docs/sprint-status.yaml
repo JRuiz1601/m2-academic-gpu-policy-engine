@@ -11,9 +11,9 @@ development_status:
   impl1-2-1-baseline-gpu-access: ready-for-review
   impl1-2-2-class-protection: ready-for-review
   impl1-2-3-vram-tier: ready-for-review
-  impl2-2-4-midnight-window-rollover: ready-for-review
+  impl2-2-4-midnight-window-rollover: done
   impl2-2-5-high-concurrency-burst: in-progress
-  impl2-2-6-emergency-freeze-console: ready-for-review
+  impl2-2-6-emergency-freeze-console: done
 progression:
   - story: impl1-2-1-baseline-gpu-access
     transitions: [ready-for-dev, in-progress, ready-for-review]
@@ -25,21 +25,28 @@ progression:
     transitions: [ready-for-dev, in-progress, ready-for-review]
     evidence: [test/atdd/m2_contracts.test.ts, test/implementation/core.test.ts]
   - story: impl2-2-4-midnight-window-rollover
-    transitions: [ready-for-dev, in-progress, ready-for-review]
+    transitions: [ready-for-dev, in-progress, ready-for-review, done]
     evidence: [test/evidence/red/story-2.4-red-phase.log, test/evidence/green/story-2.4-green-phase.log, docs/mutation-sanity-2.4.md, test/unit/window-boundary.test.ts, test/implementation/window-boundary.http.test.ts]
-    independent_human_review: pending
+    independent_human_review: completed
+    reviewed_by: Juan Esteban Ruiz Ome
+    reviewed_at: '2026-11-09T11:17:27-0500'
   - story: impl2-2-5-high-concurrency-burst
     transitions: [ready-for-dev, in-progress]
-    note: functional criteria and concurrency tests pass; p95 budget 50 ms not met, NEEDS DECISION; not promoted to ready-for-review
+    note: "revisada por Juan; sigue abierta: el presupuesto p95 de 50 ms no se cumple (gate FAIL), decisión pendiente (group commit o reducir el alcance)"
     evidence: [test/evidence/nfr/baseline.log, test/evidence/nfr/run-1.log, test/evidence/nfr/run-2.log, test/evidence/nfr/run-3.log, docs/nfr-impl2.md, test/implementation/concurrency.test.ts]
-    independent_human_review: pending
+    independent_human_review: completed
+    reviewed_by: Juan Esteban Ruiz Ome
+    reviewed_at: '2026-11-09T11:17:27-0500'
   - story: impl2-2-6-emergency-freeze-console
-    transitions: [ready-for-dev, in-progress, ready-for-review]
+    transitions: [ready-for-dev, in-progress, ready-for-review, done]
     evidence: [test/evidence/e2e/run.log, test/evidence/e2e/trace-main-scenario.zip, docs/mutation-sanity-2.6.md, tests/e2e/policy-console.spec.ts, test/unit/freeze-rationale.test.ts]
-    independent_human_review: pending
+    independent_human_review: completed
+    reviewed_by: Juan Esteban Ruiz Ome
+    reviewed_at: '2026-11-09T11:17:27-0500'
 review:
   automated: passed
   author_review: completed
   independent_human_review: completed
   human_review_note: reviewed by the team (Juan Esteban Ruiz Ome and Tomás Quintero) on 2026-10-26, as confirmed by Juan; not an external reviewer
   production_approval: pending
+  impl2_human_review_note: revisión del equipo hecha por Juan Esteban Ruiz Ome el 2026-11-09, confirmada por él en el chat; no es un revisor externo

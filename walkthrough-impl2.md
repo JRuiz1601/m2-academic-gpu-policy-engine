@@ -4,7 +4,7 @@ Every number here was produced by a command run on 2026-11-09 on one Windows 11 
 
 ## Team and process note
 
-Tomás Quintero did **not** take part in Impl-2. The work was done by Juan with Claude Code. `independent_human_review` for the Impl-2 stories is `pending` in `docs/sprint-status.yaml` (Juan will review); no story is marked done.
+Tomás Quintero did **not** take part in Impl-2. The work was done by Juan with Claude Code. Juan Esteban Ruiz Ome reviewed the diffs of stories 2.4, 2.5 and 2.6 on 2026-11-09 (team review, not an external auditor), so `independent_human_review` is `completed` for all three in `docs/sprint-status.yaml`. Stories 2.4 and 2.6 are `done`; story 2.5 stays `in-progress` because the p95 < 50 ms criterion is not met.
 
 ## Architecture hardening and concurrency defence
 
