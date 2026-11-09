@@ -277,3 +277,11 @@ describe('Policy console alias (story 2.6)', () => {
         expect(post.status).toBe(401);
     });
 });
+describe('Fleet freeze banner in the console (story 2.6)', () => {
+    it('ships a hidden alert banner with the exact emergency text and a freeze polling listener', async () => {
+        const html = await (await fetch(base + '/admin/policy-console')).text();
+        expect(html).toMatch(/<div id="freeze-banner" role="alert" hidden>FLEET COMPUTE FROZEN - EXAM IN PROGRESS<\/div>/);
+        expect(html).toContain("/policy/freezes?state=ACTIVE&scope=ALL");
+        expect(html).toContain('setInterval(refreshBanner');
+    });
+});
