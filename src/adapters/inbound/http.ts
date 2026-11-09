@@ -44,7 +44,7 @@ export function createHttpServer(h: Runtime, c: Config, tokens: Record<string, S
         };
         try {
             const url = new URL(req.url ?? '/', 'http://localhost'), path = url.pathname, method = req.method ?? 'GET';
-            if (method === 'GET' && path === '/') {
+            if (method === 'GET' && (path === '/' || path === '/admin/policy-console')) {
                 res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' });
                 res.end(readFileSync(new URL('./web/index.html', import.meta.url)));
                 return;

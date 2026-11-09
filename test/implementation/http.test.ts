@@ -267,3 +267,13 @@ describe('HTTP, contracts and durable state', () => {
         conforms('ErrorBodyDto', r.body);
     });
 });
+describe('Policy console alias (story 2.6)', () => {
+    it('serves the same console at /admin/policy-console as at /, read-only', async () => {
+        const root = await fetch(base + '/'), alias = await fetch(base + '/admin/policy-console');
+        expect(alias.status).toBe(200);
+        expect(alias.headers.get('content-type')).toContain('text/html');
+        expect(await alias.text()).toBe(await root.text());
+        const post = await fetch(base + '/admin/policy-console', { method: 'POST' });
+        expect(post.status).toBe(401);
+    });
+});
