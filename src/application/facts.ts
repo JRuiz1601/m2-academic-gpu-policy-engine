@@ -48,7 +48,7 @@ export function windowFacts(v: unknown): Window[] {
 export function freezeFacts(v: unknown): Freeze[] {
     return array(v).map(value => {
         const f = object(value);
-        return { freeze_id: text(f.freeze_id), scope: text(f.scope), state: text(f.state), starts_at: instant(f.starts_at), ends_at: instant(f.ends_at), allowances: strings(f.allowances), subject_ids: f.subject_ids === undefined ? [] : strings(f.subject_ids), node_class_ids: f.node_class_ids === undefined ? [] : strings(f.node_class_ids) };
+        return { freeze_id: text(f.freeze_id), scope: text(f.scope), state: text(f.state), starts_at: instant(f.starts_at), ends_at: instant(f.ends_at), allowances: strings(f.allowances), subject_ids: f.subject_ids === undefined ? [] : strings(f.subject_ids), node_class_ids: f.node_class_ids === undefined ? [] : strings(f.node_class_ids), ...(typeof f.reason === 'string' && f.reason ? { reason: f.reason } : {}) };
     });
 }
 export function quotaFact(v: unknown): NonNullable<Facts['quota']> {

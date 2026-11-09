@@ -80,7 +80,7 @@ async function read(h: Runtime, port: string, fallback: unknown, context?: {
     }
 }
 function unpackFreeze(r: Row): Freeze {
-    return { freeze_id: String(r.freeze_id), scope: String(r.scope), state: String(r.state), subject_ids: JSON.parse(String(r.subject_ids)), node_class_ids: JSON.parse(String(r.node_class_ids)), allowances: JSON.parse(String(r.allowances)), starts_at: String(r.starts_at), ends_at: String(r.ends_at) };
+    return { freeze_id: String(r.freeze_id), scope: String(r.scope), state: String(r.state), subject_ids: JSON.parse(String(r.subject_ids)), node_class_ids: JSON.parse(String(r.node_class_ids)), allowances: JSON.parse(String(r.allowances)), starts_at: String(r.starts_at), ends_at: String(r.ends_at), reason: String(r.reason) };
 }
 export async function gather(h: Runtime, r: EvaluateRequestDto, s: Session, at: string, version: number): Promise<Facts> {
     const f: Facts = { campus_now: at, policy_version: version, windows: [], session_actor_id: s.actor_id, role_tier: s.role_tier, actor_kind: 'HUMAN', subject_ids: [r.subject_id], quota: { remaining: 100000, need: r.expected_duration_min }, model: { model_ref: r.model_ref, min_vram_gb: 24 } };
