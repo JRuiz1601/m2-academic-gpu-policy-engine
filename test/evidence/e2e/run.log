@@ -1,0 +1,14 @@
+# command: E2E_CHANNEL=chrome npm run e2e:trace   (system Chrome: the bundled Chromium is blocked by this machine's app-control policy)
+# date: 2026-11-09T10:46:24-05:00
+
+> m2-academic-gpu-policy-engine@1.0.0 e2e:trace
+> playwright test --trace on
+
+
+Running 3 tests using 1 worker
+
+  ✓  1 [chromium] › tests\e2e\policy-console.spec.ts:20:3 › Story 2.6: emergency freeze and policy console › Rebecca freezes the fleet for the Final Exam and a non-exam request is denied (1.2s)
+  ✓  2 [chromium] › tests\e2e\policy-console.spec.ts:45:3 › Story 2.6: emergency freeze and policy console › lifting the freeze removes the banner and evaluation is allowed again (755ms)
+  ✓  3 [chromium] › tests\e2e\policy-console.spec.ts:64:3 › Story 2.6: emergency freeze and policy console › a student session cannot operate the console and sees the structured 403 message (547ms)
+
+  3 passed (4.5s)

@@ -1,0 +1,56 @@
+{
+  "generated_at": "2026-11-09T15:39:42.515Z",
+  "verdict": "FAIL",
+  "thresholds": {
+    "p95_ms": 50,
+    "error_rate": 0,
+    "checks_rate": 1,
+    "domain_branches_pct": 90,
+    "e2e_failed": 0,
+    "e2e_skipped": 0
+  },
+  "criteria": [
+    {
+      "name": "npm run check (typecheck, lint, tests)",
+      "status": "FAIL",
+      "measured": "exit 1",
+      "threshold": "exit 0",
+      "note": ""
+    },
+    {
+      "name": "zero-sleep lint",
+      "status": "FAIL",
+      "measured": "exit 1",
+      "threshold": "no waitForTimeout / sleep( / setTimeout waits",
+      "note": ""
+    },
+    {
+      "name": "domain branch coverage",
+      "status": "PASS",
+      "measured": "94.20% (260/276)",
+      "threshold": ">= 90%",
+      "note": ""
+    },
+    {
+      "name": "NFR p95 latency",
+      "status": "FAIL",
+      "measured": "168.98 ms",
+      "threshold": "< 50 ms",
+      "note": ""
+    },
+    {
+      "name": "NFR error rate",
+      "status": "PASS",
+      "measured": "http_req_failed 0, checks 1",
+      "threshold": "http_req_failed == 0, checks == 1",
+      "note": ""
+    },
+    {
+      "name": "E2E (Playwright)",
+      "status": "CONCERNS",
+      "measured": "not executed (no results.json)",
+      "threshold": "0 failed, 0 skipped",
+      "note": ""
+    }
+  ]
+}

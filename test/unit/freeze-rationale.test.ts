@@ -19,4 +19,18 @@ describe('freeze deny rationale (story 2.6)', () => {
     expect(d.rationale).toContain('Emergency freeze active');
     expect(d.rationale).not.toContain('undefined');
   });
+  it('an exam-bound request listed in the freeze allowances is not blocked by the freeze', () => {
+    const exam = { ...request, workload_kind: 'EXAM_BOUND' as const, exam_binding: 'RES-1' };
+    const f: Facts = { ...facts('Final Exam CS-101'), freeze_states: [{ ...freeze('Final Exam CS-101'), allowances: ['RES-1'] }], reservation: { reservation_id: 'RES-1', state: 'ACTIVE', subject_id: 'CS-101', starts_at: '2026-10-19T03:00:00.000Z', ends_at: '2026-10-19T05:00:00.000Z' } };
+    const d = evaluate(exam, f, 1);
+    expect(d.primary_rule_id).not.toBe('R-FRZ-01');
+    expect(d.outcome).not.toBe('DENY');
+  });
+  it('an exam-bound request NOT in the allowances is still denied by the freeze', () => {
+    const exam = { ...request, workload_kind: 'EXAM_BOUND' as const, exam_binding: 'RES-1' };
+    const f: Facts = { ...facts('Final Exam CS-101'), reservation: { reservation_id: 'RES-1', state: 'ACTIVE', subject_id: 'CS-101', starts_at: '2026-10-19T03:00:00.000Z', ends_at: '2026-10-19T05:00:00.000Z' } };
+    const d = evaluate(exam, f, 1);
+    expect(d.primary_rule_id).toBe('R-FRZ-01');
+    expect(d.rationale).toContain('Emergency freeze active: Final Exam CS-101');
+  });
 });

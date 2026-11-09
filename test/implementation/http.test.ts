@@ -285,3 +285,16 @@ describe('Fleet freeze banner in the console (story 2.6)', () => {
         expect(html).toContain('setInterval(refreshBanner');
     });
 });
+describe('Freeze reason reaches the DENY rationale over HTTP (story 2.6)', () => {
+    it('an active fleet-wide freeze denies a non-exam request with "Emergency freeze active: <reason>"', async () => {
+        const token = 'instructor-demo-token';
+        const d = await api('/policy/freezes', 'POST', { scope: 'ALL', subject_ids: [], node_class_ids: [], allowances: [], starts_at: c.simulatedNow, ends_at: '2026-10-19T05:00:00.000Z', reason: 'Final Exam CS-101' }, token);
+        const p = await api('/policy/freezes/preview', 'POST', { draft_id: d.body.draft_id }, token);
+        expect((await api(`/policy/freezes/${d.body.draft_id}/activate`, 'POST', { reason: 'Final Exam CS-101', preview_token: p.body.preview_token }, token)).status).toBe(200);
+        const r = await api('/policy/decisions', 'POST', request());
+        expect(r.status).toBe(200);
+        expect(r.body.outcome).toBe('DENY');
+        expect(r.body.primary_rule_id).toBe('R-FRZ-01');
+        expect(r.body.rationale).toContain('Emergency freeze active: Final Exam CS-101');
+    });
+});

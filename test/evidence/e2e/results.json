@@ -1,0 +1,243 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\juane\\Documents\\Universidad\\Noveno Semestre\\Desarrollo IA\\impl1-M2-Academic-GPU-Policy-Engine\\M2-Academic-GPU-Policy-Engine\\node_modules\\@playwright\\test\\cli.js",
+      "test"
+    ],
+    "configFile": "C:\\Users\\juane\\Documents\\Universidad\\Noveno Semestre\\Desarrollo IA\\impl1-M2-Academic-GPU-Policy-Engine\\M2-Academic-GPU-Policy-Engine\\playwright.config.ts",
+    "rootDir": "C:/Users/juane/Documents/Universidad/Noveno Semestre/Desarrollo IA/impl1-M2-Academic-GPU-Policy-Engine/M2-Academic-GPU-Policy-Engine/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/juane/Documents/Universidad/Noveno Semestre/Desarrollo IA/impl1-M2-Academic-GPU-Policy-Engine/M2-Academic-GPU-Policy-Engine/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/Users/juane/Documents/Universidad/Noveno Semestre/Desarrollo IA/impl1-M2-Academic-GPU-Policy-Engine/M2-Academic-GPU-Policy-Engine/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\juane\\Documents\\Universidad\\Noveno Semestre\\Desarrollo IA\\impl1-M2-Academic-GPU-Policy-Engine\\M2-Academic-GPU-Policy-Engine\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "C:\\Users\\juane\\Documents\\Universidad\\Noveno Semestre\\Desarrollo IA\\impl1-M2-Academic-GPU-Policy-Engine\\M2-Academic-GPU-Policy-Engine\\tests\\e2e",
+        "snapshotDir": "C:\\Users\\juane\\Documents\\Universidad\\Noveno Semestre\\Desarrollo IA\\impl1-M2-Academic-GPU-Policy-Engine\\M2-Academic-GPU-Policy-Engine\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4173",
+          "trace": "on-first-retry",
+          "browserName": "chromium",
+          "channel": "chrome"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test/evidence/e2e/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.65.0",
+    "workers": 1,
+    "webServer": {
+      "command": "node --disable-warning=ExperimentalWarning tests/e2e/start-server.mjs",
+      "url": "http://127.0.0.1:4173/health",
+      "wait": {
+        "stdout": {}
+      },
+      "reuseExistingServer": false,
+      "gracefulShutdown": {
+        "signal": "SIGTERM",
+        "timeout": 5000
+      },
+      "env": {
+        "E2E_PORT": "4173"
+      }
+    }
+  },
+  "suites": [
+    {
+      "title": "policy-console.spec.ts",
+      "file": "policy-console.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Story 2.6: emergency freeze and policy console",
+          "file": "policy-console.spec.ts",
+          "line": 19,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Rebecca freezes the fleet for the Final Exam and a non-exam request is denied",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 725,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-09T15:50:04.870Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e0d842e4ef18d1f92639-fcbc5842ff57b80e4a17",
+              "file": "policy-console.spec.ts",
+              "line": 20,
+              "column": 3
+            },
+            {
+              "title": "lifting the freeze removes the banner and evaluation is allowed again",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 743,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-09T15:50:05.877Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e0d842e4ef18d1f92639-9042f0afe50cff893f51",
+              "file": "policy-console.spec.ts",
+              "line": 45,
+              "column": 3
+            },
+            {
+              "title": "a student session cannot operate the console and sees the structured 403 message",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 483,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-09T15:50:06.646Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e0d842e4ef18d1f92639-67a62b6ac53051d2a0d0",
+              "file": "policy-console.spec.ts",
+              "line": 64,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-09T15:50:04.013Z",
+    "duration": 3766.724,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
