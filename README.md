@@ -35,6 +35,19 @@ docker compose up --build
 
 Compose conserva SQLite en un volumen. Verificado en una corrida real con Docker 29.6.2 (build, `/health`, `/ready`, POST y persistencia tras `down`/`up`); detalle en el walkthrough.
 
+## Impl-2: pruebas, carga y E2E
+
+```sh
+npm test                 # unit + integración (vitest)
+npm run coverage         # cobertura v8; exige >= 90 % de ramas en src/domain
+npm run nfr              # ráfaga k6 de 100 evaluaciones; requiere k6 instalado (winget install k6)
+npx playwright install chromium && npx playwright test   # E2E de la consola
+npm run e2e:trace        # E2E con trazas (test-results/**/trace.zip)
+npm run quality-gate     # check + lint cero-sleeps + cobertura + k6 + E2E -> test/evidence/quality-gate.json
+```
+
+`E2E_CHANNEL=chrome` ejecuta los E2E con el Chrome del sistema (necesario si una política de control de aplicaciones bloquea el Chromium empaquetado). `npm run nfr` falla si p95 >= 50 ms; el resultado actual y su análisis están en [docs/nfr-impl2.md](docs/nfr-impl2.md) (presupuesto no cumplido). Resúmenes: [walkthrough-impl2.md](walkthrough-impl2.md), [traceability-matrix.md](traceability-matrix.md), [docs/test-pyramid.md](docs/test-pyramid.md).
+
 ## API y demostración
 
 El contrato previo usa `POST /policy/decisions`; se conserva esa ruta en lugar del ejemplo genérico `/api/v1/policy/evaluate` del PDF. El resultado usa `outcome`, `primary_rule_id`, `rationale` y evidencia completa, e incluye `CONSTRAIN`. El requisito de VRAM se obtiene del catálogo por `model_ref`, evitando confiar en un tamaño declarado por el cliente. No se añadió la tabla genérica `policy_rules`: se usa el registro inmutable de la arquitectura acordada.
@@ -48,7 +61,7 @@ curl -s http://127.0.0.1:3000/policy/decisions \
 
 Sesiones locales: `student-demo-token` (Mateo), `instructor-demo-token` (Rebecca, LAB_OPERATOR) y `researcher-demo-token`. Son fixtures públicas de demostración; no son credenciales de una universidad. La identidad se resuelve del token en el servidor y no de roles enviados en el cuerpo. El perfil `NODE_ENV=production` se rechaza hasta integrar autenticación y fuentes reales.
 
-La API expone las 14 operaciones del OpenAPI previo, además de servir la consola estática en `/`. `/health` y `/ready` son públicos; las rutas de políticas requieren sesión. Las congelaciones requieren INSTRUCTOR o superior con LAB_OPERATOR. Las decisiones DENY devuelven HTTP 200; los errores de entrada, permisos y conflictos usan el catálogo estructurado. La decisión, evidencia, clave y outbox se confirman en una transacción antes de responder.
+La API expone las 14 operaciones del OpenAPI previo más `POST /policy/window-boundary` (Impl-2, historia 2.4), y sirve la consola en `/` y `/admin/policy-console`, además de servir la consola estática en `/`. `/health` y `/ready` son públicos; las rutas de políticas requieren sesión. Las congelaciones requieren INSTRUCTOR o superior con LAB_OPERATOR. Las decisiones DENY devuelven HTTP 200; los errores de entrada, permisos y conflictos usan el catálogo estructurado. La decisión, evidencia, clave y outbox se confirman en una transacción antes de responder.
 
 ## Estructura y entrega
 
@@ -58,7 +71,10 @@ src/ports/        contratos Store/Runtime y adaptador de compatibilidad para las
 src/application/  evaluación, idempotencia, evidencia, borradores, tokens, transacciones
 src/adapters/     inbound: HTTP, CLI, consola web · outbound: SQLite, migración, simuladores
 fixtures/         31 estaciones de 24 GB y un servidor 2 x 48 GB, modelos, sesiones, horario
-test/             atdd (61 previas), harness, implementation (HTTP, BDD, núcleo, arranque), ci (lint)
+test/             atdd (61 previas), harness, implementation (HTTP, BDD, núcleo, concurrencia, arranque), unit (Impl-2), ci (lint), evidence (red/green, nfr, e2e)
+tests/            e2e (Playwright + page objects, start-server.mjs), nfr (k6: policy-burst.js, run-nfr.mjs)
+scripts/          quality-gate.mjs, pyramid.mjs
+_bmad/ .claude/   configuración BMad y skills TEA/dev incluidas para Impl-2
 docs/             prd, contracts (copias), stories, sprint-status, decisiones, history/ (Solu-2)
 planning/ ux/     planeación y UX previas (fuente de verdad de contratos y PRD)
 ```
