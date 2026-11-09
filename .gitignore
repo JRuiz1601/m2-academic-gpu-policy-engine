@@ -5,3 +5,9 @@ coverage/
 NEXT.IMPL1-CLOSE.md
 LAST-REPORT.md
 test/evidence/impl1-performance.json
+
+NEXT*.md
+LAST-REPORT.md
+test-results/
+playwright-report/
+coverage/
