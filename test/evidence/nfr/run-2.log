@@ -1,0 +1,72 @@
+# command: npm run nfr (evidence run 2)
+# date: 2026-11-09T10:39:57-05:00
+
+> m2-academic-gpu-policy-engine@1.0.0 nfr
+> node tests/nfr/run-nfr.mjs
+
+server listening at http://127.0.0.1:59483
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: tests/nfr/policy-burst.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 100 max VUs, 1m0s max duration (incl. graceful stop):
+              * class_start_burst: 1 iterations for each of 100 VUs (maxDuration: 30s, gracefulStop: 30s)
+
+
+
+  █ THRESHOLDS 
+
+    checks
+    ✓ 'rate==1' rate=100.00%
+
+    http_req_duration
+    ✗ 'p(95)<50' p(95)=291.8ms
+
+    http_req_failed
+    ✓ 'rate==0' rate=0.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 200     621.409033/s
+    checks_succeeded...: 100.00% 200 out of 200
+    checks_failed......: 0.00%   0 out of 200
+
+    ✓ status is 200
+    ✓ valid decision shape
+
+    HTTP
+    http_req_duration..............: avg=176.1ms  min=22.68ms med=180.8ms  p(90)=282.48ms p(95)=291.8ms  p(99)=302ms    max=304.03ms
+      { expected_response:true }...: avg=176.1ms  min=22.68ms med=180.8ms  p(90)=282.48ms p(95)=291.8ms  p(99)=302ms    max=304.03ms
+    http_req_failed................: 0.00%  0 out of 100
+    http_reqs......................: 100    310.704516/s
+
+    EXECUTION
+    iteration_duration.............: avg=180.06ms min=27.59ms med=185.67ms p(90)=287.04ms p(95)=296.42ms p(99)=305.09ms max=307.52ms
+    iterations.....................: 100    310.704516/s
+
+    NETWORK
+    data_received..................: 376 kB 1.2 MB/s
+    data_sent......................: 49 kB  151 kB/s
+
+
+
+
+running (0m00.3s), 000/100 VUs, 100 complete and 0 interrupted iterations
+class_start_burst ✓ [ 100% ] 100 VUs  00.3s/30s  100/100 iters, 1 per VU
+time="2026-11-09T10:39:59-05:00" level=error msg="thresholds on metrics 'http_req_duration' have been crossed"
+
+NFR summary (tests/nfr/policy-burst.js)
+  http_req_duration p(95) ms     291.8035
+  http_req_duration p(99) ms     302.0086
+  http_req_failed rate           0.0000
+  checks rate                    1.0000
+  k6 exit code                   99
