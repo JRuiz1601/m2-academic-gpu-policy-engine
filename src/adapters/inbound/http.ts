@@ -3,6 +3,7 @@ import { createServer, type IncomingMessage } from 'node:http';
 import type { Runtime, Session, Row } from '../../ports/runtime.ts';
 import type { EvaluateRequestDto, CreateFreezeDraftRequestDto } from '../../domain/dto.ts';
 import { evaluateRequest, createFreezeDraft, previewFreeze, activateFreeze, liftFreeze, publishVersion, manifest, operator, canonical } from '../../application/service.ts';
+import { windowBoundary } from '../../application/window-boundary.ts';
 import { PolicyError, fail } from '../../application/errors.ts';
 import { validateRegistry } from '../../domain/evaluate.ts';
 import { RULES, rank } from '../../domain/registry.ts';
@@ -101,6 +102,8 @@ export function createHttpServer(h: Runtime, c: Config, tokens: Record<string, S
                 const runtime = override ? { ...h, clock: { read: () => override } } : h;
                 return send(200, await evaluateRequest(runtime, { request: r, key: String(req.headers['idempotency-key'] ?? ''), session }, preview));
             }
+            if (method === 'POST' && path === '/policy/window-boundary')
+                return send(200, await windowBoundary(h, await body(req)));
             if (method === 'GET' && path === '/policy/rules') {
                 const v = url.searchParams.get('version'), m = manifest(h, v ? Number(v) : undefined);
                 return send(200, { published_seq: m.published_seq, rules: RULES });

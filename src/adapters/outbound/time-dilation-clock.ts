@@ -1,12 +1,25 @@
-// RED-PHASE STUB (story 2.4): Clock port implementation with fast-forward; inert until the green phase.
+// Clock port implementation for fast-forward evaluation. Simulated and deterministic: time moves only
+// when the caller advances it, never with the wall clock.
 export class TimeDilationClock {
-    private start: string;
+    private nowMs: number;
     constructor(start: string) {
-        this.start = start;
+        this.nowMs = TimeDilationClock.parse(start);
+    }
+    private static parse(instant: string): number {
+        const ms = Date.parse(instant);
+        if (!Number.isFinite(ms))
+            throw Error('TimeDilationClock needs a valid ISO instant');
+        return ms;
     }
     read(): string {
-        return this.start;
+        return new Date(this.nowMs).toISOString();
     }
-    advanceTo(_instant: string): void {}
-    advanceBy(_ms: number): void {}
+    advanceTo(instant: string): void {
+        this.nowMs = TimeDilationClock.parse(instant);
+    }
+    advanceBy(ms: number): void {
+        if (!Number.isFinite(ms))
+            throw Error('TimeDilationClock needs a finite number of milliseconds');
+        this.nowMs += ms;
+    }
 }

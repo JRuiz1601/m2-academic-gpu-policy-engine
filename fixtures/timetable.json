@@ -2,6 +2,12 @@
   {
     "kind": "CLASS",
     "subject_id": "CS-101",
+    "starts_at": "2026-10-19T13:00:00.000Z",
+    "ends_at": "2026-10-19T15:00:00.000Z"
+  },
+  {
+    "kind": "CLASS",
+    "subject_id": "CS-101",
     "starts_at": "2026-10-19T15:00:00.000Z",
     "ends_at": "2026-10-19T17:00:00.000Z"
   }
