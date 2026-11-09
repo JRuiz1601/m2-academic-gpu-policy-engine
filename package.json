@@ -7,20 +7,27 @@
     "node": ">=22.18.0"
   },
   "scripts": {
-    "test": "vitest run test/atdd test/harness test/implementation",
+    "test": "vitest run test/atdd test/harness test/implementation test/unit",
     "test:harness": "vitest run test/harness",
     "typecheck": "tsc --noEmit",
     "check": "npm run typecheck && npm run lint && npm test",
     "start": "node --disable-warning=ExperimentalWarning --env-file-if-exists=.env src/main.ts",
     "cli": "node --disable-warning=ExperimentalWarning --env-file-if-exists=.env src/adapters/inbound/cli.ts",
     "setup": "npm ci --ignore-scripts && npm run check",
-    "lint": "node test/ci/implementation-lint.mjs"
+    "lint": "node test/ci/implementation-lint.mjs",
+    "e2e": "playwright test",
+    "e2e:trace": "playwright test --trace on",
+    "coverage": "vitest run --coverage",
+    "nfr": "node tests/nfr/run-nfr.mjs",
+    "quality-gate": "node scripts/quality-gate.mjs"
   },
   "devDependencies": {
-    "vitest": "^4.0.0",
-    "typescript": "^5.9.0",
-    "fast-check": "^4.3.0",
+    "@playwright/test": "^1.65.0",
     "@types/node": "^24.0.0",
+    "@vitest/coverage-v8": "^4.1.12",
+    "fast-check": "^4.3.0",
+    "typescript": "^5.9.0",
+    "vitest": "^4.0.0",
     "yaml": "^2.8.0"
   }
 }

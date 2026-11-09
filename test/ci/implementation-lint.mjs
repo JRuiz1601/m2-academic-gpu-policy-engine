@@ -24,3 +24,13 @@ assert.equal(readFileSync('src/adapters/outbound/001_m2_schema.sqlite.sql','utf8
 for(const f of readdirSync('planning/detailed-design/schemas'))assert.equal(readFileSync('docs/contracts/'+f,'utf8'),readFileSync('planning/detailed-design/schemas/'+f,'utf8'),'docs/contracts/'+f+' diverges from planning source');
 assert(readFileSync('docs/prd.md','utf8').endsWith(readFileSync('planning/prd.md','utf8')),'docs/prd.md diverges from planning/prd.md');
 console.log('Acceptance inventory PASS: no excluded tests; runtime migration matches contract; docs copies equal planning sources');
+// Zero-sleep rule (Impl-2): no timing-based waits in tests, test helpers or scripts.
+{
+ const forbidden=[[/waitForTimeout/,'waitForTimeout'],[/\bsleep\s*\(/,'sleep('],[/time\.sleep/,'time.sleep'],[/(?:await\s+new\s+Promise[^;]*|=>\s*)setTimeout\s*\(|\bsetTimeout\s*\(\s*(?:r|res|resolve)\b/,'setTimeout used as a wait']];
+ const roots=['test','tests','scripts'].filter(r=>{try{readdirSync(r);return true;}catch{return false;}});
+ for(const root of roots)for(const path of walk(root).filter(p=>/\.(ts|mjs|js|cjs)$/.test(p)&&!p.includes('node_modules')&&!p.endsWith('implementation-lint.mjs'))){
+  const text=readFileSync(path,'utf8');
+  for(const [re,label] of forbidden)assert(!re.test(text),`${path}: zero-sleep rule violated (${label})`);
+ }
+ console.log('Zero-sleep lint PASS: no waitForTimeout, sleep( or setTimeout-based waits under test/, tests/, scripts/');
+}
