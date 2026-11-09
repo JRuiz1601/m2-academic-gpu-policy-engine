@@ -8,6 +8,8 @@ export default defineConfig({
       include: ['src/**/*.ts'],
       reporter: ['text-summary', 'json-summary', 'html'],
       reportsDirectory: 'coverage',
+      // Core domain logic must keep branch coverage at or above 90 %.
+      thresholds: { 'src/domain/**': { branches: 90 } },
     },
   },
 });
