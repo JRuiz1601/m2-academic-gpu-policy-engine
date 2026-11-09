@@ -1,0 +1,31 @@
+# command: npm run check
+# date: 2026-11-09T10:31:17-05:00
+
+
+> m2-academic-gpu-policy-engine@1.0.0 check
+> npm run typecheck && npm run lint && npm test
+
+
+> m2-academic-gpu-policy-engine@1.0.0 typecheck
+> tsc --noEmit
+
+
+> m2-academic-gpu-policy-engine@1.0.0 lint
+> node test/ci/implementation-lint.mjs
+
+Implementation lint PASS: typed code, production boundaries, pure domain
+Acceptance inventory PASS: no excluded tests; runtime migration matches contract; docs copies equal planning sources
+Zero-sleep lint PASS: no waitForTimeout, sleep( or setTimeout-based waits under test/, tests/, scripts/
+
+> m2-academic-gpu-policy-engine@1.0.0 test
+> vitest run test/atdd test/harness test/implementation test/unit
+
+
+ RUN  v4.1.12 C:/Users/juane/Documents/Universidad/Noveno Semestre/Desarrollo IA/impl1-M2-Academic-GPU-Policy-Engine/M2-Academic-GPU-Policy-Engine
+
+
+ Test Files  10 passed (10)
+      Tests  132 passed (132)
+   Start at  10:31:20
+   Duration  1.61s (transform 595ms, setup 0ms, import 1.11s, tests 3.54s, environment 1ms)
+
