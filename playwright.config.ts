@@ -8,7 +8,7 @@ export default defineConfig({
   fullyParallel: false,
   workers: 1,
   retries: process.env.CI ? 1 : 0,
-  reporter: [['list'], ['html', { open: 'never' }]],
+  reporter: [['list'], ['html', { open: 'never' }], ['json', { outputFile: 'test/evidence/e2e/results.json' }]],
   outputDir: 'test-results',
   use: { baseURL, trace: 'on-first-retry' },
   projects: [{ name: 'chromium', use: { browserName: 'chromium' } }],
