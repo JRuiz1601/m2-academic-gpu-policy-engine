@@ -39,6 +39,31 @@ describe('evaluateWindowBoundary (pure domain, simulated clock)', () => {
   it('an extension ending exactly at 06:00:00 does not cross and is allowed', () => {
     expect(evaluateWindowBoundary(job, at('10:30:00'), 30, windows).action).toBe('EXTEND_ALLOWED');
   });
+  it('rounds partial minutes up: 05:57:30 has 3 minutes remaining, 05:59:59 has 1', () => {
+    expect(evaluateWindowBoundary(job, at('10:57:30'), undefined, windows).minutes_remaining).toBe(3);
+    expect(evaluateWindowBoundary(job, at('10:59:59'), undefined, windows).minutes_remaining).toBe(1);
+  });
+  it('cites the first class of the deadline day, not a class on another day', () => {
+    const other: Window[] = [...windows, { kind: 'CLASS', subject_id: 'CS-102', starts_at: '2026-10-20T12:00:00.000Z', ends_at: '2026-10-20T14:00:00.000Z' }, { kind: 'CLASS', subject_id: 'CS-103', starts_at: '2026-10-18T12:00:00.000Z', ends_at: '2026-10-18T14:00:00.000Z' }];
+    expect(evaluateWindowBoundary(job, at('10:59:00'), 30, other).reason).toContain('begin at 08:00:00');
+  });
+  it('before midnight the deadline is the next morning: 23:00 local +30 is allowed, +480 is denied', () => {
+    const lateNight = '2026-10-20T04:00:00.000Z'; // 23:00 local on 2026-10-19
+    const nextMorning: Window[] = [{ kind: 'LAB', subject_id: 'CS-101', starts_at: '2026-10-20T14:30:00.000Z', ends_at: '2026-10-20T16:00:00.000Z' }];
+    expect(evaluateWindowBoundary(job, lateNight, 30, nextMorning).action).toBe('EXTEND_ALLOWED');
+    const denied = evaluateWindowBoundary(job, lateNight, 480, nextMorning);
+    expect(denied.action).toBe('DENY');
+    expect(denied.reason).toContain('begin at 09:30:00');
+  });
+  it('with no class on the deadline day the DENY still holds and omits the class sentence', () => {
+    const r = evaluateWindowBoundary(job, at('10:59:00'), 30, []);
+    expect(r.action).toBe('DENY');
+    expect(r.reason).not.toContain('Scheduled laboratory classes');
+  });
+  it('during the protected day (12:00 local) the job is evicted and any extension is denied', () => {
+    expect(evaluateWindowBoundary(job, at('17:00:00'), undefined, windows).action).toBe('EVICT');
+    expect(evaluateWindowBoundary(job, at('17:00:00'), 1, windows).action).toBe('DENY');
+  });
   it('is pure: same inputs give the same output', () => {
     const first = evaluateWindowBoundary(job, at('10:55:00'), undefined, windows);
     expect(first.action).toBe('EVICT_WARNING');
