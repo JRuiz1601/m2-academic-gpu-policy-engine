@@ -11,7 +11,8 @@ export default defineConfig({
   reporter: [['list'], ['html', { open: 'never' }], ['json', { outputFile: 'test/evidence/e2e/results.json' }]],
   outputDir: 'test-results',
   use: { baseURL, trace: 'on-first-retry' },
-  projects: [{ name: 'chromium', use: { browserName: 'chromium' } }],
+  // E2E_CHANNEL=chrome|msedge runs the system browser (needed on machines whose app-control policy blocks the bundled Chromium). Default: bundled Chromium.
+  projects: [{ name: 'chromium', use: { browserName: 'chromium', ...(process.env.E2E_CHANNEL ? { channel: process.env.E2E_CHANNEL } : {}) } }],
   webServer: {
     command: 'node --disable-warning=ExperimentalWarning tests/e2e/start-server.mjs',
     url: `${baseURL}/health`,
