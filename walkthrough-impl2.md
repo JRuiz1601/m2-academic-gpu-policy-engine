@@ -76,10 +76,13 @@ Tomás Quintero did **not** take part in Impl-2. The work was done by Juan with 
 * The console keeps the draft, preview, confirm flow; the annex's single toggle was not implemented.
 * The `bmad-testarch-atdd`, `bmad-dev-story`, `bmad-testarch-trace` and `bmad-testarch-automate` skills were not run (interactive workflows); the same steps were done by hand.
 
+## GitHub Actions
+
+Run 42650985856 on commit 75d522b: check, coverage, k6, Playwright PASS; quality gate FAIL on NFR p95 = 202.54 ms (limit 50 ms). Earlier runs on this branch failed at the k6 step before E2E, which is why the k6 step is now `continue-on-error`.
+
 ## What was NOT verified
 
-* The GitHub Actions run of the new workflow (Part 6 checks it).
-* The bundled-Chromium path of Playwright (CI default) on this machine: blocked by policy; only system Chrome was used.
+* The bundled-Chromium path of Playwright on this machine: blocked by policy, only system Chrome was used locally. On GitHub Actions (run 42650985856) the bundled Chromium ran the 3 scenarios and passed.
 * Any non-Windows platform, any shared or deployed environment, any real network.
 * The 50 ms latency budget (not met).
 * An exam-bound request being admitted during a freeze end to end (no reservation source in the simulator; covered by unit tests only).

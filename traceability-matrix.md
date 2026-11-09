@@ -1,6 +1,6 @@
 # Traceability matrix — stories 2.1 to 2.6
 
-Built by hand from `docs/prd.md` (section 7 and 8 IDs), the story files in `docs/stories/`, and the test titles in the repository. The skill `bmad-testarch-trace` was **not** run (it is an interactive multi-step workflow); the matrix was written and checked against the test files directly. Local evidence files are cited. **No GitHub Actions run has been observed for this repository's Impl-2 workflow at the time of writing** (see "CI evidence" below).
+Built by hand from `docs/prd.md` (section 7 and 8 IDs), the story files in `docs/stories/`, and the test titles in the repository. The skill `bmad-testarch-trace` was **not** run (it is an interactive multi-step workflow); the matrix was written and checked against the test files directly. Local evidence files are cited; the GitHub Actions run is described under "CI evidence".
 
 Scope rule: a requirement is "scoped" if one of the six stories claims it. Unmapped scoped requirements: **0**. Everything else is in the deferred table.
 
@@ -44,4 +44,4 @@ Verdict: **PASS for 11 of 12 scoped rows; the annex latency criterion (story 2.5
 ## CI evidence
 
 * Local: logs and JSON files named in the table.
-* GitHub Actions: updated in Part 6 of the run (`gh run list`); until then the status is "not checked".
+* GitHub Actions run 42650985856 (commit 75d522b, `gh run view`): npm ci, check (195 tests), coverage, k6 step, Playwright with the bundled Chromium (3 passed) all ran on ubuntu; the quality gate step FAILED on the NFR p95 criterion (202.54 ms against 50 ms), all other criteria PASS. The k6 step is marked `continue-on-error` so the gate is the single enforcer.
