@@ -86,3 +86,56 @@ describe('Story 2.4 Midnight Window Rollover over HTTP', () => {
     expect(r.status).toBe(401);
   });
 });
+
+describe('Window boundary hardening: structured errors, no stack traces, no writes', () => {
+  const rawPost = (text: string) => fetch(base + '/policy/window-boundary', { method: 'POST', headers: { Authorization: 'Bearer student-demo-token' }, body: text });
+  const tables = ['decision', 'idempotency_key', 'fact_snapshot', 'decision_outbox', 'audit_events'];
+  const counts = () => tables.map(name => h.store.all(name).length);
+  const noLeak = (text: string) => expect(text).not.toMatch(/\bat \S+ \(|node_modules|\.ts:\d+|stack/i);
+
+  it('malformed JSON, a JSON array and an oversized body are WIRE_SHAPE_INVALID with the full error shape', async () => {
+    for (const text of ['{not json', '[1,2]', JSON.stringify({ job_ref: 'x'.repeat(70000) })]) {
+      const r = await rawPost(text), raw = await r.text();
+      expect(r.status).toBe(400);
+      const body = JSON.parse(raw);
+      expect(Object.keys(body).sort()).toEqual(['code', 'failing_check', 'failing_port', 'http_status', 'message', 'retry_after_ms', 'stage']);
+      expect(body.code).toBe('WIRE_SHAPE_INVALID');
+      noLeak(raw);
+    }
+  });
+  it('a missing or empty job_ref is rejected; an unknown job_ref is an opaque reference and is evaluated', async () => {
+    expect((await boundary({ workload_kind: 'TRAINING', approved_policy: 'NIGHT' })).status).toBe(400);
+    expect((await boundary({ ...job, job_ref: '' })).status).toBe(400);
+    clock.advanceTo(at('10:55:00'));
+    expect((await boundary({ ...job, job_ref: 'never-seen-before' })).body.action).toBe('EVICT_WARNING');
+  });
+  it('an unreadable timetable returns 503 DECISION_NOT_PRODUCED, without a stack trace', async () => {
+    h.telemetry.read = async () => { throw Error('timetable offline'); };
+    const r = await fetch(base + '/policy/window-boundary', { method: 'POST', headers: { Authorization: 'Bearer student-demo-token' }, body: JSON.stringify(job) });
+    const raw = await r.text();
+    expect(r.status).toBe(503);
+    expect(JSON.parse(raw)).toMatchObject({ code: 'DECISION_NOT_PRODUCED', http_status: 503, retry_after_ms: 2000 });
+    noLeak(raw);
+    expect(raw).not.toContain('timetable offline');
+  });
+  it('an unreadable clock returns 503 DECISION_NOT_PRODUCED', async () => {
+    h.clock = { read: () => 'not-an-instant' };
+    const r = await boundary(job);
+    expect(r.status).toBe(503);
+    expect(r.body.code).toBe('DECISION_NOT_PRODUCED');
+  });
+  it('is read-only: evaluations and failures leave the decision, idempotency, snapshot, outbox and audit tables unchanged', async () => {
+    const before = counts();
+    clock.advanceTo(at('10:59:00'));
+    await boundary({ ...job, extension_minutes: 30 });
+    await boundary({ ...job, approved_policy: 'DAY' });
+    h.clock = { read: () => 'not-an-instant' };
+    await boundary(job);
+    expect(counts()).toEqual(before);
+  });
+  it('other methods on the route get the structured 404, not a crash', async () => {
+    const r = await fetch(base + '/policy/window-boundary', { headers: { Authorization: 'Bearer student-demo-token' } });
+    expect(r.status).toBe(404);
+    expect((await r.json()).code).toBe('WIRE_SHAPE_INVALID');
+  });
+});
