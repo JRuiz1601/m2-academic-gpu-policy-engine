@@ -15,7 +15,9 @@ jobs:
       - run: npm run check
       - run: npm run coverage
       - uses: grafana/setup-k6-action@v1.3.0
+      # The k6 thresholds still fail this step; continue so E2E runs, then the quality gate (last step) fails the job on p95.
       - run: npm run nfr
+        continue-on-error: true
       - run: npx playwright install --with-deps chromium
       - run: npm run e2e:trace
       - run: npm run quality-gate
