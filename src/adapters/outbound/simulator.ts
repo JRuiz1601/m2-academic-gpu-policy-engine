@@ -5,7 +5,16 @@ import type { Model } from '../../domain/evaluate.ts';
 import { openStore } from './sqlite.ts';
 import { initialize } from '../../application/service.ts';
 import type { Config } from '../../config.ts';
-export const fixture = <T>(name: string): T => JSON.parse(readFileSync(new URL(`../../../fixtures/${name}.json`, import.meta.url), 'utf8'));
+// Fixture files are immutable static catalog data: read each file once, parse per call so callers still get their own copy.
+const fixtureText = new Map<string, string>();
+export const fixture = <T>(name: string): T => {
+    let text = fixtureText.get(name);
+    if (text === undefined) {
+        text = readFileSync(new URL(`../../../fixtures/${name}.json`, import.meta.url), 'utf8');
+        fixtureText.set(name, text);
+    }
+    return JSON.parse(text);
+};
 export function createRuntime(c: Config): Runtime {
     if (c.database !== ':memory:')
         mkdirSync(dirname(c.database), { recursive: true });

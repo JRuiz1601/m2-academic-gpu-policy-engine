@@ -3,6 +3,7 @@ export interface Store {
     all(table: string, where?: Row): Row[];
     one(table: string, where: Row): Row | undefined;
     insert(table: string, row: Row): void;
+    insertMany(table: string, rows: Row[]): void;
     update(table: string, where: Row, changes: Row): void;
     transaction<T>(action: () => T): T;
     exclusive<T>(action: () => Promise<T>): Promise<T>;

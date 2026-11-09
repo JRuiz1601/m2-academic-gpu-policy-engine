@@ -125,14 +125,12 @@ function persist(h: Runtime, d: DecisionDto, f: Facts, key: string, requestHash:
     row.snapshot_retained = 1;
     row.created_at = at;
     h.store.insert('decision', row);
-    for (const t of d.trace)
-        h.store.insert('trace_entry', { decision_id: d.decision_id, ...t, evidence: canonical(t.evidence), created_at: at });
+    h.store.insertMany('trace_entry', d.trace.map(t => ({ decision_id: d.decision_id, ...t, evidence: canonical(t.evidence), created_at: at }) as Row));
     for (const c of d.constraints) {
         const { reason, ...record } = c;
         h.store.insert('decision_constraint', { decision_id: d.decision_id, ...record, value: canonical(c.value), created_at: at });
     }
-    for (const [ordinal, c] of d.citations.entries())
-        h.store.insert('decision_citation', { decision_id: d.decision_id, doc_id: c, ordinal, created_at: at });
+    h.store.insertMany('decision_citation', [...d.citations.entries()].map(([ordinal, c]) => ({ decision_id: d.decision_id, doc_id: c, ordinal, created_at: at })));
     outbox(h, 'policy.decision.v1', 'decision_id', d.decision_id, at, key);
 }
 export function restore(h: Runtime, id: string): DecisionDto {
