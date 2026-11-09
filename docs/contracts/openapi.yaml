@@ -134,6 +134,57 @@ paths:
                   - type: object
                     properties:
                       code: { enum: [FREEZE_STATE_UNREADABLE, DECISION_NOT_PRODUCED] }
+  /policy/window-boundary:
+    post:
+      tags: [decisions]
+      operationId: evaluateWindowBoundary
+      summary: Evaluate a night-window job against the 06:00:00 hard boundary (Impl-2 story 2.4, AD-04). The annex names this /api/v1/policy/evaluate-window-boundary.
+      description: >-
+        Read-only, not journalled, no Idempotency-Key. Campus-local time (America/Panama, UTC-05:00) is read from the Clock port.
+        A NIGHT policy hard-expires at 06:00:00. Five minutes or less before it the answer is EVICT_WARNING; at or after it, EVICT.
+        An extension that would end after 06:00:00 is denied unconditionally (DENY, rule R-BOUND-01) and the reason cites the first scheduled class of the morning.
+        The outcome is a 200 body, as for every policy decision (AR 5.1, K1).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/WindowBoundaryRequestDto' }
+      responses:
+        '200':
+          description: The boundary evaluation.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/WindowBoundaryResponseDto' }
+        '400':
+          description: Wire shape invalid (unknown field, approved_policy other than NIGHT, non-positive extension).
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ErrorBodyDto'
+                  - type: object
+                    properties:
+                      code: { enum: [WIRE_SHAPE_INVALID] }
+        '401':
+          description: No session.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ErrorBodyDto'
+                  - type: object
+                    properties:
+                      code: { enum: [UNAUTHENTICATED] }
+        '503':
+          description: The timetable or the clock could not be read; no evaluation was produced.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ErrorBodyDto'
+                  - type: object
+                    properties:
+                      code: { enum: [DECISION_NOT_PRODUCED] }
   /policy/rules:
     get:
       tags: [policy]
@@ -601,6 +652,25 @@ components:
       description: AR 5.1 (N5) - optional on POST /policy/decisions/preview; that route is not journalled.
       schema: { type: string, minLength: 1 }
   schemas:
+    WindowBoundaryRequestDto:
+      type: object
+      additionalProperties: false
+      required: [job_ref, workload_kind, approved_policy]
+      properties:
+        job_ref: { type: string, minLength: 1 }
+        workload_kind: { $ref: '#/components/schemas/WorkloadKind' }
+        approved_policy: { enum: [NIGHT] }
+        extension_minutes: { type: integer, minimum: 1 }
+    WindowBoundaryResponseDto:
+      type: object
+      additionalProperties: false
+      required: [action, minutes_remaining, hard_deadline, reason, rule_id]
+      properties:
+        action: { enum: [CONTINUE, EVICT_WARNING, EVICT, EXTEND_ALLOWED, DENY] }
+        minutes_remaining: { type: integer, minimum: 0 }
+        hard_deadline: { type: string, pattern: '^06:00:00$' }
+        reason: { type: string, minLength: 1 }
+        rule_id: { type: string, minLength: 1 }
     UuidString: { type: string, pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$' }
     Uuid7String: { type: string, pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[0-9a-f]{4}-[0-9a-f]{12}$' }
     InstantString: { type: string, pattern: '^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}Z$' }
